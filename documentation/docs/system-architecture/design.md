@@ -267,8 +267,44 @@ Similarly to our other two trading strategies, no additional functions are imple
 
 ### User Stories
 ** 1. **  
+User 1 wants to make automated investments using the S&P 500 trading strategy
 
+```mermaid
+sequenceDiagram
+    actor User1
+    participant User/Client
+    participant API
+    participant Strategy(S&P500-LongTerm-ShortTerm)
+    User1 ->>+ User/Client: User1 logs into Tradestar
+    User/Client ->>+ API: Input sent from Client to API
+    API -->>- User/Client: Account Data returned to client
+    User1 ->>+ User/Client: User1 clicks current investments link
+    User/Client -->>- User1: Data previously pulled from API
+    User1 ->>+ User/Client: User1 clicks edit trading strategy, enters input
+    User/Client ->>+ API: make trades based off "Price to Cashflow" ratio, in addition to S&P 500 strategy
+    API -->>- User/Client: Client pulls data from API, makes investments, updates client balance
+    User1 ->>+ Strategy(S&P500-LongTerm-ShortTerm): User1 clicks resume trading on the website, Client adds new parameter to algorithm, makes news investment decisions
+
+```
 ** 2. **  
+User 2 wants to change her automated investment strategy
+
+```mermaid
+sequenceDiagram
+    actor User1
+    participant User/Client
+    participant API
+    participant Strategy(S&P500-LongTerm-ShortTerm)
+    User1 ->>+ User/Client: User1 logs into Tradestar
+    User/Client ->>+ API: Input sent from Client to API
+    API -->>- User/Client: Account Data returned to client
+    User1 ->>+ User/Client: User1 inputs capital to invest
+    User1 ->>+ Strategy(S&P500-LongTerm-ShortTerm): User1 selects the S&P 500 strategy
+    User1 ->>+ User/Client: User1 clicks start trading
+    User/Client ->>+ API: Client selects algorithm based off User Input
+    API -->>- User/Client: Client pulls data from API, makes investments, updates client balance
+
+```
 
 ** 3. **  
 User 3 uses Tradester's Investment Report to view how their investment is doing
