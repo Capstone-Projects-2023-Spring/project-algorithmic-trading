@@ -266,9 +266,12 @@ While the code for determining the trading strategy will be complex, no unique f
 Similarly to our other two trading strategies, no additional functions are implemented, but user's selection of what their largest threshold is for loss, stored as *floorPercentage*, and what percentage gain at which point they wish to sell, *benchmarkPercentage*, are taken into consideration in **updateStrategy()** function.
 
 ### User Stories
-## 1.
-## 2.
-## 3. User 3 uses Tradester's Investment Report to view how their investment is doing
+** 1. **  
+
+** 2. **  
+
+** 3. **  
+User 3 uses Tradester's Investment Report to view how their investment is doing
 
 ```mermaid
 sequenceDiagram
@@ -288,7 +291,9 @@ sequenceDiagram
     wa -->>- us: display graph
 
 ```
-## 4. User 4 uses Tradester to make manual trades
+** 4. **  
+User 4 uses Tradester to make manual trades
+
 
 ```mermaid
 sequenceDiagram
