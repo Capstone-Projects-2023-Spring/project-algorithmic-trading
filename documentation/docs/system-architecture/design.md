@@ -264,3 +264,62 @@ While the code for determining the trading strategy will be complex, no unique f
 ## 7. DayTradingStrategy
 
 Similarly to our other two trading strategies, no additional functions are implemented, but user's selection of what their largest threshold is for loss, stored as *floorPercentage*, and what percentage gain at which point they wish to sell, *benchmarkPercentage*, are taken into consideration in **updateStrategy()** function.
+
+### User Stories
+## 1.
+## 2.
+## 3. User 3 uses Tradester's Investment Report to view how their investment is doing
+
+```mermaid
+sequenceDiagram
+    actor us as user3
+    participant wa as web application
+    participant sv as server
+    participant db as database
+
+    us ->>+ wa: click "Investment Report" button
+    wa -->> us: display dropdown of investment accounts
+    us ->> wa: choose investment to display
+    wa ->>+ sv: send GET request for the particular investment to server 
+    sv ->>+ db: find user's investment information
+    db -->>- sv: return user's investment information
+    sv -->>- wa: return user's investment information
+    wa ->> wa: build graph of investment information
+    wa -->>- us: display graph
+
+```
+## 4. User 4 uses Tradester to make manual trades
+
+```mermaid
+sequenceDiagram
+    actor us as user4
+    participant wa as web application
+    participant sv as server
+    participant db as database
+    participant api as API(Alpha Vantage or yahoo_fin)
+    participant qc as QuantConnect(optional)
+
+    us ->>+ wa: click "Account Selector" button
+    wa -->> us: display dropdown of investment accounts
+    us ->> wa: click "Long Term" button
+    wa ->>+ sv: send GET request for the user's long term investment to server 
+    sv ->>+ db: find user's investment information
+    db -->>- sv: return user's investment information
+    sv -->>+api: request stats of the S&P 500
+    api-->>-sv: return stats of S&P 500
+    sv ->> sv: sort the S&P 500 stats, weighted by performance
+    sv -->>- wa: return user's investment information and the sorted stock data
+    wa ->> wa: build graph of investment information
+    wa -->> us: display graph showing user's investments 
+    wa -->> us: display list of S&P 500 stocks 
+    us -->>+ us: decide stocks to purchase
+    us ->>+ wa: select stock and amount to purchase
+    wa ->>+ sv: update user's Long Term portfolio with new info
+    sv ->> sv: package the investment update to send
+    sv ->>+ qc: PUT request to purchase new stocks
+    qc -->>- sv: return receipt of purchase
+    sv ->>+ db: update Long Term financial info for user
+    db ->>- sv: return receipt of completion of update
+    sv -->>- wa: return receipt of completion of purchase and databse update
+    wa -->>- us: display message of completion of purchase to user
+```
