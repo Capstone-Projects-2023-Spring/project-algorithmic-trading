@@ -328,3 +328,57 @@ sequenceDiagram
     sv -->>- wa: return receipt of completion of purchase and databse update
     wa -->>- us: display message of completion of purchase to user
 ```
+
+### Entity Relationship Diagram and Table design
+
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : place  
+    USER ||--o{ PORTFOLIO: have
+    USER{
+        string username
+        string email
+        string password
+        string balance
+    }
+
+    STOCK {
+        string stock_symbol
+        string company_name
+        string sector
+        float current_price
+        float market_cap
+        float dividend_yield
+        float earnings_per_share
+        float price_to_earnings_ratio
+        float beta
+        float high_52
+        float low_52
+        float avg_daily_volume
+    }
+
+    ORDER }o--|| STOCK : contain
+    ORDER {
+        int order_id
+        string username
+        string stock_symbol
+        string order_type
+        int quantity
+        float price
+        time order_time
+    }
+    PORTFOLIO {
+        int portfolio_id
+        string username
+        string stock_symbol
+        int quantity
+    }
+    PORTFOLIO ||--o{ PORTFOLIO_STOCK : hold
+    PORTFOLIO_STOCK ||--o{ STOCK: holds
+    PORTFOLIO_STOCK {
+        int portfolio_id
+        int stock_symbol
+        int quantity
+        float purchase_price
+    }
+```
