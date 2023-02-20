@@ -342,8 +342,8 @@ sequenceDiagram
 
 ```mermaid
 erDiagram
-    USER ||--o{ ORDER : place  
-    USER ||--o{ PORTFOLIO: have
+    USER ||--o{ ORDER : places  
+    USER ||--o{ PORTFOLIO: owns
     USER{
         string username
         string email
@@ -366,7 +366,7 @@ erDiagram
         float avg_daily_volume
     }
 
-    ORDER }o--|| STOCK : contain
+    ORDER }o--|| STOCK : contains
     ORDER {
         int order_id
         string username
@@ -382,7 +382,7 @@ erDiagram
         string stock_symbol
         int quantity
     }
-    PORTFOLIO ||--o{ PORTFOLIO_STOCK : hold
+    PORTFOLIO ||--o{ PORTFOLIO_STOCK : holds
     PORTFOLIO_STOCK ||--o{ STOCK: holds
     PORTFOLIO_STOCK {
         int portfolio_id
@@ -391,3 +391,5 @@ erDiagram
         float purchase_price
     }
 ```
+The User entity represents a user of the application. It contains basic information on the user, with their username as the primary key. User has direct relationships with the Order entity and the Portfolio entity. A user can place an order (buying stock.) The order entity has a primary key order_id and foreign keys username and stock_symbol, linking an order instance to the user who placed the order and the stock they ordered. The order entity is essentially a receipt or purchase history for a user. When a stock is ordered, it is placed in a user's portfolio, which is a collection of stocks the user currently has stake in (sold stocks are not included.) The Portfolio entity has a primary key portfolio_id and foreign keys username and stock_id, linking the portfolio to the user it belongs to and the to the specific instance of a stock that is included in it. The stock table represents a specific stock, and contains a primary key stock_symbol and various metrics used to determine the stock's value. 
+The Portfolio and Stock entities have a many-to-many relationship, thus they have a junction table Portfolio_Stock. This contains foreign keys portfolio_id and stock_symbol. These foreign keys act together to uniquely identify an entry in the junction table. 
