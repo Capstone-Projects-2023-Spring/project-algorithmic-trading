@@ -29,7 +29,7 @@ A check list for architecture design is attached here [architecture\_design\_che
 DELETE REQUIREMENTS LATER
 
 
-**Algorithms**
+### Algorithms
 
 This application will utilize machine learning to make decisions on which stock to purchase. Stocks will be analyzed as discrete time data, and whether or not to purchase a stock will be determined by the stock's price, market cap, historical returns, volume of historical trades, alpha (excess return), beta (volatility) and any other quantitative data. This means we will be using technical anaylsis for our algorithms, which is best used in more short term trades. Essentially, the behavior of stock prices will be treated as a regression problem. In particular, there will be three trading strategies employed:
 
@@ -39,7 +39,24 @@ This application will utilize machine learning to make decisions on which stock 
 
 The success of these algorithms will be determined by how they perform in comparison to the S&P 500, root mean squared error, and mean absolute percent error.
 
-# Class Diagram
+### Components and Interfaces
+
+This application will use three different components: client, server, and database.
+
+###### Client
+
+A React app. Upon logging in, the user has access to a graph that shows stock prices for the S&P 500 companies. The user can request a stock trading simulation. The simulation is meant to show users the amount of gain or loss that they would have had if they invested real money. To request a simulation, the user must first provide an investment value. The request is then sent to the server. The app also allows users to view the holdings and balances of the users that they are connected to. This allows users to compare their progress with others. The interface for this component is provided though UI elements that direct the user and capture their input.
+
+###### Server
+
+A Django application. This component accesses stock data through an API (yahoo_fin, Alpha Vantage, or any other stock API) and sends it to the client. It also handles requests for simulations and runs those simulations in a multithreaded fashion. Each simulation runs in its own thread, with the simulation progress made available to the user upon request. This component handles the connection of users to each other, so that they can view each other's holdings and balances. The interface for this component is through HTTP requests coming from the client.
+
+###### Database
+
+A PostgreSQL database. This component stores user login information as well as simulation information such as the user's simulated balance and holdings. It will also be used to cache stock market data obtained from API calls for fast retrieval, and to avoid exceeding API call limits. The interface for this component is through SQL queries coming from the server.
+
+### Class Diagram
+
 ```mermaid
 classDiagram
 
@@ -168,6 +185,7 @@ databaseThread  <..  strategyThread
 ```
 
 ## 1. Thread
+
 Taken from python library threading.  Documentation taken from man page:
 **__init__()**: Initializes the thread
 
@@ -202,6 +220,7 @@ Return whether the thread is alive.
 This method returns  `True`  just before the  [`run()`](https://docs.python.org/3/library/threading.html#threading.Thread.run "threading.Thread.run")  method starts until just after the  [`run()`](https://docs.python.org/3/library/threading.html#threading.Thread.run "threading.Thread.run")  method terminates. The module function  [`enumerate()`](https://docs.python.org/3/library/threading.html#threading.enumerate "threading.enumerate")  returns a list of all alive threads.
 
 ## 2. databaseThread
+
 **executeQuery(String query)**: 
 Takes in query to be run, runs query on database, returns query output as a list of tuples, with each
 tuple corresponding to a row.  
@@ -211,6 +230,7 @@ Thread is connected to website with websocket, after query has been run to updat
 notification for page to refresh and display new data.
 
 ## 3. strategyThread
+
 **unpackParameters()**:
 Parameters passed to each of the threads that implement this class will be different, but all parameters will be passed in by dictionary.  Takes elements of key;value pairs and update local variables.
 **recieveStockData()**:
@@ -233,10 +253,14 @@ As each API call is made, thread waits until confirmation of trade is completed 
 If trade fails, a new trade will instead be requested to move money into a money market account until next trade request is made, at which point the stocks in portfolio will attempt to be purchased again
 
 ## 5. SP500Strategy
+
 This is our most basic trading strategy.  The strategy does not factor any user parameters into strategy, determination of how strategy is made is yet to be determined in detail.
 
 ## 6. longTermTradingStrategy
+
 Takes into account different time horizons for when users are expecting to sell off stocks, and level of risk depending on user preference.  
-While the code for determining the trading strategy will be complex, no unique functions will be created other than those defined in the strategyThread interface that this class implements.  
+While the code for determining the trading strategy will be complex, no unique functions will be created other than those defined in the strategyThread interface that this class implements.
+
 ## 7. DayTradingStrategy
+
 Similarly to our other two trading strategies, no additional functions are implemented, but user's selection of what their largest threshold is for loss, stored as *floorPercentage*, and what percentage gain at which point they wish to sell, *benchmarkPercentage*, are taken into consideration in **updateStrategy()** function.
