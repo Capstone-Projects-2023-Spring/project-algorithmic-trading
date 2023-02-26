@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>make.bat</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ffffff;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #54b33e;}
+.s5 { color: #ed94ff; font-style: italic;}
+.s6 { color: #33ccff; font-weight: bold; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+make.bat</font>
+</center></td></tr></table>
+<pre><span class="s0">@ECHO OFF</span>
+
+<span class="s0">pushd </span><span class="s2">%~dp0</span>
+
+<span class="s0">REM </span><span class="s3">Command file for Sphinx documentation</span>
+
+<span class="s0">if </span><span class="s4">&quot;</span><span class="s2">%SPHINXBUILD%</span><span class="s4">&quot; </span><span class="s0">== </span><span class="s4">&quot;&quot; </span><span class="s1">(</span>
+	<span class="s0">set </span><span class="s2">SPHINXBUILD</span><span class="s0">=</span><span class="s1">sphinx-build 
+)</span>
+<span class="s0">set </span><span class="s2">SOURCEDIR</span><span class="s0">=</span><span class="s1">. 
+</span><span class="s0">set </span><span class="s2">BUILDDIR</span><span class="s0">=</span><span class="s1">_build 
+</span>
+<span class="s2">%SPHINXBUILD% </span><span class="s0">&gt;</span><span class="s5">NUL </span><span class="s6">2</span><span class="s0">&gt;</span><span class="s5">NUL</span>
+<span class="s0">if errorlevel </span><span class="s6">9009 </span><span class="s1">(</span>
+	<span class="s0">echo</span><span class="s1">. 
+	</span><span class="s0">echo</span><span class="s1">.The 'sphinx-build' command was not found. Make sure you have Sphinx 
+	</span><span class="s0">echo</span><span class="s1">.installed, then set the SPHINXBUILD environment variable to point 
+	</span><span class="s0">echo</span><span class="s1">.to the full path of the 'sphinx-build' executable. Alternatively you 
+	</span><span class="s0">echo</span><span class="s1">.may add the Sphinx directory to PATH. 
+	</span><span class="s0">echo</span><span class="s1">. 
+	</span><span class="s0">echo</span><span class="s1">.If you don't have Sphinx installed, grab it from 
+	</span><span class="s0">echo</span><span class="s1">.https://www.sphinx-doc.org/ 
+	</span><span class="s0">exit </span><span class="s1">/b </span><span class="s6">1</span>
+<span class="s1">)</span>
+
+<span class="s0">if </span><span class="s4">&quot;</span><span class="s2">%1</span><span class="s4">&quot; </span><span class="s0">== </span><span class="s4">&quot;&quot; </span><span class="s0">goto </span><span class="s1">help 
+</span>
+<span class="s2">%SPHINXBUILD% </span><span class="s1">-M </span><span class="s2">%1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%</span>
+<span class="s0">goto </span><span class="s1">end 
+</span>
+<span class="s1">:</span><span class="s0">help</span>
+<span class="s2">%SPHINXBUILD% </span><span class="s1">-M help </span><span class="s2">%SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%</span>
+
+<span class="s1">:</span><span class="s0">end</span>
+<span class="s0">popd</span>
+</pre>
+</body>
+</html>
