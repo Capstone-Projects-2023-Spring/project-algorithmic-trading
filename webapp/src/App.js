@@ -6,7 +6,7 @@ import Blog from "./components/Blog";
 import Post from "./components/Post";
 import Dashboard from "./components/Dashboard.tsx";
 import Login from "./components/Login.tsx";
-import bull from "/Users/guthriealbertson/vscode/project-algorithmic-trading/webapp/src/bull.png";
+import bull from "./bull.png";
 import "./style.css";
 import "./app.css";
 
