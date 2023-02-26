@@ -1,44 +1,32 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
-import "./style.css";
-import About from "./About";
-import Blog from "./Blog";
-import Post from "./Post";
-import Chart from "./Chart.tsx";
-import Login from "./Login.tsx"
+
+import About from "./components/About";
+import Blog from "./components/Blog";
+import Post from "./components/Post";
+import Dashboard from "./components/Dashboard.tsx";
+import Login from "./components/Login.tsx";
 import bull from "/Users/guthriealbertson/vscode/project-algorithmic-trading/webapp/src/bull.png";
-
+import "./style.css";
 import "./app.css";
-import { Button, Checkbox, Form, Input, ConfigProvider } from "antd";
-
-
 
 export default function App() {
   return (
     <div>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Nav />}>
-          <Route path="about" element={<About />}></Route>
-          <Route path="blog" element={<Blog />}>
-            <Route path="post" element={<Post />}></Route>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Nav />}>
+            <Route path="about" element={<About />}></Route>
+            <Route path="blog" element={<Blog />}>
+              <Route path="post" element={<Post />}></Route>
+            </Route>
+            <Route index element={<HomePage />}></Route>
+            <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="login" element={<Login />}></Route>
           </Route>
-          <Route index element={<HomePage />}></Route>
-          <Route path="dashboard" element={<Chart />}></Route>
-          <Route path="login" element={<Login />}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-    
-    <ConfigProvider
-    theme={{
-      token: {
-        colorPrimary: '#00b96b',
-      },
-    }}
-  >
-  </ConfigProvider>
-  </div>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

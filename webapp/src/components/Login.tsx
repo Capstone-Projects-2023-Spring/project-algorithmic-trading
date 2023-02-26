@@ -1,15 +1,6 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Button, Checkbox, Form, Input, ConfigProvider } from "antd";
-import "./login.css";
-
-const onFinish = (values: any) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
-};
+import "./style/login.css";
 
 const Login = () => {
   const navigate = useNavigate();

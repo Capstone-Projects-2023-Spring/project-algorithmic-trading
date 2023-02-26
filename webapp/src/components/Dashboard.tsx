@@ -43,8 +43,8 @@ const data = {
   ],
 };
 
-const Chart = () => {
+const Dashboard = () => {
   return <Line data={data} />;
 };
 
-export default Chart;
+export default Dashboard;
