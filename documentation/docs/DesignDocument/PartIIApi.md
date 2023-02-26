@@ -1,4 +1,3 @@
-[htmlDocumentation](../../../.github/src/main.html)
 <a id="main"></a>
 
 # Algorithmic Trading Python Class Documentation
