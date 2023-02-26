@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Makefile</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7ec3e6;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ffffff;}
+.s3 { color: #ed864a;}
+.s4 { color: #54b33e;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Makefile</font>
+</center></td></tr></table>
+<pre><span class="s0"># Minimal makefile for Sphinx documentation</span>
+<span class="s0">#</span>
+
+<span class="s0"># You can set these variables from the command line, and also</span>
+<span class="s0"># from the environment for the first two.</span>
+<span class="s2">SPHINXOPTS    </span><span class="s1">?=</span>
+<span class="s2">SPHINXBUILD   </span><span class="s1">?= sphinx-build 
+</span><span class="s2">SOURCEDIR     </span><span class="s1">= . 
+</span><span class="s2">BUILDDIR      </span><span class="s1">= _build 
+</span>
+<span class="s0"># Put it first so that &quot;make&quot; without argument is like &quot;make help&quot;.</span>
+<span class="s1">help:</span>
+	<span class="s3">@</span><span class="s4">$(</span><span class="s2">SPHINXBUILD</span><span class="s4">) </span><span class="s1">-M help &quot;</span><span class="s4">$(</span><span class="s2">SOURCEDIR</span><span class="s4">)</span><span class="s1">&quot; &quot;</span><span class="s4">$(</span><span class="s2">BUILDDIR</span><span class="s4">)</span><span class="s1">&quot; </span><span class="s4">$(</span><span class="s2">SPHINXOPTS</span><span class="s4">) $(</span><span class="s2">O</span><span class="s4">)</span>
+
+<span class="s1">.PHONY: help Makefile</span>
+
+<span class="s0"># Catch-all target: route all unknown targets to Sphinx using the new</span>
+<span class="s0"># &quot;make mode&quot; option.  $(O) is meant as a shortcut for $(SPHINXOPTS).</span>
+<span class="s1">%: Makefile</span>
+	<span class="s3">@</span><span class="s4">$(</span><span class="s2">SPHINXBUILD</span><span class="s4">) </span><span class="s1">-M </span><span class="s2">$@ </span><span class="s1">&quot;</span><span class="s4">$(</span><span class="s2">SOURCEDIR</span><span class="s4">)</span><span class="s1">&quot; &quot;</span><span class="s4">$(</span><span class="s2">BUILDDIR</span><span class="s4">)</span><span class="s1">&quot; </span><span class="s4">$(</span><span class="s2">SPHINXOPTS</span><span class="s4">) $(</span><span class="s2">O</span><span class="s4">)</span>
+</pre>
+</body>
+</html>
