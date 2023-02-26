@@ -5,14 +5,17 @@ import About from "./About";
 import Blog from "./Blog";
 import Post from "./Post";
 import Chart from "./Chart.tsx";
+import Login from "./Login.tsx"
 import bull from "/Users/guthriealbertson/vscode/project-algorithmic-trading/webapp/src/bull.png";
 
 import "./app.css";
+import { Button, Checkbox, Form, Input, ConfigProvider } from "antd";
 
 
 
 export default function App() {
   return (
+    <div>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Nav />}>
@@ -22,9 +25,20 @@ export default function App() {
           </Route>
           <Route index element={<HomePage />}></Route>
           <Route path="dashboard" element={<Chart />}></Route>
+          <Route path="login" element={<Login />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
+    
+    <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: '#00b96b',
+      },
+    }}
+  >
+  </ConfigProvider>
+  </div>
   );
 }
 
@@ -46,7 +60,7 @@ const Nav = () => {
         </Link>
         <div className="links">
           <Link to="/about">About</Link>
-          <Link to="/blog">Login</Link>
+          <Link to="/login">Login</Link>
         </div>
       </div>
       <div>
