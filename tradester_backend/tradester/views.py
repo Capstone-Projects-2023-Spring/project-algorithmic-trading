@@ -61,4 +61,10 @@ def get_stock_data(request, _stock_symbol):
 
     # TODO: If stock data retrieved successfully, return as JSON in HttpResponse object
     # TODO: If error occurs, return error message as JSON in HttpResponse object
-    return HttpResponse("get_stock_data")
+    stock_list = Stock.objects.all()
+    val = 0
+    for stock in stock_list:
+        if stock.stock_symbol == _stock_symbol:
+            val = stock.sector
+
+    return HttpResponse(val)
