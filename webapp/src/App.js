@@ -6,6 +6,7 @@ import Blog from "./components/Blog";
 import Post from "./components/Post";
 import Dashboard from "./components/Dashboard.tsx";
 import Login from "./components/Login.tsx";
+import Data from "./components/Data.tsx";
 import bull from "./bull.png";
 import "./style.css";
 import "./app.css";
@@ -17,10 +18,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Nav />}>
             <Route path="about" element={<About />}></Route>
-            <Route path="blog" element={<Blog />}>
-              <Route path="post" element={<Post />}></Route>
-            </Route>
-            <Route index element={<HomePage />}></Route>
+            <Route path="blog" element={<Blog />}></Route>
+            <Route path="post" element={<Post />}></Route>
+            <Route path="data" element={<Data />}></Route>
+          <Route index element={<HomePage />}></Route>
             <Route path="dashboard" element={<Dashboard />}></Route>
             <Route path="login" element={<Login />}></Route>
           </Route>
@@ -49,6 +50,7 @@ const Nav = () => {
         <div className="links">
           <Link to="/about">About</Link>
           <Link to="/login">Login</Link>
+          <Link to="/data">Data</Link>
         </div>
       </div>
       <div>
