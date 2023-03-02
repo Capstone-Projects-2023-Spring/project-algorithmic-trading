@@ -1,0 +1,31 @@
+.simulation {
+  text-align: center;
+}
+
+.simulation h1 {
+  margin-bottom: 1rem;
+}
+
+.simulation .description {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.simulation .investment-input {
+  margin-top: 0.5rem;
+}
+
+.simulation input {
+  background-color:white;
+  color: black;
+  border-radius: 20px;
+  border-style: outset;
+  border-color: magenta;
+  border-width: 2px;
+  padding: 0.25rem 0rem 0.25rem 0.5rem;
+}
+
+.simulation input:invalid {
+  background-color: lightpink;
+}
