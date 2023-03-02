@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "./style/chart.css";
+import "./style/data.css"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -73,7 +74,7 @@ const Dashboard = () => {
 
         for (let key in TSD) {
           let data = TSD[key]["5. adjusted close"]
-          let close: number =+ data
+          let close: number = + data
           dates.push(key.toString())
           closes.push(close)
         }
@@ -85,10 +86,10 @@ const Dashboard = () => {
 
         let chart = ChartJS.getChart("chart");
         if (!chart) return;
-    
+
         chart.data.labels = dates
         chart.data.datasets[0].data = closes
-    
+
         chart.update();
 
       })
@@ -99,31 +100,34 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="data">
-      <Outlet />
-      <h1>Data</h1>
-      <table className="stock-table">
-        <thead>
-          <tr>
-            <th>Stock</th>
-            <th>Ticker</th>
-          </tr>
-        </thead>
-        {stocks.map((val, key) => {
-          return (
-            <tbody onClick={() => callAPI(val.ticker)}>
-              <tr key={key}>
-                <td>{val.name}</td>
-                <td>[{val.ticker}]</td>
-              </tr>
-            </tbody>
-          )
-        })}
-      </table>
-      <Line 
-        data={data}
-        id = "chart" 
-      />
+    <div className="container">
+      <div className="data">
+        <Outlet />
+        <table className="stock-table">
+          <thead>
+            <tr>
+              <th>Stock</th>
+              <th>Ticker</th>
+            </tr>
+          </thead>
+          {stocks.map((val, key) => {
+            return (
+              <tbody onClick={() => callAPI(val.ticker)}>
+                <tr key={key}>
+                  <td>{val.name}</td>
+                  <td>[{val.ticker}]</td>
+                </tr>
+              </tbody>
+            )
+          })}
+        </table>
+        <div className="linechart">
+          <Line
+            data={data}
+            id="chart"
+          />
+        </div>
+      </div>
     </div>
   );
 };
