@@ -13,21 +13,18 @@ import "./app.css";
 
 export default function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Nav />}>
-            <Route path="about" element={<About />}></Route>
-            <Route path="blog" element={<Blog />}></Route>
-            <Route path="post" element={<Post />}></Route>
-          <Route index element={<HomePage />}></Route>
-            <Route path="dashboard" element={<Dashboard />}></Route>
-            <Route path="login" element={<Login />}></Route>
-            <Route path="simulation" element={<Simulation />}></Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/post" element={<Post />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/simulation" element={<Simulation />} />
+      </Routes>
+    </>
   );
 }
 
@@ -52,9 +49,6 @@ const Nav = () => {
           <Link to="/simulation">Simulation</Link>
           <Link to="/login">Login</Link>
         </div>
-      </div>
-      <div>
-        <Outlet />
       </div>
     </div>
   );
