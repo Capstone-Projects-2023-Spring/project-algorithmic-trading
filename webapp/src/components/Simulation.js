@@ -1,15 +1,33 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import "./style/simulation.css";
 
+const API_ENDPOINT = process.env.API_ENDPOINT || 'http://127.0.0.1:8000';
+
 const Simulation = () => {
   const [investment, setInvestment] = useState(0);
+
+  useEffect(() => {
+    setAndFetchInvestment();
+  });
+
+  const setAndFetchInvestment = (value) => {
+    fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`)
+    .then((response) => response.json())
+    .then((data) => {
+      let investmentString = data.amount;
+      let investment = parseFloat(investmentString);
+      if (!isNaN(investment)) {
+        setInvestment(data.amount);
+      }
+    });
+  };
 
   const onKeyDown = (event) => {
     if (event.key === 'Enter') {
       let value = parseFloat(event.target.value);
       if (!isNaN(value) && event.target.checkValidity()) {
-        setInvestment(value);
+        setAndFetchInvestment(value)
       } 
     }
   }
