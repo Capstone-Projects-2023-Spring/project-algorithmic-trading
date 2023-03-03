@@ -4,7 +4,7 @@ import requests
 from django.http import HttpResponse, JsonResponse
 
 from tradester.models import Stock
-
+from tradester.models import Investment
 
 # import pandas as pd
 
@@ -61,7 +61,7 @@ def get_stock_data(request, _stock_symbol):
     return: HttpResponse object with JSON data of stock information or error message \n
     rtype: HttpResponse
     """
-
+    
     # get data from Alpha Vantage
     api_key = '2JMCN347HZ3BU9RC'
     url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={_stock_symbol}&apikey={api_key}'
@@ -105,3 +105,16 @@ def get_stock_data(request, _stock_symbol):
     else:
         error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
         return JsonResponse(error_msg)
+
+def save_investment(request):
+    i = Investment.objects.get(investment_id=1)
+    if request.method == "GET":
+        investment_amount = None
+        try:
+            investment_amount = float(request.GET['amount'])
+        except:
+            pass
+        if investment_amount:
+            i.amount = investment_amount
+            i.save()
+    return JsonResponse({'amount': i.amount})

@@ -62,3 +62,11 @@ class Portfolio_stock(models.Model):
     stock_symbol = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     purchase_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Investment(models.Model):
+    """
+    A throwaway table used to demonstrate database integration.
+    Used for the 'Hello World' demo.
+    """
+    investment_id = models.AutoField(primary_key=True, default=None)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
