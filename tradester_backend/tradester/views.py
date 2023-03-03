@@ -65,7 +65,6 @@ def get_stock_data(request, _stock_symbol):
 
 def save_investment(request):
     i = Investment.objects.get(investment_id=1)
-    print(request.method)
     if request.method == "GET":
         investment_amount = None
         try:
@@ -75,4 +74,4 @@ def save_investment(request):
         if investment_amount:
             i.amount = investment_amount
             i.save()
-    return HttpResponse(str(i.amount))
+    return JsonResponse({'amount': i.amount})
