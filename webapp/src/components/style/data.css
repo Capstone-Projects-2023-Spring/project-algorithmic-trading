@@ -1,0 +1,20 @@
+.stock-table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+
+.stock-table th {
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    padding: 10px;
+}
+
+.stock-table td {
+    text-align: left;
+    border-bottom: 2px solid white;
+    padding: 10px;
+}
+
+.stock-table tr:hover td{background-color: rgb(53, 53, 53);}

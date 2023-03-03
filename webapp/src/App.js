@@ -18,10 +18,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Nav />}>
             <Route path="about" element={<About />}></Route>
-            <Route path="blog" element={<Blog />}>
-              <Route path="post" element={<Post />}></Route>
-            </Route>
-            <Route index element={<HomePage />}></Route>
+            <Route path="blog" element={<Blog />}></Route>
+            <Route path="post" element={<Post />}></Route>
+          <Route index element={<HomePage />}></Route>
             <Route path="dashboard" element={<Dashboard />}></Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="simulation" element={<Simulation />}></Route>
