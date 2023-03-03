@@ -2,7 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 from tradester.models import Stock
-
+from tradester.models import Investment
 
 # Create your views here.
 def index(request):
@@ -62,3 +62,17 @@ def get_stock_data(request, _stock_symbol):
     # TODO: If stock data retrieved successfully, return as JSON in HttpResponse object
     # TODO: If error occurs, return error message as JSON in HttpResponse object
     return HttpResponse("get_stock_data")
+
+def save_investment(request):
+    i = Investment.objects.get(investment_id=1)
+    print(request.method)
+    if request.method == "GET":
+        investment_amount = None
+        try:
+            investment_amount = float(request.GET['amount'])
+        except:
+            pass
+        if investment_amount:
+            i.amount = investment_amount
+            i.save()
+    return HttpResponse(str(i.amount))
