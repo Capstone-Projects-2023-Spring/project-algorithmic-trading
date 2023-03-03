@@ -86,10 +86,7 @@ WSGI_APPLICATION = 'tradester_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if DEBUG:
-    db = os.environ.get('DB_CONN_STRING_DEV', default='')
-else:
-    db = os.environ.get('DB_CONN_STRING_PROD', default='')
+db = os.environ.get('DB_CONN_STRING_DEV', default='')
 
 DATABASES = {
     'default': dj_database_url.config(default=db, conn_max_age=600)
