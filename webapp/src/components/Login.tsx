@@ -8,7 +8,7 @@ const form = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       delayChildren: 0.1,
       staggerChildren: 0.1,
     },
@@ -22,7 +22,7 @@ const children = {
 
     transition: {
       type: "spring",
-      stiffness: 350,
+      stiffness: 450,
     },
   },
 };

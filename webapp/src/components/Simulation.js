@@ -1,6 +1,31 @@
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { motion, spring } from "framer-motion";
 import "./style/simulation.css";
+
+const form = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      delayChildren: 0.1,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const children = {
+  hidden: { y: 5 },
+  visible: {
+    y: 0,
+
+    transition: {
+      type: "spring",
+      stiffness: 450,
+    },
+  },
+};
 
 const API_ENDPOINT = process.env.API_ENDPOINT || "http://127.0.0.1:8000";
 
@@ -33,29 +58,36 @@ const Simulation = () => {
   };
 
   return (
-    <div className="simulation">
-      <h1>Simulation</h1>
+    <motion.div
+      variants={form}
+      initial="hidden"
+      animate="visible"
+      className="simulation"
+    >
+      <motion.h1 variants={children}>Simulation</motion.h1>
 
-      <div className="description">
-        <p>
+      <div variants={children} className="description">
+        <motion.p variants={children}>
           This page allows you to run our stock trading simulator. All you need
           to do is enter an investment amount and hit enter. Our system will use
           your investment amount to determine the best stocks to buy. It will
           then constantly monitor the market and trade stocks when there is an
           anticipated profit. This process will keep going until you end the
           simulation.
-        </p>
+        </motion.p>
         <br />
-        <p>
+        <motion.p variants={children}>
           Expected input is a whole number or a decimal number with one or two
           digits after the decimal point.
-        </p>
+        </motion.p>
         <br />
       </div>
 
-      <p>Your current investment value is: ${investment}</p>
+      <motion.p variants={children}>
+        Your current investment value is: ${investment}
+      </motion.p>
 
-      <div className="investment-input">
+      <motion.div variants={children} className="investment-input">
         <label>Enter investment value: </label>
         <input
           inputMode="decimal"
@@ -63,10 +95,10 @@ const Simulation = () => {
           placeholder="0.00"
           onKeyDown={onKeyDown}
         />
-      </div>
+      </motion.div>
 
       <Outlet />
-    </div>
+    </motion.div>
   );
 };
 
