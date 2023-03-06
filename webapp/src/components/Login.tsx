@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, spring } from "framer-motion";
 import "./style/login.css";
 
 const form = {
@@ -8,6 +8,7 @@ const form = {
   visible: {
     opacity: 1,
     transition: {
+      duration: 0.5,
       delayChildren: 0.1,
       staggerChildren: 0.1,
     },
@@ -15,10 +16,14 @@ const form = {
 };
 
 const children = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 5 },
   visible: {
     y: 0,
-    opacity: 1,
+
+    transition: {
+      type: "spring",
+      stiffness: 350,
+    },
   },
 };
 
