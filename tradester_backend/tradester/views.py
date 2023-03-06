@@ -105,6 +105,18 @@ def get_stock_data(request, _stock_symbol):
     else:
         error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
         return JsonResponse(error_msg)
+    
+def get_investment(request, token):
+    """
+    View to receive the investment data for a user
+
+    param request: the request object \n
+    param token: session token attached to signed-in user \n
+    return: HttpResponse object with data to display in frontend or error message "not signed in" \n
+    rtype: HttpResponse
+    """
+    # TODO: implement getting investment info
+    return HttpResponse("get_investment")
 
 def save_investment(request):
     i = Investment.objects.get(investment_id=1)
