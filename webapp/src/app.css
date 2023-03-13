@@ -1,5 +1,8 @@
+body {
+  overflow: hidden;
+}
 html * {
-  margin: 1px;
+  margin: 0px;
   background-color: rgb(21, 21, 21);
   color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -8,19 +11,17 @@ html * {
 }
 
 .home {
-  padding: 5px;
-  position: absolute;
+  position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  justify-content: space-around;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid white;
-  border-radius: 10px;
-  width: 50%;
-  height: 30%;
-  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.home * {
+  padding: 20px;
 }
 
 .nav * {
