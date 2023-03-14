@@ -88,8 +88,15 @@ WSGI_APPLICATION = 'tradester_backend.wsgi.application'
 
 db = os.environ.get('DB_CONN_STRING_DEV', default='')
 
+# DATABASES = {
+#     'default': dj_database_url.config(default=db, conn_max_age=600)
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(default=db, conn_max_age=600)
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
