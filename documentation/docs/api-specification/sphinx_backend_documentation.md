@@ -1,4 +1,4 @@
 # Backend Documentation
 
 
-Documentation is [here](html/index.html).
+<a target="_blank" href={"/html/index.html"}>Click here for docs</a>
