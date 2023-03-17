@@ -7,6 +7,7 @@ import Post from "./components/Post";
 import Dashboard from "./components/Dashboard.tsx";
 import Login from "./components/Login.tsx";
 import Simulation from "./components/Simulation";
+import Candle from "./components/Candle";
 import bull from "./bull.png";
 import "./style.css";
 import "./app.css";
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/simulation" element={<Simulation />} />
+        <Route path="/candle" element={<Candle />} />
       </Routes>
     </>
   );
@@ -32,7 +34,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <h1>Welcome to tradester</h1>
-      <Link to="/dashboard">View Dashboard</Link>
+      <Link to="/candle">View Dashboard</Link>
     </div>
   );
 };

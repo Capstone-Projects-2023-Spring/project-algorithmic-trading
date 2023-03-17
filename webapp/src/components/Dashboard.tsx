@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { Outlet } from "react-router-dom";
+import Chart from "react-apexcharts";
 import "./style/chart.css";
 import "./style/data.css";
+import "./style/dashboard.css";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,8 +15,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Chart, Line } from "react-chartjs-2";
-import { setOptions } from "react-chartjs-2/dist/utils";
+import { Line } from "react-chartjs-2";
 ChartJS.register(
   ArcElement,
   Tooltip,
