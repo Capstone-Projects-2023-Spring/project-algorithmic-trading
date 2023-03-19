@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import About from "./components/About";
@@ -46,9 +46,9 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/post" element={<Post />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>} />
+        <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
         <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn}/>} />
-        <Route path="/simulation" element={<Simulation />} />
+        <Route path="/simulation" element={<Simulation loggedIn={loggedIn}/>} />
         <Route path="/candle" element={<Candle />} />
       </Routes>
     </>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
 import { API_ENDPOINT } from "../services/api-endpoints";
 
@@ -29,11 +29,16 @@ const children = {
   },
 };
 
-const Simulation = () => {
+const Simulation = ({ loggedIn }) => {
   const [investment, setInvestment] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setAndFetchInvestment();
+    if (loggedIn === false) {
+      navigate('/login');
+    } else {
+      setAndFetchInvestment();
+    }
   });
 
   const setAndFetchInvestment = (value) => {

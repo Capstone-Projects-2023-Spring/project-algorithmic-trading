@@ -1,25 +1,28 @@
 import {API_ENDPOINT} from './api-endpoints'
 
-export function login(username, password, setLoggedIn) {
+export async function login(username, password) {
   const user = {
     username: username,
     password: password
   };
 
-  fetch(`${API_ENDPOINT}/token/`, {
+  let response = await fetch(`${API_ENDPOINT}/token/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(user),
   })
-    .then((response) => response.json())
-    .then((data) => {
-      localStorage.clear();
-      localStorage.setItem('access_token', data.access);
-      localStorage.setItem('refresh_token', data.refresh);
-      setLoggedIn(true);
-    })
+
+  if (response.ok) {
+    const data = await response.json();
+    localStorage.clear();
+    localStorage.setItem('access_token', data.access);
+    localStorage.setItem('refresh_token', data.refresh);
+    return true;
+  }
+
+  return false;
 }
 
 export function logout() {
@@ -41,6 +44,9 @@ export function logout() {
       }
       localStorage.clear();
     })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 export function isLoggedIn() {

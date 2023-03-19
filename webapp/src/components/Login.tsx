@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
-import {login} from '../services/authentication'
+import { login } from '../services/authentication'
 import "./style/login.css";
 
 const form = {
@@ -28,20 +28,35 @@ const children = {
   },
 };
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ loggedIn, setLoggedIn }) => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [feedback, setFeedback] = useState('');
+
+  useEffect(() => {
+    if (loggedIn) navigate('/');
+  });
+
+  const onSubmit = async () => {
+    let success = await login(username, password);
+    if (success) {
+      setLoggedIn(true);
+      setFeedback('');
+      navigate(-1);
+    } else {
+      setFeedback('Invalid credentials.');
+    }
+  };
 
   return (
     <motion.form
       variants={form}
       initial="hidden"
       animate="visible"
-      action="#"
       method=""
-      onSubmit={() => login(username, password, setLoggedIn)}
+      onSubmit={onSubmit}
       className="form"
     >
       <motion.h1 variants={children}>login</motion.h1>
@@ -61,6 +76,9 @@ const Login = ({ setLoggedIn }) => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
+      <motion.label 
+        title={feedback}
+      >{feedback}</motion.label>
       <motion.div variants={children} className="subreg">
         <input type="submit" value="Register" className="register" />
         <input type="submit" value="Login" className="login" />
