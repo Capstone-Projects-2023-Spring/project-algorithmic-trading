@@ -1,10 +1,16 @@
 from decimal import Decimal
 
+import status
 import requests
 from django.http import HttpResponse, JsonResponse
 
 from tradester.models import Stock
 from tradester.models import Investment
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
 
 # import pandas as pd
 
@@ -118,15 +124,28 @@ def get_investment(request, token):
     # TODO: implement getting investment info
     return HttpResponse("get_investment")
 
-def save_investment(request):
-    i = Investment.objects.get(investment_id=1)
-    if request.method == "GET":
-        investment_amount = None
+class SaveInvestment(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        i = Investment.objects.get(investment_id=1)
+        if request.method == "GET":
+            investment_amount = None
+            try:
+                investment_amount = float(request.GET['amount'])
+            except:
+                pass
+            if investment_amount:
+                i.amount = investment_amount
+                i.save()
+            return Response({'amount': i.amount})
+    
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
         try:
-            investment_amount = float(request.GET['amount'])
-        except:
-            pass
-        if investment_amount:
-            i.amount = investment_amount
-            i.save()
-    return JsonResponse({'amount': i.amount})
+            refresh_token = request.data['refresh_token']
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
