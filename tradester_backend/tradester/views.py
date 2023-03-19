@@ -3,6 +3,7 @@ from decimal import Decimal
 import status
 import requests
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.models import User
 
 from tradester.models import Stock
 from tradester.models import Investment
@@ -149,3 +150,34 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+class RegisterUser(APIView):
+    def post(self, request):
+        try:
+            username = request.data['username']
+            password = request.data['password']
+            password_conf = request.data['password_conf']
+
+            data = {}
+            responseStatus = status.HTTP_200_OK
+            if password != password_conf:
+                responseStatus = status.HTTP_400_BAD_REQUEST
+                data['error'] = 'Passwords do not match.'
+
+            # If we are able to get a user with the given username, the username was already used.
+            try:
+                u = User.objects.get(username=username)
+                responseStatus = status.HTTP_400_BAD_REQUEST
+                data['error'] = 'Username is already taken.'
+            except User.DoesNotExist: pass
+
+            if responseStatus == status.HTTP_200_OK:
+                try:
+                    u = User.objects.create_user(username=username, password=password)
+                    data['status'] = 'User successfully registered.'
+                except Exception: pass
+
+            return Response(status=responseStatus, data=data)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
