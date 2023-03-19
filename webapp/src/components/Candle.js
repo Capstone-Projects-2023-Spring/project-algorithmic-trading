@@ -104,8 +104,7 @@ class Candle extends Component {
         let newData = [];
 
         const url =
-            "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol="
-            + ticker + "&outputsize=compact&apikey=2JMCN347HZ3BU9RC";
+            "http://127.0.0.1:8000/tradester/get_stock_data_candle/" + ticker + "/";
 
         fetch(url, { method: "GET" })
             .then((response) => {
@@ -113,6 +112,7 @@ class Candle extends Component {
             })
             .then((res) => {
 
+                console.log("running from our server");
                 let TSD = res["Time Series (Daily)"];
 
                 for (let key in TSD) {

@@ -13,8 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+
 import dj_database_url
 import tradester.apps
+
 
 
 load_dotenv(override=False)
@@ -87,18 +89,12 @@ WSGI_APPLICATION = 'tradester_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DB = os.environ.get('DB_CONN_STRING_DEV', default='')
+db = os.environ.get('DB_CONN_STRING_DEV', default='')
 
 DATABASES = {
-    'default': dj_database_url.config(default=DB, conn_max_age=600)
+    'default': dj_database_url.config(default=db, conn_max_age=600)
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
