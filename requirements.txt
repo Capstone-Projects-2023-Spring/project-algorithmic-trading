@@ -4,3 +4,8 @@ redis~=4.5.1
 psycopg2~=2.9.5
 gunicorn~=20.1.0
 Flask~=2.1.0
+numpy
+torch
+matplotlib
+alpha_vantage
+scikit-learn
