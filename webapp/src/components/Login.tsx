@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
+import {login} from '../services/authentication'
 import "./style/login.css";
 
 const form = {
@@ -27,8 +28,12 @@ const children = {
   },
 };
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
   const navigate = useNavigate();
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <motion.form
       variants={form}
@@ -36,6 +41,7 @@ const Login = () => {
       animate="visible"
       action="#"
       method=""
+      onSubmit={() => login(username, password, setLoggedIn)}
       className="form"
     >
       <motion.h1 variants={children}>login</motion.h1>
@@ -43,12 +49,16 @@ const Login = () => {
         variants={children}
         type="text"
         name=""
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
       />
       <motion.input
         variants={children}
         type="password"
         name=""
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
       <motion.div variants={children} className="subreg">
