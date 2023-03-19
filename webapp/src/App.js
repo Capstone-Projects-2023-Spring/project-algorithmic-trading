@@ -22,7 +22,7 @@ export default function App() {
     return (
       <div>
         <div className="nav">
-          <Link className="logo" to="/dashboard">
+          <Link className="logo" to="/candle">
             Tradester <img src={bull} alt="Logo" />{" "}
           </Link>
           <div className="links">
