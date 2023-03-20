@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flask App</title>
+  </head>
+  <body>
+    <button id="button">Click me</button>
+    <img id="loading-gif" src="{{ url_for('static', filename='loading.gif') }}" style="display:none;">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
