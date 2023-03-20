@@ -1,26 +1,26 @@
+import matplotlib
+matplotlib.use('Agg')
+
 from flask import Flask, request, Response, render_template
-import os
 import numpy as np
-import pandas as pd
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 from alpha_vantage.timeseries import TimeSeries
-import os
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-import random
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+
+@app.route('/render', methods=['POST'])
+def render():
     config = {
         "alpha_vantage": {
             "key": "2JMCN347HZ3BU9RC",
@@ -249,7 +249,6 @@ def index():
     plt.xticks(x, xticks, rotation='vertical')
     plt.grid(visible=None, which='major', axis='y', linestyle='--')
     plt.legend()
-    plt.show()
     plt.savefig('static/images/S&P500plot.png', dpi=fig.dpi, bbox_inches='tight')
 
     return render_template('plot.html', url='/static/images/S&P500plot.png')
