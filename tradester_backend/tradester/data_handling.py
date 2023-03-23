@@ -8,11 +8,13 @@ functions are called by views when the backend receives HTTP requests.
 """
 import csv
 from io import StringIO
+import os
 
-from alpha_vantage.timeseries import TimeSeries
 import requests
 from tradester.models import Stock
 #import pandas as pd
+
+key = os.environ.get('DB_CONN_DAILY', default='')
 
 def fetch_daily_OHLC():
     """
@@ -21,7 +23,7 @@ def fetch_daily_OHLC():
     """
 
     # API endpoint URL for batch stock quotes
-    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey=6B07KCTp2RUNh2zOybygjNYppflkxS_1'
+    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey={key}'
 
     # Send request to API and retrieve data
     response = requests.get(url)

@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+import json
 import status
 import requests
 from django.http import HttpResponse, JsonResponse
@@ -7,6 +8,7 @@ from django.contrib.auth.models import User
 
 from tradester.models import Stock
 from tradester.models import Investment
+from tradester.data_handling import fetch_daily_OHLC
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -181,3 +183,6 @@ class RegisterUser(APIView):
         except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
+def update_stocks_daily(request):
+    daily_data = json.dumps(fetch_daily_OHLC())
+    return HttpResponse(daily_data, content_type='application/json')

@@ -10,4 +10,5 @@ urlpatterns = [
     path('save_investment/', views.SaveInvestment.as_view(), name='save_investment'),
     path('logout/', views.LogoutView.as_view(), name ='logout'),
     path('register/', views.RegisterUser.as_view(), name ='register'),
+    path('update_stocks_daily/', views.update_stocks_daily, name='update_stocks_daily'),
 ]
