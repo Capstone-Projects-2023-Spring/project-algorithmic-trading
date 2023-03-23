@@ -27,6 +27,8 @@ def fetch_daily_OHLC():
 
     # Send request to API and retrieve data
     response = requests.get(url)
-    data = response.json()
-    print(data)
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = {'error': f'unable to retrieve daily data'}
     return data

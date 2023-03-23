@@ -184,5 +184,44 @@ class RegisterUser(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
 def update_stocks_daily(request):
-    daily_data = json.dumps(fetch_daily_OHLC())
-    return HttpResponse(daily_data, content_type='application/json')
+    daily_data = fetch_daily_OHLC()
+    print(daily_data['resultsCount'])
+    if "error" in daily_data:
+        error_msg = {'error': f'Unable to retrieve daily data'}
+        return JsonResponse(error_msg)
+    else:
+        """
+        TODO: fix: psycopg2.errors.NumericValueOutOfRange: numeric field overflow
+                   DETAIL:  A field with precision 10, scale 2 must round to an absolute 
+                   value less than 10^8.
+              fix: tradester.models.Stock.DoesNotExist: Stock matching query does not exist.
+        """ 
+        for result in daily_data['results']:
+            stock_symbol = result['T']
+            current_price = result['c']
+            daily_high = result['h']
+            daily_low = result['l']
+            if 'n' in result:
+                daily_num_transactions = result['n']
+            else:
+                daily_num_transactions = None
+            daily_open_price = result['o']
+            daily_volume = result['v']
+            if 'n' in result:
+                daily_vwap = result['vw']
+            else:
+                daily_vwap = None
+
+            stock, created = Stock.objects.update_or_create(
+                stock_symbol=stock_symbol,
+                defaults={
+                    'current_price': current_price,
+                    'daily_high': daily_high,
+                    'daily_low': daily_low,
+                    'daily_num_transactions': daily_num_transactions,
+                    'daily_open_price': daily_open_price,
+                    'daily_volume': daily_volume,
+                    'daily_vwap': daily_vwap,
+                }
+            )
+        return JsonResponse(daily_data)
