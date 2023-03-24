@@ -190,12 +190,9 @@ def update_stocks_daily(request):
         error_msg = {'error': f'Unable to retrieve daily data'}
         return JsonResponse(error_msg)
     else:
-        """
-        TODO: fix: psycopg2.errors.NumericValueOutOfRange: numeric field overflow
-                   DETAIL:  A field with precision 10, scale 2 must round to an absolute 
-                   value less than 10^8.
-              fix: tradester.models.Stock.DoesNotExist: Stock matching query does not exist.
-        """ 
+        stocks_to_create = [] #these are the stocks that do not exist in the DB
+        stocks_to_update = [] #these are the stocks that do exist in the DB
+
         for result in daily_data['results']:
             stock_symbol = result['T']
             current_price = result['c']
@@ -212,16 +209,42 @@ def update_stocks_daily(request):
             else:
                 daily_vwap = None
 
-            stock, created = Stock.objects.update_or_create(
-                stock_symbol=stock_symbol,
-                defaults={
-                    'current_price': current_price,
-                    'daily_high': daily_high,
-                    'daily_low': daily_low,
-                    'daily_num_transactions': daily_num_transactions,
-                    'daily_open_price': daily_open_price,
-                    'daily_volume': daily_volume,
-                    'daily_vwap': daily_vwap,
-                }
-            )
-        return JsonResponse(daily_data)
+            # Get a list of stock symbols that already exist in the database
+            existing_symbols = list(Stock.objects.values_list('stock_symbol', flat=True))
+
+            if stock_symbol not in existing_symbols:
+                #we want to create this entry
+                stock = Stock(
+                    stock_symbol=stock_symbol,
+                    current_price=current_price,
+                    daily_high=daily_high,
+                    daily_low=daily_low,
+                    daily_num_transactions=daily_num_transactions,
+                    daily_open_price=daily_open_price,
+                    daily_volume=daily_volume,
+                    daily_vwap=daily_vwap,
+                )
+
+                stocks_to_create.append(stock)
+            else:
+                #we want to update this entry
+                stock = Stock.objects.get(stock_symbol=stock_symbol)
+                stock.current_price = current_price
+                stock.daily_high = daily_high
+                stock.daily_low = daily_low
+                stock.daily_num_transactions = daily_num_transactions
+                stock.daily_open_price = daily_open_price
+                stock.daily_volume = daily_volume
+                stock.daily_vwap = daily_vwap
+
+                stocks_to_update.append(stock)
+
+        # Use bulk_create() to create multiple new objects in a single query
+        Stock.objects.bulk_create(stocks_to_create)
+
+        # Use bulk_update() to update multiple existing objects in a single query
+        Stock.objects.bulk_update(stocks_to_update, fields=[
+                                  'current_price', 'daily_high', 'daily_low', 'daily_num_transactions', 'daily_open_price', 'daily_volume', 'daily_vwap'])
+              
+
+        return JsonResponse({'status': '200'})
