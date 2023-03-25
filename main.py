@@ -1,24 +1,35 @@
-import os
+from polygon import RESTClient
+import numpy as np
+import pandas
+import time
+import datetime
 
-from mainClasses import *
+
+SP500Data = pandas.read_csv("S&P500Companies.csv")
+sp500Tickers = SP500Data["Symbol"]
 
 
-print("Inside main class")
+columns = ["Ticker", "Date", "Open", "Close", "Low", "High", "Volume"]
+stockData = pandas.DataFrame(columns=columns)
 
-databaseConnection = DatabaseThread(os.environ['RENDER_HOST'], os.environ['RENDER_DB_NAME'],
-                                    os.environ['RENDER_DB_USER'], os.environ['RENDER_DB_PASSWORD'])
+client = RESTClient(api_key="<KEY>")
 
-query = """SELECT table_name
-        FROM information_schema.tables 
-        """
 
-queryResult = databaseConnection.execute_query(query)
-print(queryResult)
+data = []
+# List Aggregates (Bars)
+# for ticker in sp500Tickers:
+ticker = 'AAPL'
+bars = client.get_aggs(ticker=ticker, multiplier=1, timespan="day", from_="1999-11-01", to="2023-03-17",
+                                     limit=50000)
 
-# Error appears when module rq tries to import, since it uses another module named resource
-# That is linux specific, and doesn't exist in windows
-from rq import Queue
-from worker import conn
-from utils import count_words_at_url
-q = Queue(connection=conn)
-result = q.enqueue(count_words_at_url, 'http://heroku.com')
+for bar in bars:
+    data.append([ticker, datetime.datetime.fromtimestamp(bar.timestamp / 1000.0, tz=datetime.timezone.utc).date(),
+                 bar.open, bar.close, bar.low, bar.high, bar.volume])
+# time.sleep(20)
+
+# df = pandas.DataFrame(data=np.array(data),
+#                       index=np.arange(len(data)),
+#                       columns=["Ticker", "Date", "Open", "Close", "Low", "High", "Volume"])
+
+arr = np.asarray(data)
+pandas.DataFrame(arr).to_csv('stockData.csv', index=False)
