@@ -9,6 +9,7 @@ import Login from "./components/Login.tsx";
 import Logout from "./components/Logout";
 import Simulation from "./components/Simulation";
 import Candle from "./components/Candle";
+import Portfolio from "./components/Portfolio";
 import bull from "./bull.png";
 import "./style.css";
 import "./app.css";
@@ -28,6 +29,7 @@ export default function App() {
           <div className="links">
             <Link to="/about">About</Link>
             <Link to="/simulation">Simulation</Link>
+            <Link to="/portfolio">Porfolio</Link>   {/* This should be added to loggedIn when ready */}
             {
               loggedIn ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
             }
@@ -50,6 +52,7 @@ export default function App() {
         <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn}/>} />
         <Route path="/simulation" element={<Simulation loggedIn={loggedIn}/>} />
         <Route path="/candle" element={<Candle />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
     </>
   );
