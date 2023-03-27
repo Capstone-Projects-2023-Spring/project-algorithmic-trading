@@ -4,6 +4,7 @@
 'model_dir' : '../model',
 'label_name' : 'Close',
 'train_frac' : 0.5,
+'split_index': 0,
 'sequence_length' : 30,
 'batch_size' : 8,
 'n_epochs' : 20,
