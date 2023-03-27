@@ -103,10 +103,7 @@ class Candle extends Component {
     let newSeries = [];
     let newData = [];
 
-    const url =
-      "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" +
-      ticker +
-      "&outputsize=compact&apikey=2JMCN347HZ3BU9RC";
+    const url = "https://tradester-backend.onrender.com/tradester/get_stock_data_candle/" + ticker + "/";
 
     fetch(url, { method: "GET" })
       .then((response) => {
