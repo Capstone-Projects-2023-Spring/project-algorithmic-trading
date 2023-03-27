@@ -15,12 +15,20 @@ function HomepageHeader() {
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-            {/* TODO: Change me to your project's tutorial*/ }
-          <Link
+          <a 
             className="button button--secondary button--lg"
-            to="/tutorial/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+            href="https://jalzeidi.github.io/tradester-frontend/"
+            target="_blank"
+          >
+            Tradester App 📈
+          </a>
+          <div>
+            <em>
+              NOTE: Our backend is a hosted on a free service that spins down after inactivity.
+              Requests made for the first time after a period of inactivity will take about 30-60 seconds to return.
+              Subsequent requests should be fast.
+            </em>
+          </div>
         </div>
       </div>
     </header>

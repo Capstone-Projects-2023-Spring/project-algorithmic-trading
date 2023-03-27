@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from datetime import timedelta
 from dotenv import load_dotenv
 
 import dj_database_url
@@ -50,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt.token_blacklist'
 ]
 
 MIDDLEWARE = [
@@ -64,6 +67,19 @@ MIDDLEWARE = [
     'django.contrib.admindocs.middleware.XViewMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+      ],
+}
+
+SIMPLE_JWT = {
+     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+     'ROTATE_REFRESH_TOKENS': True,
+     'BLACKLIST_AFTER_ROTATION': True
+}
 
 ROOT_URLCONF = 'tradester_backend.urls'
 
@@ -92,7 +108,9 @@ WSGI_APPLICATION = 'tradester_backend.wsgi.application'
 db = os.environ.get('DB_CONN_STRING_DEV', default='')
 
 DATABASES = {
+
     'default': dj_database_url.config(default=db, conn_max_age=600)
+
 }
 
 

@@ -1,6 +1,8 @@
-body {
+.body {
+  all: initial;
   overflow: hidden;
 }
+
 html * {
   margin: 0px;
   background-color: rgb(21, 21, 21);

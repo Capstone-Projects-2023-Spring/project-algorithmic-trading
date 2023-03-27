@@ -1,10 +1,17 @@
 from decimal import Decimal
 
+import status
 import requests
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.models import User
 
 from tradester.models import Stock
 from tradester.models import Investment
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
 
 # import pandas as pd
 from django.conf import settings
@@ -133,15 +140,59 @@ def get_investment(request, token):
     # TODO: implement getting investment info
     return HttpResponse("get_investment")
 
-def save_investment(request):
-    i = Investment.objects.get(investment_id=1)
-    if request.method == "GET":
-        investment_amount = None
+class SaveInvestment(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        i = Investment.objects.get(investment_id=1)
+        if request.method == "GET":
+            investment_amount = None
+            try:
+                investment_amount = float(request.GET['amount'])
+            except:
+                pass
+            if investment_amount:
+                i.amount = investment_amount
+                i.save()
+            return Response({'amount': i.amount})
+    
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
         try:
-            investment_amount = float(request.GET['amount'])
-        except:
-            pass
-        if investment_amount:
-            i.amount = investment_amount
-            i.save()
-    return JsonResponse({'amount': i.amount})
+            refresh_token = request.data['refresh_token']
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+class RegisterUser(APIView):
+    def post(self, request):
+        try:
+            username = request.data['username']
+            password = request.data['password']
+            password_conf = request.data['password_conf']
+
+            data = {}
+            responseStatus = status.HTTP_200_OK
+            if password != password_conf:
+                responseStatus = status.HTTP_400_BAD_REQUEST
+                data['error'] = 'Passwords do not match.'
+
+            # If we are able to get a user with the given username, the username was already used.
+            try:
+                u = User.objects.get(username=username)
+                responseStatus = status.HTTP_400_BAD_REQUEST
+                data['error'] = 'Username is already taken.'
+            except User.DoesNotExist: pass
+
+            if responseStatus == status.HTTP_200_OK:
+                try:
+                    u = User.objects.create_user(username=username, password=password)
+                    data['status'] = 'User successfully registered.'
+                except Exception: pass
+
+            return Response(status=responseStatus, data=data)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        

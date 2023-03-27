@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
+import { API_ENDPOINT } from "../services/api-endpoints";
+
 import "./style/simulation.css";
 
 const form = {
@@ -27,17 +29,25 @@ const children = {
   },
 };
 
-const API_ENDPOINT = process.env.API_ENDPOINT || "http://127.0.0.1:8000";
-
-const Simulation = () => {
+const Simulation = ({ loggedIn }) => {
   const [investment, setInvestment] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setAndFetchInvestment();
+    if (loggedIn === false) {
+      navigate('/login');
+    } else {
+      setAndFetchInvestment();
+    }
   });
 
   const setAndFetchInvestment = (value) => {
-    fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`)
+    fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${localStorage.getItem('access_token')}`
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         let investmentString = data.amount;
