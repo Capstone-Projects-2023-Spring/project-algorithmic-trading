@@ -1,22 +1,28 @@
 from decimal import Decimal
 
+import json
 import status
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 
-from tradester.models import Stock
-from tradester.models import Investment
+from tradester.models import *
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 
-# import pandas as pd
-from django.conf import settings
+import csv
+from io import StringIO
 import os
 
+import sched
+import time
+import datetime
+
+key = os.environ.get('DB_CONN_DAILY', default='')
+from django.conf import settings
 
 # Create your views here.
 def index(request):
@@ -196,3 +202,96 @@ class RegisterUser(APIView):
         except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
+def fetch_daily_OHLC():
+    """
+    This calls the Polygon API to return data on the entire stock/equities market and load it to the database. 
+    Updates automatically each day.   
+    """
+
+    # API endpoint URL for batch stock quotes
+    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey={key}'
+
+    # Send request to API and retrieve data
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = {'error': f'unable to retrieve daily data'}
+    return data
+
+def update_stocks_daily(request):
+    #this function should be running constantly to update the db
+    while True:
+        print("sleeping")
+        #sleep for 12 hours
+        time.sleep(43200)
+        print("awake")
+    
+        daily_data = fetch_daily_OHLC()
+        print(daily_data['resultsCount'])
+        if "error" in daily_data:
+            error_msg = {'error': f'Unable to retrieve daily data'}
+            return JsonResponse(error_msg)
+        else:
+            stocks_to_create = [] #these are the stocks that do not exist in the DB
+            stocks_to_update = [] #these are the stocks that do exist in the DB
+
+            print("looping data")
+            i = 0
+            for result in daily_data['results']:
+                i = i + 1
+                print(i)
+                stock_symbol = result['T']
+                current_price = result['c']
+                daily_high = result['h']
+                daily_low = result['l']
+                if 'n' in result:
+                    daily_num_transactions = result['n']
+                else:
+                    daily_num_transactions = None
+                daily_open_price = result['o']
+                daily_volume = result['v']
+                if 'n' in result:
+                    daily_vwap = result['vw']
+                else:
+                    daily_vwap = None
+
+                # Get a list of stock symbols that already exist in the database
+                existing_symbols = list(Stock.objects.values_list('stock_symbol', flat=True))
+
+                if stock_symbol not in existing_symbols:
+                    #we want to create this entry
+                    stock = Stock(
+                        stock_symbol=stock_symbol,
+                        current_price=current_price,
+                        daily_high=daily_high,
+                        daily_low=daily_low,
+                        daily_num_transactions=daily_num_transactions,
+                        daily_open_price=daily_open_price,
+                        daily_volume=daily_volume,
+                        daily_vwap=daily_vwap,
+                    )
+
+                    stocks_to_create.append(stock)
+                else:
+                    #we want to update this entry
+                    stock = Stock.objects.get(stock_symbol=stock_symbol)
+                    stock.current_price = current_price
+                    stock.daily_high = daily_high
+                    stock.daily_low = daily_low
+                    stock.daily_num_transactions = daily_num_transactions
+                    stock.daily_open_price = daily_open_price
+                    stock.daily_volume = daily_volume
+                    stock.daily_vwap = daily_vwap
+
+                    stocks_to_update.append(stock)
+
+            print("creating entries")
+            # Use bulk_create() to create multiple new objects in a single query
+            Stock.objects.bulk_create(stocks_to_create)
+
+            print("updating entries")
+            # Use bulk_update() to update multiple existing objects in a single query
+            Stock.objects.bulk_update(stocks_to_update, fields=[
+                                  'current_price', 'daily_high', 'daily_low', 'daily_num_transactions', 'daily_open_price', 'daily_volume', 'daily_vwap'])
+            
