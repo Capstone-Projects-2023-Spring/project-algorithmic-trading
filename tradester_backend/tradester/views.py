@@ -6,8 +6,7 @@ import requests
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 
-from tradester.models import Stock
-from tradester.models import Investment
+from tradester.models import *
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -18,15 +17,12 @@ import csv
 from io import StringIO
 import os
 
-import requests
-from tradester.models import Stock
-from django.http import HttpResponse, JsonResponse
 import sched
 import time
 import datetime
 
 key = os.environ.get('DB_CONN_DAILY', default='')
-
+from django.conf import settings
 
 # Create your views here.
 def index(request):
@@ -69,6 +65,19 @@ def sign_in(request, _username: str, _password: str) -> HttpResponse:
     return HttpResponse("sign_in")
 
 
+def get_stock_data_candle(request, _stock_symbol):
+    api_key = settings.SECRET_KEY
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={_stock_symbol}&outputsize=compact&apikey={api_key}'
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return JsonResponse(data)
+    else:
+        error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
+        return JsonResponse(error_msg)
+    
+
+
 def get_stock_data(request, _stock_symbol):
     """
     View to get data on a specified stock
@@ -82,7 +91,7 @@ def get_stock_data(request, _stock_symbol):
     """
     
     # get data from Alpha Vantage
-    api_key = '2JMCN347HZ3BU9RC'
+    api_key = settings.SECRET_KEY
     url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={_stock_symbol}&apikey={api_key}'
     response = requests.get(url)
     if response.status_code == 200:
@@ -117,7 +126,7 @@ def get_stock_data(request, _stock_symbol):
             'beta': stock.beta,
             'high_52': stock.high_52,
             'low_52': stock.low_52,
-            'avg_daily_volume': stock.avg_daily_volume,
+            'avg_daily_volume': stock.avg_daily_volume
         }
         return JsonResponse(response_data)
 
