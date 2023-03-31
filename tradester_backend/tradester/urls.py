@@ -11,5 +11,8 @@ urlpatterns = [
     path('save_investment/', views.SaveInvestment.as_view(), name='save_investment'),
     path('logout/', views.LogoutView.as_view(), name ='logout'),
     path('register/', views.RegisterUser.as_view(), name ='register'),
+    path('update_portfolio/', views.UpdatePortfolio.as_view(), name ='update_portfolio'),
+    path('display_portfolio/', views.DisplayPortfolio.as_view(), name ='display_portfolio'),
+
 
 ]

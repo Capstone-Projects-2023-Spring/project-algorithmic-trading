@@ -30,6 +30,7 @@ const children = {
 };
 
 const Simulation = ({ loggedIn }) => {
+  //console.log(localStorage.getItem('username'));
   const [investment, setInvestment] = useState(0);
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ const Simulation = ({ loggedIn }) => {
   });
 
   const setAndFetchInvestment = (value) => {
+
     fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -52,6 +54,7 @@ const Simulation = ({ loggedIn }) => {
       .then((data) => {
         let investmentString = data.amount;
         let investment = parseFloat(investmentString);
+        console.log("second fetch " +data.amount);
         if (!isNaN(investment)) {
           setInvestment(data.amount);
         }

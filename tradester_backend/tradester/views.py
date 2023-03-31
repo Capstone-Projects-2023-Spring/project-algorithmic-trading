@@ -4,18 +4,18 @@ import status
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
+from django.utils import timezone
 
-from tradester.models import Stock
-from tradester.models import Investment
+from tradester.models import *
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
 # import pandas as pd
 from django.conf import settings
-import os
+# import os
 
 
 # Create your views here.
@@ -140,6 +140,85 @@ def get_investment(request, token):
     # TODO: implement getting investment info
     return HttpResponse("get_investment")
 
+
+class DisplayPortfolio(APIView):
+    '''
+    expects a header of "authorizations: bearer <token>"
+    '''
+    permission_classes = (IsAuthenticated,)
+    def get(self,request):
+        #get the user
+        user = None
+        try: 
+            token_header = request.headers['authorization']
+            token = token_header.split()[1]     #get the second argument (the first is "Bearer")
+            token_obj = AccessToken(token)
+            user_id = token_obj['user_id']
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            Response({'portfolio': "no user"})
+
+        #get the user's portfolio
+        portfolio = None
+        try:
+            portfolio = Portfolio.objects.get(username=user)
+        except Portfolio.DoesNotExist:
+            Response({'portfolio': "no portfolio to display"})
+
+        #for each portfolio_stock, add its contents to a list
+        return_object = {}
+        stock_list = Portfolio_stock.objects.filter(portfolio_id=portfolio)
+        for stk in stock_list:
+            return_object[stk.id] = {'stock':stk.stock_symbol.stock_symbol,'quantity':stk.quantity, 'price':stk.purchase_price, 'date':stk.date}
+        return Response(return_object)
+
+class UpdatePortfolio(APIView):
+    permission_classes = (IsAuthenticated,)
+    '''
+        currently only performs addition.  
+        TODO: delete a stock because of a sell.  
+            remember, there can be multiple portfolio_stocks each with their own purchase price and quantity
+    '''
+
+    def get(self, request):
+        #get the user
+        user = None
+        try: 
+            token_header = request.headers['authorization']
+            token = token_header.split()[1]     #get the second argument (the first is "Bearer")
+            token_obj = AccessToken(token)
+
+            user_id = token_obj['user_id']
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            Response({'name': "INVALID", 'stock':"DOES NOT EXIST"})
+
+        #date should be added automatically in the model
+        quantity = request.GET['quantity']
+        price = request.GET['price']
+
+        #get the user's porfolio set up
+        portfolio = None
+        try:
+            portfolio = Portfolio.objects.get(username=user)
+        except Portfolio.DoesNotExist:
+            portfolio = Portfolio(username=user)
+            portfolio.save()
+
+        #get the stock.  must be converted to uppercase for how we have it stored
+        stock = None
+        try:
+            stock = Stock.objects.get(stock_symbol = request.GET['stock'].upper())
+        except Stock.DoesNotExist:
+            return Response({'name': portfolio.username.username, 'stock':"DOES NOT EXIST"})
+
+        #create a porfolio_stock 
+        ps = Portfolio_stock(portfolio_id=portfolio, stock_symbol=stock, quantity=quantity, purchase_price=price)
+        ps.save()
+
+        return Response(data={'updated':"good"},status = status.HTTP_200_OK)
+    
+
 class SaveInvestment(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
@@ -153,7 +232,7 @@ class SaveInvestment(APIView):
             if investment_amount:
                 i.amount = investment_amount
                 i.save()
-            return Response({'amount': i.amount})
+            return Response({'amount' : i.amount})
     
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
