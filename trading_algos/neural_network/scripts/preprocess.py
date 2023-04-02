@@ -8,7 +8,6 @@ import pandas as pd
 from pathlib import Path
 from sklearn.preprocessing import MinMaxScaler
 
-
 with open("../model/params.yaml", "r") as params_file:
     params = yaml.safe_load(params_file)
 
@@ -58,19 +57,19 @@ def create_features(
     df['Open_Close_Pct'] = (df.Open.shift(-1) - df.Close) / df.Close  # percentage change using next day open
     
     # drop rows with missing values
-    df = df.dropna()
+    # df = df.dropna()
     
-    return df
+    return df.fillna(0)
 
 
 def split_data(
         df,
-        train_frac
+        split_index
 ):
-    train_size = int(len(df) * train_frac)
-    train_df, test_df = df[:train_size], df[train_size:]
+    train_df = df[:split_index]
+    test_df = df[split_index:]
 
-    return train_df, test_df, train_size
+    return train_df, test_df, split_index
 
 
 def rescale_data(
@@ -94,15 +93,16 @@ def rescale_data(
 
 def prep_data(
         df,
-        train_frac,
-        plot_df=False
+        split_index,
+        plot_df=False,
+        validate = True
 ):
     print("Starting with data preparation...")
-    df_clean = clean_data(df)
-    df_clean = create_features(df_clean)
+#    df_clean = clean_data(df)
+    df_clean = create_features(df)
 
     # split into train/test datasets
-    train_df, test_df, train_size = split_data(df_clean, train_frac)
+    train_df, test_df, train_size = split_data(df_clean, split_index)
 
     # subset data
     train_df = train_df[['Close', 'Volume', 'High_Low_Pct', 'Open_Close_Pct',
@@ -117,10 +117,17 @@ def prep_data(
     train_df = rescale_data(train_df)
 
     scaler = joblib.load(Path(model_dir, 'scaler.gz'))
-    test_df = pd.DataFrame(
-        scaler.transform(test_df),
-        index=test_df.index,
-        columns=test_df.columns)
+    
+    if validate:
+        test_df = pd.DataFrame(
+            scaler.transform(test_df),
+            index=test_df.index,
+            columns=test_df.columns)
+    else:
+        test_df = pd.DataFrame(
+            test_df,
+            index=test_df.index,
+            columns=test_df.columns)
 
     # save data
     save_data(train_df, 'train.csv')
@@ -133,8 +140,8 @@ def prep_data(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--file-name", type=str, default=params['file_name'])
-    parser.add_argument("--train-frac", type=float, default=params['train_frac'])
+    parser.add_argument("--split_index", type=float, default=params['split_index'])
     args = parser.parse_args()
 
     df = load_data(args.file_name)
-    prep_data(df, args.train_frac)
+    prep_data(df, args.split_index)
