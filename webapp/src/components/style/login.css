@@ -1,15 +1,17 @@
 .form {
-  padding: 15px;
+  padding: 1.5vh;
   position: absolute;
   display: flex;
-  height: 240px;
+  height: 35vh;
+  width: 30vh;
   flex-direction: column;
   justify-content: space-between;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  border-radius: 10px;
+  border-radius: 1.5vh;
+  font-size: 3vh;
 }
 
 .form * {
@@ -18,10 +20,12 @@
 }
 
 .form input {
-  padding: 10px;
+  padding-left: 0.5vh;
+  font-size: 2vh;
+  height: 5vh;
   background-color: #ffffff;
-  border-radius: 15px;
-  border: 2px solid black;
+  border-radius: 1.5vh;
+  border: 0.3vh solid black;
 }
 
 .subreg {
