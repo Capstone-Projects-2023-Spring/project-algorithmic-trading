@@ -58,7 +58,8 @@ def train_model(
         test_df,
         label_name,
         sequence_length,
-        batch_size,
+        batch_size_1,
+        batch_size_2,
         n_epochs,
         n_epochs_stop
 ):
@@ -67,10 +68,11 @@ def train_model(
 
     # create dataloaders
     train_dataset = TimeSeriesDataset(np.array(train_df), np.array(train_df[label_name]), seq_len=sequence_length)
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
-
+    train_loader = DataLoader(train_dataset, batch_size=batch_size_1, shuffle=False)
+    
+    
     test_dataset = TimeSeriesDataset(np.array(test_df), np.array(test_df[label_name]), seq_len=sequence_length)
-    test_loader = DataLoader(test_dataset, batch_size=100, shuffle=False)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size_2, shuffle=False)
 
     # set up training
     n_features = train_df.shape[1]
@@ -102,7 +104,7 @@ def train_model(
             optimizer.step()
 
             running_loss += loss.item()
-        running_loss /= len(train_loader)
+        running_loss /= batch_size_1
         train_hist.append(running_loss)
 
         # test loss
@@ -114,7 +116,7 @@ def train_model(
                 output = model(data)
                 loss = criterion(output.flatten(), target.type_as(output))
                 test_loss += loss.item()
-            test_loss /= len(test_loader)
+            test_loss /= batch_size_2
             test_hist.append(test_loss)
 
             # early stopping
@@ -137,26 +139,3 @@ def train_model(
     print("Completed.")
 
     return hist
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--sequence-length", type=int, default=params['sequence_length'])
-    parser.add_argument("--batch-size", type=int, default=params['batch_size'])
-    parser.add_argument("--n-epochs", type=int, default=params['n_epochs'])
-    parser.add_argument("--n-epochs-stop", type=int, default=params['n_epochs_stop'])
-    args = parser.parse_args()
-
-    train_df = preprocess.load_data('train.csv')
-    test_df = preprocess.load_data('test.csv')
-    label_name = params['label_name']
-
-    train_model(
-        train_df,
-        test_df,
-        label_name,
-        args.sequence_length,
-        args.batch_size,
-        args.n_epochs,
-        args.n_epochs_stop
-    )
