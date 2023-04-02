@@ -35,7 +35,7 @@ const Simulation = ({ loggedIn }) => {
 
   useEffect(() => {
     if (loggedIn === false) {
-      navigate('/login');
+      navigate("/login");
     } else {
       setAndFetchInvestment();
     }
@@ -44,8 +44,8 @@ const Simulation = ({ loggedIn }) => {
   const setAndFetchInvestment = (value) => {
     fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
       headers: {
-        'Content-Type': 'application/json',
-        'authorization': `Bearer ${localStorage.getItem('access_token')}`
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     })
       .then((response) => response.json())

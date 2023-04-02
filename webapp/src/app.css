@@ -40,7 +40,7 @@ html * {
 
 .nav img {
   padding-left: 8px;
-  vertical-align: -4px;
+  vertical-align: -0.7vh;
   height: 4.5vh;
 }
 
@@ -69,4 +69,26 @@ a:hover {
 
 a:active {
   text-decoration: none;
+}
+
+.menu {
+  display: none;
+}
+
+.menu * {
+  display: none;
+}
+
+@media screen and (max-device-width: 480px) {
+  .links {
+    display: none;
+  }
+
+  .menu {
+    display: block;
+  }
+
+  .menu * {
+    display: block;
+  }
 }

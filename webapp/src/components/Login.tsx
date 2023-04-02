@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
-import { login, register } from '../services/authentication'
+import { login, register } from "../services/authentication";
 import "./style/login.css";
 
 const form = {
@@ -31,28 +31,28 @@ const children = {
 const Login = ({ loggedIn, setLoggedIn }) => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConf, setPasswordConf] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConf, setPasswordConf] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
-    if (loggedIn) navigate('/');
+    if (loggedIn) navigate("/");
   });
 
   const onLogin = async () => {
     let success = await login(username, password);
     if (success) {
       setLoggedIn(true);
-      setFeedback('');
+      setFeedback("");
       navigate(-1);
     } else {
-      setFeedback('Invalid credentials.');
+      setFeedback("Invalid credentials.");
     }
   };
 
   const onRegister = async () => {
-    register(username, password, passwordConf, setFeedback)
+    register(username, password, passwordConf, setFeedback);
   };
 
   return (
@@ -88,12 +88,20 @@ const Login = ({ loggedIn, setLoggedIn }) => {
         onChange={(e) => setPasswordConf(e.target.value)}
         placeholder="Confirm Password"
       />
-      <motion.label>
-        {feedback}
-      </motion.label>
+      <motion.label>{feedback}</motion.label>
       <motion.div variants={children} className="subreg">
-        <input type="submit" value="Register" className="register" onClick={onRegister}/>
-        <input type="submit" value="Login" className="login" onClick={onLogin}/>
+        <input
+          type="submit"
+          value="Register"
+          className="register"
+          onClick={onRegister}
+        />
+        <input
+          type="submit"
+          value="Login"
+          className="login"
+          onClick={onLogin}
+        />
       </motion.div>
     </motion.form>
   );
