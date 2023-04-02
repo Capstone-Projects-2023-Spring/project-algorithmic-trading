@@ -22,12 +22,13 @@ html * {
 }
 
 .nav {
+  height: 6vh;
   background-image: none;
-  padding: 5px;
   border-bottom: 1px solid #313131;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -39,14 +40,14 @@ html * {
 
 .nav img {
   padding-left: 8px;
-  vertical-align: -8px;
-  height: 4vh;
+  vertical-align: -4px;
+  height: 4.5vh;
 }
 
 .links {
   padding: 10px;
   padding-right: 15px;
-  font-size: 16px;
+  font-size: 2vh;
   font-weight: 100;
 }
 

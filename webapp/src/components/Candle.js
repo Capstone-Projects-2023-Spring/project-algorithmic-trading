@@ -86,13 +86,26 @@ class Candle extends Component {
         title: {
           text: "Mock Data",
           align: "middle",
+          style: {
+            fontSize: 25,
+          },
         },
         xaxis: {
           type: "datetime",
+          labels: {
+            style: {
+              fontSize: 12,
+            },
+          },
         },
         yaxis: {
           tooltip: {
             enabled: true,
+          },
+          labels: {
+            style: {
+              fontSize: 12,
+            },
           },
         },
       },
@@ -103,7 +116,10 @@ class Candle extends Component {
     let newSeries = [];
     let newData = [];
 
-    const url = "https://tradester-backend.onrender.com/tradester/get_stock_data_candle/" + ticker + "/";
+    const url =
+      "https://tradester-backend.onrender.com/tradester/get_stock_data_candle/" +
+      ticker +
+      "/";
 
     fetch(url, { method: "GET" })
       .then((response) => {
@@ -184,7 +200,7 @@ class Candle extends Component {
           options={this.state.options}
           series={this.state.series}
           type="candlestick"
-          height={500}
+          height={"88%"}
           className="chart"
         />
       </motion.div>
