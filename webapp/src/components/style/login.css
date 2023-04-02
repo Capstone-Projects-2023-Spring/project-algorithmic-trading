@@ -1,46 +1,4 @@
-.form {
-  padding: 15px;
-  position: absolute;
-  display: flex;
-  min-height: 240px;
-  width: 180px;
-  flex-direction: column;
-  justify-content: space-between;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 10px;
-}
-
-.form * {
-  color: black;
-  background: white;
-}
-
-.form input {
-  padding: 10px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 2px solid black;
-}
-
-.subreg {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 input.login {
-  width: 40%;
-  background-color: #d8a9e7;
-}
-
-input.register {
-  width: 55%;
-  background-color: #8adcdc;
-}
-
-*:focus {
-  outline: none;
+    width: 40%;
+    background-color: #d8a9e7;
 }
