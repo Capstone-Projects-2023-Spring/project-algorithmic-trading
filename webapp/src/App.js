@@ -76,7 +76,9 @@ const HomePage = () => {
   return (
     <div className="home">
       <h1>Welcome to tradester</h1>
-      <Link to="/candle">View Dashboard</Link>
+      <Link className="viewdash" to="/candle">
+        View Dashboard
+      </Link>
     </div>
   );
 };

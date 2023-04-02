@@ -13,12 +13,38 @@ html * {
 }
 
 .home {
-  position: relative;
+  background-color: rgb(74, 163, 248);
+  position: absolute;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 35vh;
+  width: 40vh;
   flex-direction: column;
-  height: 100vh;
+  justify-content: space-around;
+  align-items: center;
+  top: 40vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  font-size: 3vh;
+  border-radius: 2vh;
+  text-align: center;
+}
+
+.home * {
+  color: black;
+  background-color: transparent;
+}
+
+.home h1 {
+  font-weight: 600;
+}
+
+.viewdash {
+  vertical-align: center;
+  background-color: white;
+  padding-top: 1vh;
+  border-radius: 1vh;
+  width: 30vh;
+  height: 5vh;
 }
 
 .nav {
