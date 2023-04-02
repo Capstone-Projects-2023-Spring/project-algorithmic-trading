@@ -25,6 +25,7 @@ def descale(
         values
 ):
     values_2d = np.array(values)[:, np.newaxis]
+    print(values_2d)
     return descaler.inverse_transform(values_2d).flatten()
 
 

@@ -7,6 +7,7 @@ import Post from "./components/Post";
 import Dashboard from "./components/Dashboard.tsx";
 import Login from "./components/Login.tsx";
 import Logout from "./components/Logout";
+import Register from "./components/Register";
 import Simulation from "./components/Simulation";
 import Candle from "./components/Candle";
 import Portfolio from "./components/Portfolio";
@@ -59,6 +60,7 @@ export default function App() {
           element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
         />
         <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/simulation"
           element={<Simulation loggedIn={loggedIn} />}
