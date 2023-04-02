@@ -74,8 +74,17 @@ export async function register(username, password, passwordConf, setFeedback) {
   if (response.ok) {
     setFeedback(data.status)
     return true;
-  } else {
-    setFeedback(data.error);
-    return false;
   }
+
+  if (data.password) {
+    setFeedback(data.password[0]);
+  }
+  else if (data.username) {
+    setFeedback(`Invalid username: ${data.username[0]}`);
+  }
+  else {
+    setFeedback('Invalid entry.');
+  }
+
+  return false;
 }

@@ -1,0 +1,12 @@
+input.register {
+    width: 55%;
+    background-color: #8adcdc;
+}
+
+.form input {
+    margin-bottom: 0.25rem;
+}
+
+.form .register {
+    margin-right: 0.25rem;
+}
