@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
-import { login, register } from '../services/authentication'
+import { login, register } from "../services/authentication";
 import "./style/login-register.css";
 import "./style/register.css";
 
@@ -32,16 +32,16 @@ const children = {
 const Login = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConf, setPasswordConf] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConf, setPasswordConf] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   const onRegister = async () => {
-    register(username, password, passwordConf, setFeedback)
-    setUsername('');
-    setPassword('');
-    setPasswordConf('');
+    register(username, password, passwordConf, setFeedback);
+    setUsername("");
+    setPassword("");
+    setPasswordConf("");
   };
 
   return (
@@ -77,14 +77,17 @@ const Login = () => {
         onChange={(e) => setPasswordConf(e.target.value)}
         placeholder="Confirm Password"
       />
-      <motion.label>
-        {feedback}
-      </motion.label>
+      <motion.label>{feedback}</motion.label>
       <motion.div variants={children} className="subreg">
-        <input type="submit" value="Register" className="register" onClick={onRegister}/>
+        <input
+          type="submit"
+          value="Register"
+          className="register"
+          onClick={onRegister}
+        />
         <motion.div variants={children} className="navigate-register">
           <p>Registered?</p>
-          <a onClick={() => navigate('/login')}>Log in</a>
+          <a onClick={() => navigate("/login")}>Log in</a>
         </motion.div>
       </motion.div>
     </motion.form>
