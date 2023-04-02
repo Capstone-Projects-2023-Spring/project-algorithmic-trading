@@ -1,17 +1,13 @@
 from decimal import Decimal
 
-import json
-import status
 import requests
 from django.http import HttpResponse, JsonResponse
-from django.contrib.auth.models import User
 
 from tradester.models import *
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.tokens import RefreshToken
 
 import csv
 from io import StringIO
@@ -31,7 +27,6 @@ def index(request):
     """
     return HttpResponse("Welcome to the Tradester index.")
 
-
 def register(request, _username, _password):
     """
     View to register a new user account
@@ -50,7 +45,6 @@ def register(request, _username, _password):
 
     return HttpResponse("register")
 
-
 def sign_in(request, _username: str, _password: str) -> HttpResponse:
     """
     View to sign in a user
@@ -64,7 +58,6 @@ def sign_in(request, _username: str, _password: str) -> HttpResponse:
     # TODO: implement sign_in functionality
     return HttpResponse("sign_in")
 
-
 def get_stock_data_candle(request, _stock_symbol):
     api_key = settings.SECRET_KEY
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={_stock_symbol}&outputsize=compact&apikey={api_key}'
@@ -75,8 +68,6 @@ def get_stock_data_candle(request, _stock_symbol):
     else:
         error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
         return JsonResponse(error_msg)
-    
-
 
 def get_stock_data(request, _stock_symbol):
     """
@@ -160,48 +151,7 @@ class SaveInvestment(APIView):
                 i.amount = investment_amount
                 i.save()
             return Response({'amount': i.amount})
-    
-class LogoutView(APIView):
-    permission_classes = (IsAuthenticated,)
-    def post(self, request):
-        try:
-            refresh_token = request.data['refresh_token']
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-            return Response(status=status.HTTP_205_RESET_CONTENT)
-        except Exception as e:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-        
-class RegisterUser(APIView):
-    def post(self, request):
-        try:
-            username = request.data['username']
-            password = request.data['password']
-            password_conf = request.data['password_conf']
 
-            data = {}
-            responseStatus = status.HTTP_200_OK
-            if password != password_conf:
-                responseStatus = status.HTTP_400_BAD_REQUEST
-                data['error'] = 'Passwords do not match.'
-
-            # If we are able to get a user with the given username, the username was already used.
-            try:
-                u = User.objects.get(username=username)
-                responseStatus = status.HTTP_400_BAD_REQUEST
-                data['error'] = 'Username is already taken.'
-            except User.DoesNotExist: pass
-
-            if responseStatus == status.HTTP_200_OK:
-                try:
-                    u = User.objects.create_user(username=username, password=password)
-                    data['status'] = 'User successfully registered.'
-                except Exception: pass
-
-            return Response(status=responseStatus, data=data)
-        except Exception:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-        
 def fetch_daily_OHLC():
     """
     This calls the Polygon API to return data on the entire stock/equities market and load it to the database. 
