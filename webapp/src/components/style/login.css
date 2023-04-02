@@ -2,7 +2,8 @@
   padding: 15px;
   position: absolute;
   display: flex;
-  height: 240px;
+  min-height: 240px;
+  width: 180px;
   flex-direction: column;
   justify-content: space-between;
   top: 50%;
