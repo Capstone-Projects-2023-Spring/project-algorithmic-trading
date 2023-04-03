@@ -141,6 +141,36 @@ def get_investment(request, token):
     return HttpResponse("get_investment")
 
 
+def get_user_from_token(request):
+    """
+    View to receive the user from a given token in the request
+
+    param request: the request object \n
+    return: User object when successful or None
+    """
+    user = None
+    try: 
+        token_header = request.headers['authorization']
+        token = token_header.split()[1]     #get the second argument (the first is "Bearer")
+        token_obj = AccessToken(token)
+        user_id = token_obj['user_id']
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        pass
+    return user 
+
+def get_user_balance(user):
+    """
+    """   
+    portfolio = None
+    balance = None
+    try:
+        portfolio = Portfolio.objects.get(username=user)
+        balance = portfolio.balance
+    except Portfolio.DoesNotExist:
+        pass
+    return portfolio
+
 class DisplayPortfolio(APIView):
     '''
     expects a header of "authorizations: bearer <token>"
@@ -148,22 +178,16 @@ class DisplayPortfolio(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self,request):
         #get the user
-        user = None
-        try: 
-            token_header = request.headers['authorization']
-            token = token_header.split()[1]     #get the second argument (the first is "Bearer")
-            token_obj = AccessToken(token)
-            user_id = token_obj['user_id']
-            user = User.objects.get(id=user_id)
-        except User.DoesNotExist:
-            Response({'portfolio': "no user"})
-
+        user = get_user_from_token(request)
+        if user == None:
+            return Response({'portfolio': "no user"})
+            
         #get the user's portfolio
         portfolio = None
         try:
             portfolio = Portfolio.objects.get(username=user)
         except Portfolio.DoesNotExist:
-            Response({'portfolio': "no portfolio to display"})
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
         #for each portfolio_stock, add its contents to a list
         return_object = {}
@@ -179,19 +203,11 @@ class UpdatePortfolio(APIView):
         TODO: delete a stock because of a sell.  
             remember, there can be multiple portfolio_stocks each with their own purchase price and quantity
     '''
-
     def get(self, request):
         #get the user
-        user = None
-        try: 
-            token_header = request.headers['authorization']
-            token = token_header.split()[1]     #get the second argument (the first is "Bearer")
-            token_obj = AccessToken(token)
-
-            user_id = token_obj['user_id']
-            user = User.objects.get(id=user_id)
-        except User.DoesNotExist:
-            Response({'name': "INVALID", 'stock':"DOES NOT EXIST"})
+        user = get_user_from_token(request)
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
         #date should be added automatically in the model
         quantity = request.GET['quantity']

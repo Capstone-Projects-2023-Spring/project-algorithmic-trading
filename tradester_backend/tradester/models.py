@@ -51,6 +51,7 @@ class Portfolio(models.Model):
         on_delete=models.CASCADE,
         related_name='myportfolio'
     )
+    balance = models.DecimalField(max_digits=20, decimal_places=2)
 
 class Portfolio_stock(models.Model):
     """
