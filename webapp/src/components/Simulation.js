@@ -30,6 +30,7 @@ const children = {
 };
 
 const Simulation = ({ loggedIn }) => {
+  //console.log(localStorage.getItem('username'));
   const [investment, setInvestment] = useState(0);
   const navigate = useNavigate();
 
@@ -42,6 +43,22 @@ const Simulation = ({ loggedIn }) => {
   });
 
   const setAndFetchInvestment = (value) => {
+
+    fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${localStorage.getItem('access_token')}`
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+
+        console.log("display portfolio:\n\n");
+        console.log(data);
+
+      }); 
+
+      
     fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
       headers: {
         'Content-Type': 'application/json',
