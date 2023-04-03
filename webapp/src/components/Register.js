@@ -44,12 +44,17 @@ const Register = () => {
     setPasswordConf('');
   };
 
+  const onPasswordConfEnter = (e) => {
+    if (e.key === 'Enter') {
+      onRegister();
+    }
+  };
+
   return (
-    <motion.form
+    <motion.div
       variants={form}
       initial="hidden"
       animate="visible"
-      method=""
       className="form"
     >
       <motion.h1 variants={children}>Register</motion.h1>
@@ -75,6 +80,7 @@ const Register = () => {
         name=""
         value={passwordConf}
         onChange={(e) => setPasswordConf(e.target.value)}
+        onKeyDown={onPasswordConfEnter}
         placeholder="Confirm Password"
       />
       <motion.label>
@@ -87,7 +93,7 @@ const Register = () => {
           <a onClick={() => navigate('/login')}>Log in</a>
         </motion.div>
       </motion.div>
-    </motion.form>
+    </motion.div>
   );
 };
 
