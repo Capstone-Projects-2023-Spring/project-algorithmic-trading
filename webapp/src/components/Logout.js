@@ -8,8 +8,8 @@ const Logout = ({ setLoggedIn }) => {
   useEffect(() => {
     logout();
     setLoggedIn(false);
-    navigate('/');
-  });  
+    navigate("/");
+  });
 };
 
 export default Logout;

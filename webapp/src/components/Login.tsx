@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
-import { login, register } from '../services/authentication'
+import { login, register } from "../services/authentication";
 import "./style/login-register.css";
 import "./style/login.css";
 
@@ -32,27 +32,27 @@ const children = {
 const Login = ({ loggedIn, setLoggedIn }) => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
-    if (loggedIn) navigate('/');
+    if (loggedIn) navigate("/");
   });
 
   const onLogin = async () => {
     let success = await login(username, password);
     if (success) {
       setLoggedIn(true);
-      setFeedback('');
-      navigate('/');
+      setFeedback("");
+      navigate("/");
     } else {
-      setFeedback('Invalid credentials.');
+      setFeedback("Invalid credentials.");
     }
   };
 
   const onPasswordEnter = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       onLogin();
     }
   };
@@ -82,14 +82,17 @@ const Login = ({ loggedIn, setLoggedIn }) => {
         onKeyDown={onPasswordEnter}
         placeholder="Password"
       />
-      <motion.label>
-        {feedback}
-      </motion.label>
+      <motion.label>{feedback}</motion.label>
       <motion.div variants={children} className="subreg">
-        <input type="submit" value="Login" className="login" onClick={onLogin}/>
+        <input
+          type="submit"
+          value="Login"
+          className="login"
+          onClick={onLogin}
+        />
         <motion.div variants={children} className="navigate-register">
           <p>No account?</p>
-          <a onClick={() => navigate('/register')}>Register</a>
+          <a onClick={() => navigate("/register")}>Register</a>
         </motion.div>
       </motion.div>
     </motion.div>

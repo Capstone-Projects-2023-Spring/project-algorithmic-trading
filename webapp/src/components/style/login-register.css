@@ -1,5 +1,5 @@
 .form {
-  padding: 15px;
+  padding: 1vh;
   position: absolute;
   display: flex;
   min-height: 180px;
@@ -45,4 +45,3 @@
 *:focus {
   outline: none;
 }
-

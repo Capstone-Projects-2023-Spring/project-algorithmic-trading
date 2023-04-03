@@ -89,19 +89,32 @@ class Candle extends Component {
         title: {
           text: "Mock Data",
           align: "middle",
+          style: {
+            fontSize: 25,
+          },
         },
         xaxis: {
           type: "datetime",
+          labels: {
+            style: {
+              fontSize: 12,
+            },
+          },
         },
         yaxis: {
           tooltip: {
             enabled: true,
           },
+          labels: {
+            style: {
+              fontSize: 12,
+            },
+          },
         },
       },
       currentStock: "empty",
       currentStockAmount: 0,
-      currentStockPrice: 0
+      currentStockPrice: 0,
     };
   }
 
@@ -115,36 +128,35 @@ class Candle extends Component {
       console.log("Amount: " + newAmount);
       console.log("Price: " + newPrice);
 
-      fetch(`${API_ENDPOINT}/tradester/update_portfolio/?stock=${newStock}&quantity=${newAmount}&price=${newPrice}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': `Bearer ${localStorage.getItem('access_token')}`
-        },
-      })
+      fetch(
+        `${API_ENDPOINT}/tradester/update_portfolio/?stock=${newStock}&quantity=${newAmount}&price=${newPrice}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
-  
           fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
             headers: {
-              'Content-Type': 'application/json',
-              'authorization': `Bearer ${localStorage.getItem('access_token')}`
+              "Content-Type": "application/json",
+              authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
           })
             .then((response) => response.json())
             .then((data) => {
-      
               console.log("display portfolio:\n\n");
               console.log(data);
-      
-            });          
-  
+            });
         });
     }
   }
 
   updateAmount = (event) => {
-      this.currentStockAmount = event.target.value;
-  }
+    this.currentStockAmount = event.target.value;
+  };
 
   updateChart(ticker, name) {
     let newSeries = [];
@@ -158,7 +170,7 @@ class Candle extends Component {
         return response.json();
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         let TSD = res["Time Series (Daily)"];
 
         for (let key in TSD) {
@@ -231,7 +243,7 @@ class Candle extends Component {
           options={this.state.options}
           series={this.state.series}
           type="candlestick"
-          height={500}
+          height={"88%"}
           className="chart"
         />
         <div>

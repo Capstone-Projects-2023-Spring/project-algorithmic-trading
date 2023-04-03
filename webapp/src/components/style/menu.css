@@ -1,0 +1,21 @@
+.menubutton {
+  border: none;
+  padding-right: 1vh;
+}
+
+.linkdropdown {
+  padding: 1vh;
+  background-color: rgb(74, 163, 248);
+  position: absolute;
+  top: 6vh;
+  left: 65vw;
+  z-index: 12;
+  border-radius: 1vh;
+}
+
+.linkdropdown * {
+  font-size: 3vh;
+  color: black;
+  background-color: transparent;
+  z-index: 2;
+}

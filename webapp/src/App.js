@@ -11,10 +11,10 @@ import Register from "./components/Register";
 import Simulation from "./components/Simulation";
 import Candle from "./components/Candle";
 import Portfolio from "./components/Portfolio";
+import Menu from "./components/Menu";
 import bull from "./bull.png";
 import "./style.css";
 import "./app.css";
-
 import { isLoggedIn } from "./services/authentication";
 
 export default function App() {
@@ -30,10 +30,16 @@ export default function App() {
           <div className="links">
             <Link to="/about">About</Link>
             <Link to="/simulation">Simulation</Link>
-            <Link to="/portfolio">Porfolio</Link>   {/* This should be added to loggedIn when ready */}
-            {
-              loggedIn ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
-            }
+            <Link to="/portfolio">Portfolio</Link>{" "}
+            {/* This should be added to loggedIn when ready */}
+            {loggedIn ? (
+              <Link to="/logout">Logout</Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
+          </div>
+          <div className="menu">
+            <Menu />
           </div>
         </div>
       </div>
@@ -49,10 +55,16 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/post" element={<Post />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
-        <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn}/>} />
+        <Route
+          path="/login"
+          element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+        />
+        <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/simulation" element={<Simulation loggedIn={loggedIn}/>} />
+        <Route
+          path="/simulation"
+          element={<Simulation loggedIn={loggedIn} />}
+        />
         <Route path="/candle" element={<Candle />} />
         <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
@@ -64,7 +76,9 @@ const HomePage = () => {
   return (
     <div className="home">
       <h1>Welcome to tradester</h1>
-      <Link to="/candle">View Dashboard</Link>
+      <Link className="viewdash" to="/candle">
+        View Dashboard
+      </Link>
     </div>
   );
 };

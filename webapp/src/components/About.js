@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./style/about.css";
 
-const About = () => {
+export default function About() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,6 +15,4 @@ const About = () => {
       <h1>About</h1>
     </motion.div>
   );
-};
-
-export default About;
+}
