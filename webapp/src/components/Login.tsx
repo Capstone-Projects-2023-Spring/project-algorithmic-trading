@@ -51,12 +51,17 @@ const Login = ({ loggedIn, setLoggedIn }) => {
     }
   };
 
+  const onPasswordEnter = (e) => {
+    if (e.key === 'Enter') {
+      onLogin();
+    }
+  };
+
   return (
-    <motion.form
+    <motion.div
       variants={form}
       initial="hidden"
       animate="visible"
-      method=""
       className="form"
     >
       <motion.h1 variants={children}>Login</motion.h1>
@@ -74,6 +79,7 @@ const Login = ({ loggedIn, setLoggedIn }) => {
         name=""
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        onKeyDown={onPasswordEnter}
         placeholder="Password"
       />
       <motion.label>{feedback}</motion.label>
@@ -89,7 +95,7 @@ const Login = ({ loggedIn, setLoggedIn }) => {
           <a onClick={() => navigate("/register")}>Register</a>
         </motion.div>
       </motion.div>
-    </motion.form>
+    </motion.div>
   );
 };
 
