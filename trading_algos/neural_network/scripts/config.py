@@ -8,7 +8,7 @@ config_dict = {
     },
     "data": {
         "window_size": 20,
-        "train_split_size": 0.90,
+        "train_split_size": 0.80,
     }, 
     "plots": {
         "xticks_interval": 90, # show a date every 90 days
@@ -27,7 +27,8 @@ config_dict = {
     },
     "training": {
         "device": "cpu",
-        "batch_size": 64,
+        "train_batch_size": 64,
+        "test_batch_size": 100,
         "num_epoch": 100,
         "learning_rate": 0.01,
         "scheduler_step_size": 40,

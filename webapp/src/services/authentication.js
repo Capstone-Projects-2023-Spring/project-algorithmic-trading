@@ -6,7 +6,7 @@ export async function login(username, password) {
     password: password
   };
 
-  let response = await fetch(`${API_ENDPOINT}/token/`, {
+  let response = await fetch(`${API_ENDPOINT}/auth/token/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export function logout() {
     'refresh_token': localStorage.getItem('refresh_token')
   };
 
-  fetch(`${API_ENDPOINT}/tradester/logout/`, {
+  fetch(`${API_ENDPOINT}/auth/logout/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export async function register(username, password, passwordConf, setFeedback) {
     password_conf: passwordConf
   };
 
-  let response = await fetch(`${API_ENDPOINT}/tradester/register/`, {
+  let response = await fetch(`${API_ENDPOINT}/auth/register/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -72,10 +72,19 @@ export async function register(username, password, passwordConf, setFeedback) {
   let data = await response.json();
 
   if (response.ok) {
-    setFeedback(data.status)
+    setFeedback('Account successfully created.')
     return true;
-  } else {
-    setFeedback(data.error);
-    return false;
   }
+
+  if (data.password) {
+    setFeedback(data.password[0]);
+  }
+  else if (data.username) {
+    setFeedback(`Invalid username: ${data.username[0]}`);
+  }
+  else {
+    setFeedback('Invalid entry.');
+  }
+
+  return false;
 }

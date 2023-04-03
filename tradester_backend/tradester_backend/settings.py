@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'rest_framework_simplejwt.token_blacklist'
+    'rest_framework_simplejwt.token_blacklist',
+    'django_crontab'
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+    {
+        'NAME': 'auth.validators.MinimumDigitsValidator',
+    },
+    {
+        'NAME': 'auth.validators.MinimumSpecialCharsValidator',
     },
 ]
 
