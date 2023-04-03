@@ -3,7 +3,7 @@
 'data_dir' : '../data',
 'model_dir' : '../model',
 'label_name' : 'Close',
-'train_frac' : 0.5,
+'train_frac' : 0.95,
 'split_index': 0,
 'sequence_length' : 30,
 'batch_size' : 8,

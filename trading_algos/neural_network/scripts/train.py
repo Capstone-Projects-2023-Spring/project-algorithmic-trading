@@ -58,8 +58,7 @@ def train_model(
         test_df,
         label_name,
         sequence_length,
-        batch_size_1,
-        batch_size_2,
+        batch_size,
         n_epochs,
         n_epochs_stop
 ):
@@ -68,11 +67,11 @@ def train_model(
 
     # create dataloaders
     train_dataset = TimeSeriesDataset(np.array(train_df), np.array(train_df[label_name]), seq_len=sequence_length)
-    train_loader = DataLoader(train_dataset, batch_size=batch_size_1, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
     
     
     test_dataset = TimeSeriesDataset(np.array(test_df), np.array(test_df[label_name]), seq_len=sequence_length)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size_2, shuffle=False)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     # set up training
     n_features = train_df.shape[1]
@@ -104,7 +103,7 @@ def train_model(
             optimizer.step()
 
             running_loss += loss.item()
-        running_loss /= batch_size_1
+        running_loss /= batch_size
         train_hist.append(running_loss)
 
         # test loss
@@ -116,7 +115,7 @@ def train_model(
                 output = model(data)
                 loss = criterion(output.flatten(), target.type_as(output))
                 test_loss += loss.item()
-            test_loss /= batch_size_2
+            test_loss /= batch_size
             test_hist.append(test_loss)
 
             # early stopping
@@ -129,6 +128,80 @@ def train_model(
             if epochs_no_improve == n_epochs_stop:
                 print("Early stopping.")
                 break
+
+        print(f'Epoch {epoch} train loss: {round(running_loss,4)} test loss: {round(test_loss,4)}')
+
+        hist = pd.DataFrame()
+        hist['training_loss'] = train_hist
+        hist['test_loss'] = test_hist
+
+    print("Completed.")
+
+    return hist
+
+def train_model_no_early(
+        train_df,
+        test_df,
+        label_name,
+        sequence_length,
+        batch_size,
+        n_epochs
+):
+    """Train LSTM model."""
+    print("Starting with model training...")
+
+    # create dataloaders
+    train_dataset = TimeSeriesDataset(np.array(train_df), np.array(train_df[label_name]), seq_len=sequence_length)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
+    
+    
+    test_dataset = TimeSeriesDataset(np.array(test_df), np.array(test_df[label_name]), seq_len=sequence_length)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
+    # set up training
+    n_features = train_df.shape[1]
+    model = TSModel(n_features)
+    criterion = torch.nn.MSELoss()  # L1Loss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+    train_hist = []
+    test_hist = []
+
+    # start training
+    best_loss = np.inf
+    epochs_no_improve = 0
+    for epoch in range(1, n_epochs+1):
+        running_loss = 0
+        model.train()
+
+        for batch_idx, (data, target) in enumerate(train_loader, 1):
+            # zero the parameter gradients
+            optimizer.zero_grad()
+
+            # forward + backward + optimize
+            data = torch.Tensor(np.array(data))
+            output = model(data)
+            loss = criterion(output.flatten(), target.type_as(output))
+            # if type(criterion) == torch.nn.modules.loss.MSELoss:
+            #     loss = torch.sqrt(loss)  # RMSE
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+        running_loss /= batch_size
+        train_hist.append(running_loss)
+
+        # test loss
+        test_loss = 0
+        model.eval()
+        with torch.no_grad():
+            for data, target in test_loader:
+                data = torch.Tensor(np.array(data))
+                output = model(data)
+                loss = criterion(output.flatten(), target.type_as(output))
+                test_loss += loss.item()
+            test_loss /= batch_size
+            test_hist.append(test_loss)
 
         print(f'Epoch {epoch} train loss: {round(running_loss,4)} test loss: {round(test_loss,4)}')
 
