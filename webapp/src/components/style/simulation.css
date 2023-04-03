@@ -1,36 +1,35 @@
 .simulation {
   background-color: white;
   position: absolute;
-  height: 400px;
   width: min(80%, 700px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
+  border-radius: 2vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 30px;
   background-color: #0093e9;
   background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  padding: 1vh;
 }
 
 .simulation * {
-  font-size: 18px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  font-size: 2vh;
   color: rgb(0, 0, 0);
   background-color: transparent;
-  border-radius: 10px;
 }
 
 .simulation h1 {
-  font-size: 40px;
+  font-size: 3vh;
 }
 
 .simulation input {
   background-color: white;
   color: black;
-  border-radius: 20px;
+  border-radius: 2vh;
   border-style: outset;
   border-color: rgb(210, 92, 210);
   border-width: 2px;

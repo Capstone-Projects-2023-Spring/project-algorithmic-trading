@@ -2,7 +2,6 @@
   padding: 1.5vh;
   position: absolute;
   display: flex;
-  height: 35vh;
   width: 30vh;
   flex-direction: column;
   justify-content: space-between;
@@ -32,9 +31,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 input.login {
-  width: 40%;
+  width: 40vw;
   background-color: #d8a9e7;
 }
