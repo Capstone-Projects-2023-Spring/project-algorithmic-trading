@@ -29,7 +29,7 @@ const children = {
   },
 };
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -38,18 +38,25 @@ const Login = () => {
   const [feedback, setFeedback] = useState('');
 
   const onRegister = async () => {
-    register(username, password, passwordConf, setFeedback)
-    setUsername('');
-    setPassword('');
-    setPasswordConf('');
+    let status = await register(username, password, passwordConf, setFeedback)
+    if (status === true) {
+      setUsername('');
+      setPassword('');
+      setPasswordConf('');
+    }
+  };
+
+  const onPasswordConfEnter = (e) => {
+    if (e.key === 'Enter') {
+      onRegister();
+    }
   };
 
   return (
-    <motion.form
+    <motion.div
       variants={form}
       initial="hidden"
       animate="visible"
-      method=""
       className="form"
     >
       <motion.h1 variants={children}>Register</motion.h1>
@@ -75,6 +82,7 @@ const Login = () => {
         name=""
         value={passwordConf}
         onChange={(e) => setPasswordConf(e.target.value)}
+        onKeyDown={onPasswordConfEnter}
         placeholder="Confirm Password"
       />
       <motion.label>
@@ -87,8 +95,8 @@ const Login = () => {
           <a onClick={() => navigate('/login')}>Log in</a>
         </motion.div>
       </motion.div>
-    </motion.form>
+    </motion.div>
   );
 };
 
-export default Login;
+export default Register;
