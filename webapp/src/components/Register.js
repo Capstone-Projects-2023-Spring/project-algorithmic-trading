@@ -50,18 +50,6 @@ const Register = () => {
     }
   };
 
-  const onPasswordConfEnter = (e) => {
-    if (e.key === "Enter") {
-      onRegister();
-    }
-  };
-
-  const onPasswordConfEnter = (e) => {
-    if (e.key === "Enter") {
-      onRegister();
-    }
-  };
-
   return (
     <motion.div
       variants={form}
