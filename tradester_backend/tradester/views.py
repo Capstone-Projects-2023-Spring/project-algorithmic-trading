@@ -2,13 +2,17 @@ from decimal import Decimal
 
 import requests
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 from tradester.models import *
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
+from django.conf import settings
 import csv
 from io import StringIO
 import os
@@ -137,20 +141,123 @@ def get_investment(request, token):
     # TODO: implement getting investment info
     return HttpResponse("get_investment")
 
+
+def get_user_from_token(request):
+    """
+    View to receive the user from a given token in the request
+
+    param request: the request object \n
+    return: User object when successful or None
+    """
+    user = None
+    try: 
+        token_header = request.headers['authorization']
+        token = token_header.split()[1]     #get the second argument (the first is "Bearer")
+        token_obj = AccessToken(token)
+        user_id = token_obj['user_id']
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        pass
+    return user 
+
+class DisplayPortfolio(APIView):
+    '''
+    expects a header of "authorizations: bearer <token>"
+    '''
+    permission_classes = (IsAuthenticated,)
+    def get(self,request):
+        #get the user
+        user = get_user_from_token(request)
+        if user == None:
+            return Response({'portfolio': "no user"})
+            
+        #get the user's portfolio
+        portfolio = None
+        balance = None
+        try:
+            portfolio = Portfolio.objects.get(username=user)
+            balance = portfolio.balance
+        except Portfolio.DoesNotExist:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+        #for each portfolio_stock, add its contents to a list
+        total = 0
+        return_object = {}
+        return_object['balance'] = balance
+        stock_list = Portfolio_stock.objects.filter(portfolio_id=portfolio)
+        for stk in stock_list:
+            total = total + (stk.quantity * stk.purchase_price)
+            return_object[stk.id] = {'stock':stk.stock_symbol.stock_symbol,'quantity':stk.quantity, 'price':stk.purchase_price, 'date':stk.date}
+        return_object['total'] = total
+        return Response(return_object)
+
+class UpdatePortfolio(APIView):
+    permission_classes = (IsAuthenticated,)
+    '''
+        currently only performs addition.  
+        TODO: delete a stock because of a sell.  
+            remember, there can be multiple portfolio_stocks each with their own purchase price and quantity
+    '''
+    def get(self, request):
+        #get the user
+        user = get_user_from_token(request)
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+        #date should be added automatically in the model
+        quantity = request.GET['quantity']
+        price = request.GET['price']
+
+        #get the user's porfolio set up
+        portfolio = None
+        try:
+            portfolio = Portfolio.objects.get(username=user)
+        except Portfolio.DoesNotExist:
+            portfolio = Portfolio(username=user)
+            portfolio.save()
+
+        #get the stock.  must be converted to uppercase for how we have it stored
+        stock = None
+        try:
+            stock = Stock.objects.get(stock_symbol = request.GET['stock'].upper())
+        except Stock.DoesNotExist:
+            return Response({'name': portfolio.username.username, 'stock':"DOES NOT EXIST"})
+
+        #create a porfolio_stock 
+        ps = Portfolio_stock(portfolio_id=portfolio, stock_symbol=stock, quantity=quantity, purchase_price=price)
+        ps.save()
+
+        return Response(data={'updated':"good"},status = status.HTTP_200_OK)
+    
+
 class SaveInvestment(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
-        i = Investment.objects.get(investment_id=1)
-        if request.method == "GET":
-            investment_amount = None
-            try:
-                investment_amount = float(request.GET['amount'])
-            except:
-                pass
-            if investment_amount:
-                i.amount = investment_amount
-                i.save()
-            return Response({'amount': i.amount})
+        #get the user
+        user = get_user_from_token(request)
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        
+        #get the user's porfolio set up
+        portfolio = None
+        try:
+            portfolio = Portfolio.objects.get(username=user)
+        except Portfolio.DoesNotExist:
+            portfolio = Portfolio(username=user)
+            portfolio.balance = 0
+            portfolio.save()
+        
+        #save investment
+        investment_amount = None
+        try:
+            investment_amount = float(request.GET['amount'])
+        except:
+            pass
+        if investment_amount:
+            portfolio.balance = investment_amount
+            portfolio.save()
+        return Response({'amount' : portfolio.balance})  
+
 
 def fetch_daily_OHLC():
     """

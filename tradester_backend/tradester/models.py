@@ -1,19 +1,6 @@
 from django.db import models
 from django.conf import settings
-
-
-# Create your models here.
-class Portfolio(models.Model):
-    """
-    The Portfolio table instance represents a users stock portfolio. It links
-    a specific instance of a portfolio to a user
-    """
-    portfolio_id = models.AutoField(primary_key=True, default=1000)
-    username = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='myportfolio'
-    )
+from django.utils import timezone
 
 class Stock(models.Model):
     """
@@ -59,6 +46,19 @@ class Order(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     order_time = models.DateTimeField(auto_now_add=True)
 
+class Portfolio(models.Model):
+    """
+    The Portfolio table instance represents a users stock portfolio. It links
+    a specific instance of a portfolio to a user
+    """
+    portfolio_id = models.AutoField(primary_key=True)
+    username = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='myportfolio'
+    )
+    balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0)
+
 class Portfolio_stock(models.Model):
     """
     The Portfolio_Stock table holds information about the quantity and purchase
@@ -68,6 +68,7 @@ class Portfolio_stock(models.Model):
     stock_symbol = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     purchase_price = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateTimeField(default=timezone.now)      #this should get the timestamp of addition
 
 class Investment(models.Model):
     """

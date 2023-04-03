@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Outlet } from "react-router-dom";
 import Chart from "react-apexcharts";
 import "./style/portfolio.css";
+import Predictions from "./predictions.json";
 
 class Portfolio extends Component {
   constructor(props) {
@@ -10,16 +11,16 @@ class Portfolio extends Component {
     let mockAapl = [];
     let mockGoog = [];
     let mockMsft = [];
-    let aaplCost = 159.5;
-    let googCost = 105.72;
-    let msftCost = 279.06;
+    let aaplCost = 158.28;
+    let googCost = 103.06;
+    let msftCost = 276.38;
 
     let dates = [];
     let d = new Date();
 
-    const min = -4;
-    const max = 5;
-    for (let i = 0; i < 60; i++) {
+    const min = -1;
+    const max = 1;
+    for (let i = 0; i < 6; i++) {
       let aaplMod = min + Math.random() * (max - min);
       aaplCost = aaplCost + (aaplCost * aaplMod) / 100;
       mockAapl.push(aaplCost);
@@ -32,10 +33,24 @@ class Portfolio extends Component {
       msftCost = msftCost + (msftCost * msftMod) / 100;
       mockMsft.push(msftCost);
 
-      let newD = new Date(d - 1000 * 60 * 60 * 24 * (29 - i));
+      let newD = new Date(d - 1000 * 60 * 60 * 24 * (6 - i));
       newD = newD.toDateString().replace(/^\S*/g, "");
       dates.push(newD);
     }
+
+    dates.push(d.toDateString().replace(/^\S*/g, ""));
+
+    Predictions.forEach((pred) => {
+      if (pred.ticker == "AAPL") {
+        mockAapl.push(pred["close price"]);
+      }
+      if (pred.ticker == "AAPL") {
+        mockGoog.push(pred["close price"]);
+      }
+      if (pred.ticker == "AAPL") {
+        mockMsft.push(pred["close price"]);
+      }
+    });
 
     this.state = {
       aaplSeries: [
@@ -69,12 +84,13 @@ class Portfolio extends Component {
           decimalsInFloat: "false",
         },
         forecastDataPoints: {
-          count: 30,
+          count: 1,
         },
       },
-      aaplProfit: ((mockAapl[59] - mockAapl[0]) * 5).toFixed(2),
-      googProfit: ((mockGoog[59] - mockGoog[0]) * 7).toFixed(2),
-      msftProfit: ((mockMsft[59] - mockMsft[0]) * 12).toFixed(2),
+      predictions: [],
+      aaplProfit: ((mockAapl[6] - mockAapl[0]) * 5).toFixed(2),
+      googProfit: ((mockGoog[6] - mockGoog[0]) * 7).toFixed(2),
+      msftProfit: ((mockMsft[6] - mockMsft[0]) * 12).toFixed(2),
     };
   }
 
