@@ -1,15 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Chart from "react-apexcharts";
 import Select from "react-select";
 import StockList from "./constituents.json";
 import { motion } from "framer-motion";
 import "./style/candle.css";
+import { API_ENDPOINT } from "../services/api-endpoints";
 
 class Candle extends Component {
   constructor(props) {
     super(props);
 
+    this.updateAmount = this.updateAmount.bind(this);
     this.updateChart = this.updateChart.bind(this);
+    this.updatePortfolio = this.updatePortfolio.bind(this);
 
     this.state = {
       series: [
@@ -96,20 +99,66 @@ class Candle extends Component {
           },
         },
       },
+      currentStock: "empty",
+      currentStockAmount: 0,
+      currentStockPrice: 0
     };
+  }
+
+  updatePortfolio() {
+    let newStock = this.currentStock;
+    let newAmount = this.currentStockAmount;
+    let newPrice = this.currentStockPrice;
+
+    if (newAmount > 0) {
+      console.log("Stock: " + newStock);
+      console.log("Amount: " + newAmount);
+      console.log("Price: " + newPrice);
+
+      fetch(`${API_ENDPOINT}/tradester/update_portfolio/?stock=${newStock}&quantity=${newAmount}&price=${newPrice}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('access_token')}`
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+  
+          fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'authorization': `Bearer ${localStorage.getItem('access_token')}`
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+      
+              console.log("display portfolio:\n\n");
+              console.log(data);
+      
+            });          
+  
+        });
+    }
+  }
+
+  updateAmount = (event) => {
+      this.currentStockAmount = event.target.value;
   }
 
   updateChart(ticker, name) {
     let newSeries = [];
     let newData = [];
+    this.currentStock = ticker;
 
-    const url = "https://tradester-backend.onrender.com/tradester/get_stock_data_candle/" + ticker + "/";
+    const url = `${API_ENDPOINT}/tradester/get_stock_data_candle/${ticker}/`;
 
-    fetch(url, { method: "GET" })
+    fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((res) => {
+        console.log(res)
         let TSD = res["Time Series (Daily)"];
 
         for (let key in TSD) {
@@ -135,7 +184,7 @@ class Candle extends Component {
         }
 
         newData = newData.reverse().slice(70);
-        console.table(newData);
+        this.currentStockPrice = newData[29][1];
         newSeries.push({ data: newData });
 
         this.setState({
@@ -163,8 +212,6 @@ class Candle extends Component {
       });
     });
 
-    console.table(options);
-
     return (
       <motion.div
         className="candlediv"
@@ -187,6 +234,10 @@ class Candle extends Component {
           height={500}
           className="chart"
         />
+        <div>
+          <button onClick={this.updatePortfolio}>Purchase</button>
+          <input type="number" onChange={this.updateAmount}></input>
+        </div>
       </motion.div>
     );
   }
