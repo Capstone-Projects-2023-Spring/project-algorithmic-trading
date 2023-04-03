@@ -44,8 +44,8 @@ const Login = ({ loggedIn, setLoggedIn }) => {
     let success = await login(username, password);
     if (success) {
       setLoggedIn(true);
-      setFeedback("");
-      navigate(-1);
+      setFeedback('');
+      navigate('/');
     } else {
       setFeedback("Invalid credentials.");
     }
