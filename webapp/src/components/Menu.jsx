@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, setState } from "react";
 import menu from "../menu.svg";
 import "./style/menu.css";
 import { isLoggedIn } from "../services/authentication";
@@ -25,7 +25,7 @@ export default function Menu() {
         <div onClick={handleOpen} className="linkdropdown">
           <Link to="/about">About</Link>
           <Link to="/simulation">Simulation</Link>
-          <Link to="/portfolio">Porfolio</Link>{" "}
+          <Link to="/portfolio">Portfolio</Link>{" "}
           {/* This should be added to loggedIn when ready */}
           {loggedIn ? (
             <Link to="/logout">Logout</Link>

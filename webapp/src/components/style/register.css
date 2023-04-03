@@ -4,9 +4,9 @@ input.register {
 }
 
 .form input {
-  margin-bottom: 0.25rem;
+  margin-bottom: 1vh;
 }
 
 .form .register {
-  margin-right: 0.25rem;
+  margin-right: 1vh;
 }

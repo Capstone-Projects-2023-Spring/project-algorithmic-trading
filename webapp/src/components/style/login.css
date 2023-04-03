@@ -1,5 +1,4 @@
 .form {
-  padding: 1.5vh;
   position: absolute;
   display: flex;
   width: 30vh;
@@ -22,19 +21,39 @@
   padding-left: 0.5vh;
   font-size: 2vh;
   height: 5vh;
-  background-color: #ffffff;
   border-radius: 1.5vh;
   border: 0.3vh solid black;
 }
 
-.subreg {
+.navigate-register {
+  margin-bottom: 1vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
+.navigate-register p {
+  font-size: 1.5vh;
+}
+
+.navigate-register a {
+  padding: 1vh;
+  font-size: 2vh;
+  background-color: rgb(74, 163, 248);
+  border: 0.3vh solid black;
+  border-radius: 1.5vh;
+}
+
+.subreg {
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+
 input.login {
-  width: 40vw;
+  width: 60%;
   background-color: #d8a9e7;
 }

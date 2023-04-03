@@ -38,11 +38,11 @@ const Register = () => {
   const [feedback, setFeedback] = useState("");
 
   const onRegister = async () => {
-    let status = await register(username, password, passwordConf, setFeedback)
+    let status = await register(username, password, passwordConf, setFeedback);
     if (status === true) {
-      setUsername('');
-      setPassword('');
-      setPasswordConf('');
+      setUsername("");
+      setPassword("");
+      setPasswordConf("");
     }
   };
 

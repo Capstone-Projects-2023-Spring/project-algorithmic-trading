@@ -30,7 +30,7 @@ export default function App() {
           <div className="links">
             <Link to="/about">About</Link>
             <Link to="/simulation">Simulation</Link>
-            <Link to="/portfolio">Porfolio</Link>{" "}
+            <Link to="/portfolio">Portfolio</Link>{" "}
             {/* This should be added to loggedIn when ready */}
             {loggedIn ? (
               <Link to="/logout">Logout</Link>

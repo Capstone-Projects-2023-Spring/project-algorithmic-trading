@@ -44,15 +44,15 @@ const Login = ({ loggedIn, setLoggedIn }) => {
     let success = await login(username, password);
     if (success) {
       setLoggedIn(true);
-      setFeedback('');
-      navigate('/');
+      setFeedback("");
+      navigate("/");
     } else {
       setFeedback("Invalid credentials.");
     }
   };
 
   const onPasswordEnter = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       onLogin();
     }
   };
