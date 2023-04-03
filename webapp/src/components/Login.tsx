@@ -45,7 +45,7 @@ const Login = ({ loggedIn, setLoggedIn }) => {
     if (success) {
       setLoggedIn(true);
       setFeedback('');
-      navigate(-1);
+      navigate('/');
     } else {
       setFeedback('Invalid credentials.');
     }
