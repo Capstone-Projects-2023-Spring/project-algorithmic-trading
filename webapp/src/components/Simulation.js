@@ -44,6 +44,21 @@ const Simulation = ({ loggedIn }) => {
 
   const setAndFetchInvestment = (value) => {
 
+    fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${localStorage.getItem('access_token')}`
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+
+        console.log("display portfolio:\n\n");
+        console.log(data);
+
+      }); 
+
+      
     fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +69,6 @@ const Simulation = ({ loggedIn }) => {
       .then((data) => {
         let investmentString = data.amount;
         let investment = parseFloat(investmentString);
-        console.log("second fetch " +data.amount);
         if (!isNaN(investment)) {
           setInvestment(data.amount);
         }

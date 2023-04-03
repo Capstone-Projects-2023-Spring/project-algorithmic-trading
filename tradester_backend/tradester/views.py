@@ -159,18 +159,6 @@ def get_user_from_token(request):
         pass
     return user 
 
-def get_user_balance(user):
-    """
-    """   
-    portfolio = None
-    balance = None
-    try:
-        portfolio = Portfolio.objects.get(username=user)
-        balance = portfolio.balance
-    except Portfolio.DoesNotExist:
-        pass
-    return portfolio
-
 class DisplayPortfolio(APIView):
     '''
     expects a header of "authorizations: bearer <token>"
@@ -184,16 +172,22 @@ class DisplayPortfolio(APIView):
             
         #get the user's portfolio
         portfolio = None
+        balance = None
         try:
             portfolio = Portfolio.objects.get(username=user)
+            balance = portfolio.balance
         except Portfolio.DoesNotExist:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
         #for each portfolio_stock, add its contents to a list
+        total = 0
         return_object = {}
+        return_object['balance'] = balance
         stock_list = Portfolio_stock.objects.filter(portfolio_id=portfolio)
         for stk in stock_list:
+            total = total + (stk.quantity * stk.purchase_price)
             return_object[stk.id] = {'stock':stk.stock_symbol.stock_symbol,'quantity':stk.quantity, 'price':stk.purchase_price, 'date':stk.date}
+        return_object['total'] = total
         return Response(return_object)
 
 class UpdatePortfolio(APIView):
@@ -238,17 +232,30 @@ class UpdatePortfolio(APIView):
 class SaveInvestment(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
-        i = Investment.objects.get(investment_id=1)
-        if request.method == "GET":
-            investment_amount = None
-            try:
-                investment_amount = float(request.GET['amount'])
-            except:
-                pass
-            if investment_amount:
-                i.amount = investment_amount
-                i.save()
-            return Response({'amount' : i.amount})
+        #get the user
+        user = get_user_from_token(request)
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        
+        #get the user's porfolio set up
+        portfolio = None
+        try:
+            portfolio = Portfolio.objects.get(username=user)
+        except Portfolio.DoesNotExist:
+            portfolio = Portfolio(username=user)
+            portfolio.balance = 0
+            portfolio.save()
+        
+        #save investment
+        investment_amount = None
+        try:
+            investment_amount = float(request.GET['amount'])
+        except:
+            pass
+        if investment_amount:
+            portfolio.balance = investment_amount
+            portfolio.save()
+        return Response({'amount' : portfolio.balance})  
     
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)

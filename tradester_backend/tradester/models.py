@@ -45,13 +45,13 @@ class Portfolio(models.Model):
     The Portfolio table instance represents a users stock portfolio. It links
     a specific instance of a portfolio to a user
     """
-    portfolio_id = models.AutoField(primary_key=True, default=1000)
+    portfolio_id = models.AutoField(primary_key=True)
     username = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='myportfolio'
     )
-    balance = models.DecimalField(max_digits=20, decimal_places=2)
+    balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0)
 
 class Portfolio_stock(models.Model):
     """
