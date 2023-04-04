@@ -71,6 +71,15 @@ def print_loss_metrics(
 
     return None
 
+def return_loss_metrics(
+        y_true,
+        y_pred,
+):
+    MAE = metrics.mean_absolute_error(y_true, y_pred)
+    RMSE = np.sqrt(metrics.mean_squared_error(y_true, y_pred))
+
+    return MAE, RMSE
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
