@@ -4,6 +4,7 @@ import requests
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.utils import timezone
+from datetime import timedelta
 
 from tradester.models import *
 
@@ -228,13 +229,16 @@ def fetch_daily_OHLC():
     Updates automatically each day.   
     """
 
+    date = (timezone.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+
     # API endpoint URL for batch stock quotes
-    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey={key}'
+    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/{date}?adjusted=true&apiKey={key}'
 
     # Send request to API and retrieve data
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
+        print(data)
     else:
         data = {'error': f'unable to retrieve daily data'}
     return data
@@ -256,6 +260,8 @@ def update_stocks_daily(request):
             for result in daily_data['results']:
                 i = i + 1
                 print(i)
+                if i == 100: 
+                    break
                 stock_symbol = result['T']
                 current_price = result['c']
                 daily_high = result['h']
@@ -285,7 +291,7 @@ def update_stocks_daily(request):
                         daily_open_price=daily_open_price,
                         daily_volume=daily_volume,
                         daily_vwap=daily_vwap,
-                        timestamp = timezone.now(),
+                        timestamp = timezone.now() - timedelta(days=1),
                     )
 
                     stocks_to_create.append(stock)
@@ -299,7 +305,7 @@ def update_stocks_daily(request):
                     stock.daily_open_price = daily_open_price
                     stock.daily_volume = daily_volume
                     stock.daily_vwap = daily_vwap
-                    stock.timestamp = timezone.now()
+                    stock.timestamp = timezone.now() - timedelta(days=1)
 
                     stocks_to_update.append(stock)
 
