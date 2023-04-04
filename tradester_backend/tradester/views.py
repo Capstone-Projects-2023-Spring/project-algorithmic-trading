@@ -25,44 +25,6 @@ import datetime
 key = os.environ.get('DB_CONN_DAILY', default='')
 from django.conf import settings
 
-# Create your views here.
-def index(request):
-    """
-    :template:`path/to/template.html`
-    """
-    return HttpResponse("Welcome to the Tradester index.")
-
-def register(request, _username, _password):
-    """
-    View to register a new user account
-
-    param request: the request object \n
-    type request: HttpRequest \n
-    param _username: inputted username \n
-    type _username: str \n
-    param _password: inputted password \n
-    type _password: str \n
-    return: HttpResponse object with 'Account creation successful' or 'Username is already taken' \n
-    rtype: HttpResponse
-    """
-
-    # TODO: Implement the account creation logic
-
-    return HttpResponse("register")
-
-def sign_in(request, _username: str, _password: str) -> HttpResponse:
-    """
-    View to sign in a user
-
-    param request: the request object \n
-    param _username: inputted username \n
-    param _password: inputted password \n
-    return: HttpResponse object with 'Sign in successful' or 'Invalid login credentials' \n
-    rtype: HttpResponse
-    """
-    # TODO: implement sign_in functionality
-    return HttpResponse("sign_in")
-
 def get_stock_data_candle(request, _stock_symbol):
     api_key = settings.SECRET_KEY
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={_stock_symbol}&outputsize=compact&apikey={api_key}'
@@ -280,11 +242,6 @@ def fetch_daily_OHLC():
 def update_stocks_daily(request):
     #this function should be running constantly to update the db
     while True:
-        print("sleeping")
-        #sleep for 12 hours
-        time.sleep(43200)
-        print("awake")
-    
         daily_data = fetch_daily_OHLC()
         print(daily_data['resultsCount'])
         if "error" in daily_data:
@@ -328,6 +285,7 @@ def update_stocks_daily(request):
                         daily_open_price=daily_open_price,
                         daily_volume=daily_volume,
                         daily_vwap=daily_vwap,
+                        timestamp = timezone.now(),
                     )
 
                     stocks_to_create.append(stock)
@@ -341,6 +299,7 @@ def update_stocks_daily(request):
                     stock.daily_open_price = daily_open_price
                     stock.daily_volume = daily_volume
                     stock.daily_vwap = daily_vwap
+                    stock.timestamp = timezone.now()
 
                     stocks_to_update.append(stock)
 
@@ -353,3 +312,7 @@ def update_stocks_daily(request):
             Stock.objects.bulk_update(stocks_to_update, fields=[
                                   'current_price', 'daily_high', 'daily_low', 'daily_num_transactions', 'daily_open_price', 'daily_volume', 'daily_vwap'])
             
+            print("sleeping")
+            #sleep for 12 hours
+            time.sleep(43200)
+            print("awake")

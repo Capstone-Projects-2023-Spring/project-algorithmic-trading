@@ -25,6 +25,7 @@ class Stock(models.Model):
     daily_open_price = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
     daily_volume = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
     daily_vwap = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.stock_symbol
@@ -44,7 +45,7 @@ class Order(models.Model):
     order_type = models.CharField(max_length=10)
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    order_time = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 class Portfolio(models.Model):
     """
@@ -68,7 +69,7 @@ class Portfolio_stock(models.Model):
     stock_symbol = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     purchase_price = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateTimeField(default=timezone.now)      #this should get the timestamp of addition
+    timestamp = models.DateTimeField(default=timezone.now)      #this should get the timestamp of addition
 
 class Investment(models.Model):
     """
