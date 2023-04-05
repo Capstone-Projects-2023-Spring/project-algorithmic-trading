@@ -39,7 +39,7 @@ def get_stock_data_candle(request, _stock_symbol):
 
 def get_stock_data(request, _stock_symbol):
     """
-    View to get data on a specified stock
+    View to get data on a specified stock from the database
 
     param request: the request object \n
     type request: HttpRequest \n
@@ -48,49 +48,17 @@ def get_stock_data(request, _stock_symbol):
     return: HttpResponse object with JSON data of stock information or error message \n
     rtype: HttpResponse
     """
-    
-    # get data from Alpha Vantage
-    api_key = settings.SECRET_KEY
-    url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={_stock_symbol}&apikey={api_key}'
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        # create stock instance with data from API
-        stock = Stock(
-            stock_symbol=_stock_symbol,
-            company_name=data.get('Name', ''),
-            sector=data.get('Sector', ''),
-            current_price=Decimal(data.get('EPS', '0')) * Decimal(data.get('TrailingPE', '0')),
-            market_cap=Decimal(data.get('MarketCapitalization', '0')),
-            dividend_yield=Decimal(data.get('DividendYield', '0')),
-            earnings_per_share=Decimal(data.get('EPS', '0')),
-            price_to_earnings_ratio=Decimal(data.get('PERatio', '0')),
-            beta=Decimal(data.get('Beta', '0')),
-            high_52=Decimal(data.get('52WeekHigh', '0')),
-            low_52=Decimal(data.get('52WeekLow', '0')),
-            avg_daily_volume=Decimal(data.get('AverageDailyVolume', '0'))
-        )
-        stock.save()
-
-        # create JSON response with stock data
-        response_data = {
-            'stock_symbol': stock.stock_symbol,
-            'company_name': stock.company_name,
-            'sector': stock.sector,
-            'current_price': stock.current_price,
-            'market_cap': stock.market_cap,
-            'dividend_yield': stock.dividend_yield,
-            'earnings_per_share': stock.earnings_per_share,
-            'price_to_earnings_ratio': stock.price_to_earnings_ratio,
-            'beta': stock.beta,
-            'high_52': stock.high_52,
-            'low_52': stock.low_52,
-            'avg_daily_volume': stock.avg_daily_volume
-        }
-        return JsonResponse(response_data)
-
+    # Get a list of stock symbols that already exist in the database
+    existing_symbols = list(Stock.objects.values_list('stock_symbol', flat=True))
+    if _stock_symbol in existing_symbols:
+        stock = Stock.objects.get(stock_symbol=_stock_symbol)
+        data = {'stock_symbol': stock.stock_symbol, 'current_price': stock.current_price, 'open': stock.daily_open_price,
+                'high': stock.daily_high, 'low': stock.daily_low, 'timestamp': stock.timestamp,
+                'num_transactions': stock.daily_num_transactions, 'volume': stock.daily_volume, 
+                'vwap': stock.daily_vwap}
+        return JsonResponse(data)
     else:
-        error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
+        error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}. Stock DNE in database'}
         return JsonResponse(error_msg)
     
 def get_investment(request, token):
@@ -238,7 +206,6 @@ def fetch_daily_OHLC():
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        print(data)
     else:
         data = {'error': f'unable to retrieve daily data'}
     return data
@@ -260,8 +227,6 @@ def update_stocks_daily(request):
             for result in daily_data['results']:
                 i = i + 1
                 print(i)
-                if i == 100: 
-                    break
                 stock_symbol = result['T']
                 current_price = result['c']
                 daily_high = result['h']
