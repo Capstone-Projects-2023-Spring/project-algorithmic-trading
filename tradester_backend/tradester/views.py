@@ -4,6 +4,7 @@ import requests
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.utils import timezone
+from datetime import timedelta
 
 from tradester.models import *
 
@@ -24,44 +25,6 @@ import datetime
 
 key = os.environ.get('DB_CONN_DAILY', default='')
 from django.conf import settings
-
-# Create your views here.
-def index(request):
-    """
-    :template:`path/to/template.html`
-    """
-    return HttpResponse("Welcome to the Tradester index.")
-
-def register(request, _username, _password):
-    """
-    View to register a new user account
-
-    param request: the request object \n
-    type request: HttpRequest \n
-    param _username: inputted username \n
-    type _username: str \n
-    param _password: inputted password \n
-    type _password: str \n
-    return: HttpResponse object with 'Account creation successful' or 'Username is already taken' \n
-    rtype: HttpResponse
-    """
-
-    # TODO: Implement the account creation logic
-
-    return HttpResponse("register")
-
-def sign_in(request, _username: str, _password: str) -> HttpResponse:
-    """
-    View to sign in a user
-
-    param request: the request object \n
-    param _username: inputted username \n
-    param _password: inputted password \n
-    return: HttpResponse object with 'Sign in successful' or 'Invalid login credentials' \n
-    rtype: HttpResponse
-    """
-    # TODO: implement sign_in functionality
-    return HttpResponse("sign_in")
 
 def get_stock_data_candle(request, _stock_symbol):
     api_key = settings.SECRET_KEY
@@ -266,13 +229,16 @@ def fetch_daily_OHLC():
     Updates automatically each day.   
     """
 
+    date = (timezone.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+
     # API endpoint URL for batch stock quotes
-    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey={key}'
+    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/{date}?adjusted=true&apiKey={key}'
 
     # Send request to API and retrieve data
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
+        print(data)
     else:
         data = {'error': f'unable to retrieve daily data'}
     return data
@@ -280,11 +246,6 @@ def fetch_daily_OHLC():
 def update_stocks_daily(request):
     #this function should be running constantly to update the db
     while True:
-        print("sleeping")
-        #sleep for 12 hours
-        time.sleep(43200)
-        print("awake")
-    
         daily_data = fetch_daily_OHLC()
         print(daily_data['resultsCount'])
         if "error" in daily_data:
@@ -299,6 +260,8 @@ def update_stocks_daily(request):
             for result in daily_data['results']:
                 i = i + 1
                 print(i)
+                if i == 100: 
+                    break
                 stock_symbol = result['T']
                 current_price = result['c']
                 daily_high = result['h']
@@ -328,6 +291,7 @@ def update_stocks_daily(request):
                         daily_open_price=daily_open_price,
                         daily_volume=daily_volume,
                         daily_vwap=daily_vwap,
+                        timestamp = timezone.now() - timedelta(days=1),
                     )
 
                     stocks_to_create.append(stock)
@@ -341,6 +305,7 @@ def update_stocks_daily(request):
                     stock.daily_open_price = daily_open_price
                     stock.daily_volume = daily_volume
                     stock.daily_vwap = daily_vwap
+                    stock.timestamp = timezone.now() - timedelta(days=1)
 
                     stocks_to_update.append(stock)
 
@@ -353,3 +318,7 @@ def update_stocks_daily(request):
             Stock.objects.bulk_update(stocks_to_update, fields=[
                                   'current_price', 'daily_high', 'daily_low', 'daily_num_transactions', 'daily_open_price', 'daily_volume', 'daily_vwap'])
             
+            print("sleeping")
+            #sleep for 12 hours
+            time.sleep(43200)
+            print("awake")
