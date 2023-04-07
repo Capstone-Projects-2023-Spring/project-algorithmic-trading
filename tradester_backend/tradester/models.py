@@ -59,6 +59,7 @@ class Portfolio(models.Model):
         related_name='myportfolio'
     )
     balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0)
+    
 
 class Portfolio_stock(models.Model):
     """
