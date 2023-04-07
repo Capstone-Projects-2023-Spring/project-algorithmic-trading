@@ -44,6 +44,7 @@ const Simulation = ({ loggedIn }) => {
 
   const setAndFetchInvestment = (value) => {
 
+
     fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
       headers: {
         'Content-Type': 'application/json',
@@ -59,20 +60,20 @@ const Simulation = ({ loggedIn }) => {
       }); 
 
       
-    fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        let investmentString = data.amount;
-        let investment = parseFloat(investmentString);
-        if (!isNaN(investment)) {
-          setInvestment(data.amount);
-        }
-      });
+    // fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     let investmentString = data.amount;
+    //     let investment = parseFloat(investmentString);
+    //     if (!isNaN(investment)) {
+    //       setInvestment(data.amount);
+    //     }
+    //   });
   };
 
   const onKeyDown = (event) => {

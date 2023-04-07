@@ -105,7 +105,7 @@ class DisplayPortfolio(APIView):
             
         #get the user's portfolio
         portfolio = None
-        balance = None
+        # balance = None
         try:
             portfolio = Portfolio.objects.get(username=user)
             balance = portfolio.balance
@@ -113,14 +113,50 @@ class DisplayPortfolio(APIView):
             return Response(status=status.HTTP_403_FORBIDDEN)
 
         #for each portfolio_stock, add its contents to a list
-        total = 0
+        purchase_total = 0  #the sum of all stock prices (at time of purchase) times their quantities 
+        real_total = 0      #the sum of all stock prices (current on the market) times their quantities 
         return_object = {}
         return_object['balance'] = balance
         stock_list = Portfolio_stock.objects.filter(portfolio_id=portfolio)
         for stk in stock_list:
-            total = total + (stk.quantity * stk.purchase_price)
-            return_object[stk.id] = {'stock':stk.stock_symbol.stock_symbol,'quantity':stk.quantity, 'price':stk.purchase_price, 'date':stk.date}
-        return_object['total'] = total
+            #create an entry for that stock if it isnt' in the list
+            
+            stock_name= stk.stock_symbol.stock_symbol
+            print(stock_name, ': ', stk.quantity)
+            if not stock_name in return_object:
+                real_stock = Stock.objects.get(stock_symbol=stock_name)
+                return_object[stock_name] = {
+                    'quantity_total':0,
+                    'purchase_value':0.0,
+                    'real_'+stock_name:{
+                        'price':real_stock.current_price,
+                        'real_value': 0                       
+                    },
+                    'purchases': []
+                }
+                
+            #add the purchase_total quantity_total value for the stock
+            return_object[stock_name]['quantity_total'] += stk.quantity
+            return_object[stock_name]['purchase_value'] += stk.quantity * float(stk.purchase_price)
+            
+            #total is the full value of the purchase price
+            purchase_total += stk.quantity * stk.purchase_price
+            real_total += real_stock.current_price*stk.quantity
+
+            #add the quantity and price of the stock at time of purchase to the timestamp entry
+            return_object[stock_name]['purchases'].append( 
+                {
+                    'timestamp': stk.timestamp,
+                    'price': stk.purchase_price,
+                    'quantity': stk.quantity
+                }
+            )
+
+            return_object[stock_name]['real_'+stock_name]['real_value'] += real_stock.current_price*stk.quantity
+ 
+
+        return_object['total_purchase_value'] = purchase_total
+        return_object['total_real_value'] = real_total
         return Response(return_object)
 
 class UpdatePortfolio(APIView):
