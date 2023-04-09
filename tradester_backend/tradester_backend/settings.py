@@ -43,6 +43,7 @@ if RENDER_EXTERNAL_HOSTNAME: ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 INSTALLED_APPS = [
     'tradester.apps.TradesterConfig',
+    'friendship.apps.FriendshipConfig',
     'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.auth',
