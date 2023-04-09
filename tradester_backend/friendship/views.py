@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from tradester.models import *
-from friendship.models import FriendRequest
+from friendship.models import FriendRequest, Friendship
 from functions.functions import get_user_from_token
 
 # Find a user by their user name
@@ -65,3 +65,34 @@ class GetFriendRequests(APIView):
             }
             senders.append(sender)
         return Response(senders)
+
+class RespondFriendRequest(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        data = {}
+        sender_user_id = request.data['sender_user_id']
+        response = request.data['response']
+
+        receiver = get_user_from_token(request)
+        sender = User.objects.filter(id=sender_user_id).first()
+
+        if response != 'accept' and response != 'decline':
+            data['error'] = 'Invalid value for response: must be \'accept\' or \'decline\''
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data=data)
+
+        if not sender or not receiver:
+            data['error'] = 'The friend request sender or receiver is not a valid user.'
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data=data)
+        
+        friend_request = FriendRequest.objects.filter(sender=sender, receiver=receiver).first()
+
+        if not friend_request:
+            data['error'] = 'There is no such friend request.'
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data=data)
+        
+        if response == 'accept':
+            Friendship.objects.create(user=sender, other_user=receiver)
+        
+        friend_request.delete()
+
+        return Response(status=status.HTTP_200_OK)
