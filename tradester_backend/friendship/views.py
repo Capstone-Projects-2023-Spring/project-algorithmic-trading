@@ -96,3 +96,28 @@ class RespondFriendRequest(APIView):
         friend_request.delete()
 
         return Response(status=status.HTTP_200_OK)
+    
+class GetFriends(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        user = get_user_from_token(request)
+        all_friends = []
+
+        friendships = Friendship.objects.filter(user=user)
+        other_friendships = Friendship.objects.filter(other_user=user)
+
+        for friendship in friendships:
+            friend = {
+                'user_id': friendship.other_user.id,
+                'username': friendship.other_user.username,
+            }
+            all_friends.append(friend)
+
+        for friendship in other_friendships:
+            friend = {
+                'user_id': friendship.user.id,
+                'username': friendship.user.username,
+            }
+            all_friends.append(friend)
+
+        return Response(all_friends)
