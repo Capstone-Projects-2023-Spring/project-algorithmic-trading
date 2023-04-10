@@ -43,6 +43,7 @@ const Login = ({ loggedIn, setLoggedIn }) => {
   const onLogin = async () => {
     let success = await login(username, password);
     if (success) {
+      localStorage.setItem("username", username);
       setLoggedIn(true);
       setFeedback("");
       navigate("/");
