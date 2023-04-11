@@ -9,4 +9,7 @@ urlpatterns = [
     path('update_portfolio/', views.UpdatePortfolio.as_view(), name ='update_portfolio'),
     path('display_portfolio/', views.DisplayPortfolio.as_view(), name ='display_portfolio'),
     path('update_stocks_daily/', views.update_stocks_daily, name='update_stocks_daily'),
+    path('update_order/', views.UpdateOrder.as_view(), name ='update_order_get'),
+    path('update_order/<str:_stock_symbol>/<str:_order_type>/<int:_quantity>/<str:_price>/', 
+         views.UpdateOrder.as_view(), name ='update_order_post'),
 ]
