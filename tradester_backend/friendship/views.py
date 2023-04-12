@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.db.models import Q
 from tradester.models import *
 from friendship.models import FriendRequest, Friendship
 from functions.functions import get_user_from_token
@@ -121,3 +122,15 @@ class GetFriends(APIView):
             all_friends.append(friend)
 
         return Response(all_friends)
+    
+class Unfriend(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        user = get_user_from_token(request)
+        id = request.data['user_id']
+        user_to_unfriend = User.objects.filter(id=id).first()
+        Friendship.objects.filter(
+            (Q(user=user) & Q(other_user=user_to_unfriend)) | 
+            (Q(user=user_to_unfriend) & Q(other_user=user))
+        ).delete()
+        return Response(status=status.HTTP_200_OK)
