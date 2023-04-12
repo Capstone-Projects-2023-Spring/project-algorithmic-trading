@@ -3,6 +3,7 @@ from decimal import Decimal
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import timedelta
 
@@ -37,6 +38,7 @@ def get_stock_data_candle(request, _stock_symbol):
         error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
         return JsonResponse(error_msg)
 
+ 
 def get_stock_data(request, _stock_symbol):
     """
     View to get data on a specified stock from the database
@@ -227,7 +229,6 @@ class SaveInvestment(APIView):
         return Response({'amount' : portfolio.balance})  
 
 class UpdateOrder(APIView):
-    #TODO: figure out how to obtain permissions in testing environment 
     permission_classes = (IsAuthenticated,)
     
     def get(self, request):
@@ -257,6 +258,8 @@ class UpdateOrder(APIView):
         if _stock_symbol not in existing_symbols:
             error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}. Stock DNE in database'}
             return JsonResponse(error_msg)
+        else:
+            _stock_symbol = Stock.objects.get(stock_symbol=_stock_symbol)
         
         #create the order object after passing conditional
         order = Order(

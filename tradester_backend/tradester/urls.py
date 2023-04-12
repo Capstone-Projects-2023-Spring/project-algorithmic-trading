@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
     path('get_stock_data/<str:_stock_symbol>/', views.get_stock_data, name='get_stock_data'),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('update_order/', views.UpdateOrder.as_view(), name ='update_order_get'),
     path('update_order/<str:_stock_symbol>/<str:_order_type>/<int:_quantity>/<str:_price>/', 
          views.UpdateOrder.as_view(), name ='update_order_post'),
+    path('token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
 ]
