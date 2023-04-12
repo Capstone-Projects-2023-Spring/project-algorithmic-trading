@@ -19,7 +19,7 @@ gpu_host.connect(os.environ['GPU_SERVER'], username=os.environ['TEMPLE_USERNAME'
 stdin, stdout, stderr = gpu_host.exec_command("python3 project-algorithmic-trading/Heroku/remoteScripts"
                                               "/TimeSeriesStockPredictions.py")
 
-
+stdin.close()
 print(stdout)
 print(stderr)
 
