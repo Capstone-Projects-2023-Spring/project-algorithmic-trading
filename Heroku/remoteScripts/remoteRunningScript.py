@@ -20,8 +20,8 @@ stdin, stdout, stderr = gpu_host.exec_command("python3 project-algorithmic-tradi
                                               "/TimeSeriesStockPredictions.py")
 
 stdin.close()
-print(stdout)
-print(stderr)
+print(stdout.read())
+print(stderr.read())
 
 gpu_host.close()
 cis_linux.close()
