@@ -235,18 +235,19 @@ class UpdateOrder(APIView):
         """
         returns a JSON object containing all of the Order objects associated with a user
         """
-        #TODO: find the user currently logged in
+
         #get the user
         user = get_user_from_token(request)
         if user == None:
             return Response(status=status.HTTP_403_FORBIDDEN)
         
         #TODO: find all orders associated with that user
+        # Assuming you have a user object named 'my_user'
+        orders = user.myorder.all()
 
         #TODO: return all orders in JsonResponse object
 
-        response_msg = {'test': f'test'}
-        return JsonResponse(response_msg)
+        return JsonResponse({'orders': list(orders.values())})
     
     def post(self, request, _stock_symbol, _order_type, _quantity, _price):
         """

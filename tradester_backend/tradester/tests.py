@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from tradester.models import *
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
+from decimal import Decimal
 
 class TestUpdateOrderView(TestCase):
     access_token = ""
@@ -47,6 +48,19 @@ class TestUpdateOrderView(TestCase):
         response = self.client.post(url, headers=headers)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    #def test_get_and_post_functionality(self):
-
+    def test_get_and_post_functionality(self):
+        #Endpoint takes stock_symbol, order_type, quantity, price
+        url = reverse('update_order_post', args=['TEST', 'BUY', 2, 20])
+        headers = {'Authorization': 'Bearer ' + self.access_token}
+        response = self.client.post(url, headers=headers)
+        
+        url = reverse('update_order_get')
+        headers = {'Authorization': 'Bearer ' + self.access_token}
+        response = self.client.get(url, headers=headers)
+        orders = response.json()['orders']
+        print(orders)
+        self.assertEqual(orders[0]['stock_symbol_id'], 'TEST')
+        self.assertEqual(orders[0]['order_type'], 'BUY') 
+        self.assertEqual(orders[0]['quantity'], 2)
+        self.assertEqual(Decimal(orders[0]['price']), 20.00)
 
