@@ -1,0 +1,41 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.search h3 {
+    margin-bottom: 1rem;
+}
+
+.search .search-bar {
+    margin-top: 1rem;
+    width: 15%;
+    background-color: aqua;
+    border-radius: 25px;
+    color: black;
+    padding-left: 0.5rem;
+    border-style:double;
+    border-color: coral;
+}
+
+.search .user-display {
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    height: 2rem;
+    background-color: lightblue;
+    color: brown;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 10px;
+}
+
+.search .user-display p {
+    background-color: inherit;
+    color: inherit;
+}
