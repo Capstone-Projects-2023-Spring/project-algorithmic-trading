@@ -18,11 +18,11 @@ gpu_host.connect(os.environ['GPU_SERVER'], username=os.environ['TEMPLE_USERNAME'
 
 stdin, stdout, stderr = gpu_host.exec_command("/usr/bin/miniconda3/bin/python "
                                               "project-algorithmic-trading/Heroku/remoteScripts"
-                                              "/TimeSeriesStockPredictions.py") 
+                                              "/TimeSeriesStockPredictions.py")
 
 stdin.close()
-print(stdout.read())
-print(stderr.read())
+# print(stdout.read())
+# print(stderr.read())
 
 gpu_host.close()
 cis_linux.close()
