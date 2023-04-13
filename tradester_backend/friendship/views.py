@@ -138,6 +138,7 @@ class Unfriend(APIView):
         get_friendship(user, user_to_unfriend).delete()
         return Response(status=status.HTTP_200_OK)
 
+# Check if the authenticated user is friends with another user.
 class CheckFriendship(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
@@ -146,4 +147,24 @@ class CheckFriendship(APIView):
         other_user = User.objects.filter(id=id).first()
         friendship = get_friendship(user, other_user)
         print(friendship)
-        return Response({'isFriend': friendship.count() > 0})
+        return Response({'is_friend': friendship.count() > 0})
+
+# Check if the authenticated user has an outgoing friend request to another user.
+class CheckOutgoingRequest(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        user = get_user_from_token(request)
+        id = request.data['user_id']
+        other_user = User.objects.filter(id=id).first()
+        outgoing_request = FriendRequest.objects.filter(sender=user, receiver=other_user).first()
+        return Response({'outgoing_request': outgoing_request != None})
+
+# Check if the authenticated user has an incoming friend request from another user.
+class CheckIncomingRequest(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        user = get_user_from_token(request)
+        id = request.data['user_id']
+        other_user = User.objects.filter(id=id).first()
+        incoming_request = FriendRequest.objects.filter(sender=other_user, receiver=user).first()
+        return Response({'incoming_request': incoming_request != None})
