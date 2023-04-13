@@ -16,8 +16,9 @@ gpu_host.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 gpu_host.connect(os.environ['GPU_SERVER'], username=os.environ['TEMPLE_USERNAME'],
                  password=os.environ['TEMPLE_PASSWORD'], sock=channel)
 
-stdin, stdout, stderr = gpu_host.exec_command("python3 project-algorithmic-trading/Heroku/remoteScripts"
-                                              "/TimeSeriesStockPredictions.py")
+stdin, stdout, stderr = gpu_host.exec_command("/usr/bin/miniconda3/bin/python "
+                                              "project-algorithmic-trading/Heroku/remoteScripts"
+                                              "/TimeSeriesStockPredictions.py") 
 
 stdin.close()
 print(stdout.read())
