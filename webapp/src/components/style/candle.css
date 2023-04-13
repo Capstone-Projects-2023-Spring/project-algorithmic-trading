@@ -1,0 +1,31 @@
+.candlediv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.select {
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.select * {
+  font-size: 2vh;
+  color: black;
+  background-color: transparent;
+}
+
+.chart {
+  height: 90%;
+  z-index: -1;
+  padding: 1vh;
+  border-radius: 1vh;
+  border: 1px solid white;
+}

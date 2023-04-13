@@ -1,0 +1,4 @@
+/* overflow:hidden in app.css body was cutting off graph*/
+.container {
+  overflow: visible;
+}

@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>manage.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7ec3e6;}
+.s1 { color: #ebebeb;}
+.s2 { color: #499936; font-style: italic;}
+.s3 { color: #ed864a;}
+.s4 { color: #54b33e;}
+.s5 { color: #ed864a; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+manage.py</font>
+</center></td></tr></table>
+<pre><span class="s0">#!/usr/bin/env python</span>
+<span class="s2">&quot;&quot;&quot;Django's command-line utility for administrative tasks.&quot;&quot;&quot;</span>
+<span class="s3">import </span><span class="s1">os</span>
+<span class="s3">import </span><span class="s1">sys</span>
+
+
+<span class="s3">def </span><span class="s1">main():</span>
+    <span class="s2">&quot;&quot;&quot;Run administrative tasks.&quot;&quot;&quot;</span>
+    <span class="s1">os.environ.setdefault(</span><span class="s4">'DJANGO_SETTINGS_MODULE'</span><span class="s5">, </span><span class="s4">'tradester_backend.settings'</span><span class="s1">)</span>
+    <span class="s3">try</span><span class="s1">:</span>
+        <span class="s3">from </span><span class="s1">django.core.management </span><span class="s3">import </span><span class="s1">execute_from_command_line</span>
+    <span class="s3">except </span><span class="s1">ImportError </span><span class="s3">as </span><span class="s1">exc:</span>
+        <span class="s3">raise </span><span class="s1">ImportError(</span>
+            <span class="s4">&quot;Couldn't import Django. Are you sure it's installed and &quot;</span>
+            <span class="s4">&quot;available on your PYTHONPATH environment variable? Did you &quot;</span>
+            <span class="s4">&quot;forget to activate a virtual environment?&quot;</span>
+        <span class="s1">) </span><span class="s3">from </span><span class="s1">exc</span>
+    <span class="s1">execute_from_command_line(sys.argv)</span>
+
+
+<span class="s3">if </span><span class="s1">__name__ == </span><span class="s4">'__main__'</span><span class="s1">:</span>
+    <span class="s1">main()</span>
+</pre>
+</body>
+</html>
