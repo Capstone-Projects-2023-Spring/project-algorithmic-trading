@@ -16,11 +16,16 @@ gpu_host.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 gpu_host.connect(os.environ['GPU_SERVER'], username=os.environ['TEMPLE_USERNAME'],
                  password=os.environ['TEMPLE_PASSWORD'], sock=channel)
 
-stdin, stdout, stderr = gpu_host.exec_command("/usr/bin/miniconda3/bin/python "
-                                              "project-algorithmic-trading/Heroku/remoteScripts"
-                                              "/TimeSeriesStockPredictions.py")
+gpu_transport = gpu_host.get_transport()
+gpu_channel = gpu_transport.open_session()
 
-stdin.close()
+gpu_channel.exec_command("/usr/bin/miniconda3/bin/python project-algorithmic-trading/Heroku/remoteScripts"
+                         "/TimeSeriesStockPredictions.py > /dev/null 2>&1 &")
+# redirection at end of script and change to executing on hos tto on channel is to allow process to run
+# in the GPU server background, so heroku dyno doesn't have to just wait for execution and waste limited
+# monthly hours
+
+# stdin.close()
 # print(stdout.read())
 # print(stderr.read())
 
