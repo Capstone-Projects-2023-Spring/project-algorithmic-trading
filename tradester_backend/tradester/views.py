@@ -3,6 +3,7 @@ from decimal import Decimal
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import timedelta
 
@@ -37,6 +38,7 @@ def get_stock_data_candle(request, _stock_symbol):
         error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
         return JsonResponse(error_msg)
 
+ 
 def get_stock_data(request, _stock_symbol):
     """
     View to get data on a specified stock from the database
@@ -319,6 +321,48 @@ class SaveInvestment(APIView):
             portfolio.save()
         return Response({'amount' : portfolio.balance})  
 
+class UpdateOrder(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def get(self, request):
+        """
+        returns a JSON object containing all of the Order objects associated with a user
+        """
+        #get the user
+        user = get_user_from_token(request)
+        if user == None:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        # Assuming you have a user object named 'my_user'
+        orders = user.myorder.all()
+        return JsonResponse({'orders': list(orders.values())})
+    
+    def post(self, request, _stock_symbol, _order_type, _quantity, _price):
+        """
+        add an order object to the order table associated with a user
+        """
+        # Get a list of stock symbols that already exist in the database and
+        # check _stock_symbol exists
+        existing_symbols = list(Stock.objects.values_list('stock_symbol', flat=True))
+        if _stock_symbol not in existing_symbols:
+            error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}. Stock DNE in database'}
+            return JsonResponse(error_msg)
+        else:
+            _stock_symbol = Stock.objects.get(stock_symbol=_stock_symbol)
+        
+        #create the order object after passing conditional
+        order = Order(
+            stock_symbol = _stock_symbol,
+            order_type = _order_type,
+            quantity = _quantity,
+            price = _price,
+            username = get_user_from_token(request),
+        )
+
+        #save the order object
+        order.save()
+
+        response_msg = {'response': f'new entry saved'}
+        return JsonResponse(response_msg)
 
 def fetch_daily_OHLC():
     """
