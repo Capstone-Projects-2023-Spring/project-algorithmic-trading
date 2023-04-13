@@ -143,7 +143,7 @@ class CheckFriendship(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
         user = get_user_from_token(request)
-        id = request.data['user_id']
+        id = request.GET['user_id']
         other_user = User.objects.filter(id=id).first()
         friendship = get_friendship(user, other_user)
         print(friendship)
@@ -154,7 +154,7 @@ class CheckOutgoingRequest(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
         user = get_user_from_token(request)
-        id = request.data['user_id']
+        id = request.GET['user_id']
         other_user = User.objects.filter(id=id).first()
         outgoing_request = FriendRequest.objects.filter(sender=user, receiver=other_user).first()
         return Response({'outgoing_request': outgoing_request != None})
@@ -164,7 +164,16 @@ class CheckIncomingRequest(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
         user = get_user_from_token(request)
-        id = request.data['user_id']
+        id = request.GET['user_id']
         other_user = User.objects.filter(id=id).first()
         incoming_request = FriendRequest.objects.filter(sender=other_user, receiver=user).first()
         return Response({'incoming_request': incoming_request != None})
+
+class RevokeRequest(APIView):
+    permission_classes = (IsAuthenticated,)
+    def delete(self, request):
+        user = get_user_from_token(request)
+        id = request.data['user_id']
+        other_user = User.objects.filter(id=id).first()
+        FriendRequest.objects.filter(sender=user, receiver=other_user).delete()
+        return Response(status=status.HTTP_200_OK)
