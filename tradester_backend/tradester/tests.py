@@ -33,6 +33,8 @@ class TestUpdateOrderView(TestCase):
         #add a stock to the stock table
         stock, created= Stock.objects.get_or_create(stock_symbol='TEST', current_price=20)
         stock.save()
+        stock, created= Stock.objects.get_or_create(stock_symbol='TEST2', current_price=200)
+        stock.save()
     
 
     def test_get_order_status(self):
@@ -53,14 +55,22 @@ class TestUpdateOrderView(TestCase):
         url = reverse('update_order_post', args=['TEST', 'BUY', 2, 20])
         headers = {'Authorization': 'Bearer ' + self.access_token}
         response = self.client.post(url, headers=headers)
-        
+
+        url = reverse('update_order_post', args=['TEST2', 'SELL', 5, 200])
+        headers = {'Authorization': 'Bearer ' + self.access_token}
+        response = self.client.post(url, headers=headers)
+
         url = reverse('update_order_get')
         headers = {'Authorization': 'Bearer ' + self.access_token}
         response = self.client.get(url, headers=headers)
         orders = response.json()['orders']
-        print(orders)
+
         self.assertEqual(orders[0]['stock_symbol_id'], 'TEST')
         self.assertEqual(orders[0]['order_type'], 'BUY') 
         self.assertEqual(orders[0]['quantity'], 2)
         self.assertEqual(Decimal(orders[0]['price']), 20.00)
+        self.assertEqual(orders[1]['stock_symbol_id'], 'TEST2')
+        self.assertEqual(orders[1]['order_type'], 'SELL') 
+        self.assertEqual(orders[1]['quantity'], 5)
+        self.assertEqual(Decimal(orders[1]['price']), 200.00)
 
