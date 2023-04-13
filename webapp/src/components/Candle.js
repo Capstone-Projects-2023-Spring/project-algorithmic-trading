@@ -68,7 +68,7 @@ class Candle extends Component {
       console.log("Price: " + newPrice);
 
       fetch(
-        `${API_ENDPOINT}/tradester/update_portfolio/?stock=${newStock}&quantity=${newAmount}&price=${newPrice}`,
+        `${API_ENDPOINT}/tradester/purchase_stock/?stock=${newStock}&quantity=${newAmount}&price=${newPrice}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -78,6 +78,10 @@ class Candle extends Component {
       )
         .then((response) => response.json())
         .then((data) => {
+
+          console.log("purchase response:\n\n");
+          console.log(data);
+
           fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
             headers: {
               "Content-Type": "application/json",
