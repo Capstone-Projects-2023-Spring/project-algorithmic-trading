@@ -20,7 +20,7 @@ const main_template_jira_scripts = () => {
 }
 
 // You can change the title here. The default is the name of the repository.
-const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
+const title = ''+process.env.PROJECT_NAME.replace('-',' ').split(' ').map((word) => {
   return word[0].toUpperCase() + word.substring(1);
 }).join(' ');
 

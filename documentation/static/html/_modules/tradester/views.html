@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tradester.views &mdash; tradester_backend 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            tradester_backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">tradester_backend</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">tradester_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tradester.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tradester.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">JsonResponse</span>
+
+<span class="kn">from</span> <span class="nn">tradester.models</span> <span class="kn">import</span> <span class="n">Stock</span>
+<span class="kn">from</span> <span class="nn">tradester.models</span> <span class="kn">import</span> <span class="n">Investment</span>
+
+<span class="c1"># import pandas as pd</span>
+
+
+<span class="c1"># Create your views here.</span>
+<div class="viewcode-block" id="index"><a class="viewcode-back" href="../../tradester.html#tradester.views.index">[docs]</a><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :template:`path/to/template.html`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Welcome to the Tradester index.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="register"><a class="viewcode-back" href="../../tradester.html#tradester.views.register">[docs]</a><span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_username</span><span class="p">,</span> <span class="n">_password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View to register a new user account</span>
+
+<span class="sd">    param request: the request object \n</span>
+<span class="sd">    type request: HttpRequest \n</span>
+<span class="sd">    param _username: inputted username \n</span>
+<span class="sd">    type _username: str \n</span>
+<span class="sd">    param _password: inputted password \n</span>
+<span class="sd">    type _password: str \n</span>
+<span class="sd">    return: HttpResponse object with &#39;Account creation successful&#39; or &#39;Username is already taken&#39; \n</span>
+<span class="sd">    rtype: HttpResponse</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: Implement the account creation logic</span>
+
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;register&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="sign_in"><a class="viewcode-back" href="../../tradester.html#tradester.views.sign_in">[docs]</a><span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HttpResponse</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View to sign in a user</span>
+
+<span class="sd">    param request: the request object \n</span>
+<span class="sd">    param _username: inputted username \n</span>
+<span class="sd">    param _password: inputted password \n</span>
+<span class="sd">    return: HttpResponse object with &#39;Sign in successful&#39; or &#39;Invalid login credentials&#39; \n</span>
+<span class="sd">    rtype: HttpResponse</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: implement sign_in functionality</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;sign_in&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_stock_data"><a class="viewcode-back" href="../../tradester.html#tradester.views.get_stock_data">[docs]</a><span class="k">def</span> <span class="nf">get_stock_data</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_stock_symbol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View to get data on a specified stock</span>
+
+<span class="sd">    param request: the request object \n</span>
+<span class="sd">    type request: HttpRequest \n</span>
+<span class="sd">    param _symbol: symbol of the stock to retrieve data for \n</span>
+<span class="sd">    type _symbol: str \n</span>
+<span class="sd">    return: HttpResponse object with JSON data of stock information or error message \n</span>
+<span class="sd">    rtype: HttpResponse</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># get data from Alpha Vantage</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;2JMCN347HZ3BU9RC&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://www.alphavantage.co/query?function=OVERVIEW&amp;symbol=</span><span class="si">{</span><span class="n">_stock_symbol</span><span class="si">}</span><span class="s1">&amp;apikey=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="c1"># create stock instance with data from API</span>
+        <span class="n">stock</span> <span class="o">=</span> <span class="n">Stock</span><span class="p">(</span>
+            <span class="n">stock_symbol</span><span class="o">=</span><span class="n">_stock_symbol</span><span class="p">,</span>
+            <span class="n">company_name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="n">sector</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Sector&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="n">current_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;EPS&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">))</span> <span class="o">*</span> <span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TrailingPE&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">market_cap</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MarketCapitalization&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">dividend_yield</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DividendYield&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">earnings_per_share</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;EPS&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">price_to_earnings_ratio</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PERatio&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">beta</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Beta&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">high_52</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;52WeekHigh&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">low_52</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;52WeekLow&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)),</span>
+            <span class="n">avg_daily_volume</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;AverageDailyVolume&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="n">stock</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="c1"># create JSON response with stock data</span>
+        <span class="n">response_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;stock_symbol&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">stock_symbol</span><span class="p">,</span>
+            <span class="s1">&#39;company_name&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">company_name</span><span class="p">,</span>
+            <span class="s1">&#39;sector&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">sector</span><span class="p">,</span>
+            <span class="s1">&#39;current_price&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">current_price</span><span class="p">,</span>
+            <span class="s1">&#39;market_cap&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">market_cap</span><span class="p">,</span>
+            <span class="s1">&#39;dividend_yield&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">dividend_yield</span><span class="p">,</span>
+            <span class="s1">&#39;earnings_per_share&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">earnings_per_share</span><span class="p">,</span>
+            <span class="s1">&#39;price_to_earnings_ratio&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">price_to_earnings_ratio</span><span class="p">,</span>
+            <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span>
+            <span class="s1">&#39;high_52&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">high_52</span><span class="p">,</span>
+            <span class="s1">&#39;low_52&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">low_52</span><span class="p">,</span>
+            <span class="s1">&#39;avg_daily_volume&#39;</span><span class="p">:</span> <span class="n">stock</span><span class="o">.</span><span class="n">avg_daily_volume</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Unable to retrieve data for </span><span class="si">{</span><span class="n">_stock_symbol</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="get_investment"><a class="viewcode-back" href="../../tradester.html#tradester.views.get_investment">[docs]</a><span class="k">def</span> <span class="nf">get_investment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View to receive the investment data for a user</span>
+
+<span class="sd">    param request: the request object \n</span>
+<span class="sd">    param token: session token attached to signed-in user \n</span>
+<span class="sd">    return: HttpResponse object with data to display in frontend or error message &quot;not signed in&quot; \n</span>
+<span class="sd">    rtype: HttpResponse</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: implement getting investment info</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;get_investment&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="save_investment"><a class="viewcode-back" href="../../tradester.html#tradester.views.save_investment">[docs]</a><span class="k">def</span> <span class="nf">save_investment</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">Investment</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">investment_id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+        <span class="n">investment_amount</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">investment_amount</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">investment_amount</span><span class="p">:</span>
+            <span class="n">i</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">investment_amount</span>
+            <span class="n">i</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">amount</span><span class="p">})</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Patrick Doyle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

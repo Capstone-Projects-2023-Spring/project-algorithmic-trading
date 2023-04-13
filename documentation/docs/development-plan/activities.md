@@ -34,3 +34,5 @@ If bugs are found during testing, we will evaluate: if there is an error message
 **Optimization:**  
 
 Optimization is imperative for this project considering that live stock data is being used and accessed. This means that to optimize, we will first measure the time that our code takes. Then we will refactor in order to reduce computations and runtime in terms of data collection. Finally, if no further adjustments are obvious, we will evaluate if there are faster APIs or any way to potentially reduce API calls.
+
+**Hello section 2!!!!!**
