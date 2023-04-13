@@ -8,6 +8,8 @@ from tradester.models import *
 from friendship.models import FriendRequest, Friendship
 from functions.functions import get_user_from_token
 
+from friendship.functions import get_friendship
+
 # Find a user by their user name
 class FindUserByUsername(APIView):
     permission_classes = (IsAuthenticated,)
@@ -67,6 +69,7 @@ class GetFriendRequests(APIView):
             senders.append(sender)
         return Response(senders)
 
+# Accept or reject a friend request.
 class RespondFriendRequest(APIView):
     permission_classes = (IsAuthenticated,)
     def post(self, request):
@@ -98,6 +101,7 @@ class RespondFriendRequest(APIView):
 
         return Response(status=status.HTTP_200_OK)
     
+# Get a list of friends.
 class GetFriends(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
@@ -122,15 +126,24 @@ class GetFriends(APIView):
             all_friends.append(friend)
 
         return Response(all_friends)
-    
+
+# Unfriend a user.
+# :'(   
 class Unfriend(APIView):
     permission_classes = (IsAuthenticated,)
     def post(self, request):
         user = get_user_from_token(request)
         id = request.data['user_id']
         user_to_unfriend = User.objects.filter(id=id).first()
-        Friendship.objects.filter(
-            (Q(user=user) & Q(other_user=user_to_unfriend)) | 
-            (Q(user=user_to_unfriend) & Q(other_user=user))
-        ).delete()
+        get_friendship(user, user_to_unfriend).delete()
         return Response(status=status.HTTP_200_OK)
+
+class CheckFriendship(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        user = get_user_from_token(request)
+        id = request.data['user_id']
+        other_user = User.objects.filter(id=id).first()
+        friendship = get_friendship(user, other_user)
+        print(friendship)
+        return Response({'isFriend': friendship.count() > 0})

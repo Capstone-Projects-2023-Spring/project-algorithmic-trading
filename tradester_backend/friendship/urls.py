@@ -9,4 +9,5 @@ urlpatterns = [
     path('respond_friend_request/', views.RespondFriendRequest.as_view(), name='respond_friend_request'),
     path('get_friends/', views.GetFriends.as_view(), name='get_friends'),
     path('unfriend/', views.Unfriend.as_view(), name='unfriend'),
+    path('check_friendship/', views.CheckFriendship.as_view(), name='check_friendship'),
 ]
