@@ -109,3 +109,29 @@ export async function respondFriendRequest(userId, isAccept) {
     }),
   });
 }
+
+export async function getFriends() {
+  let response = await fetch(`${API_ENDPOINT}/friendship/get_friends/`, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    }
+  });
+
+  if (!response.ok) return [];
+
+  return await response.json()
+}
+
+export async function unfriend(userId) {
+  fetch(`${API_ENDPOINT}/friendship/unfriend/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+    body: JSON.stringify({
+      "user_id": userId,
+    }),
+  });
+}

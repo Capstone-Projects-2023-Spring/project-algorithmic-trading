@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import SocialTabs from "./SocialTabs";
 import { getFriendRequests, respondFriendRequest } from "../services/friendship";
-import './style/friend-requests.css'
+import './style/friends.css'
 import './style/user.css';
 
 export default function FriendRequests() {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    let reqs;
     let get = async () => {
-      reqs = await getFriendRequests();
+      let reqs = await getFriendRequests();
       setRequests(reqs);
     };
     get();
@@ -23,7 +22,7 @@ export default function FriendRequests() {
   };
 
   return (
-    <div className="friend-requests">
+    <div className="friends">
       <h3>Friend Requests</h3>
       <SocialTabs />
       <div className="requests-container">
