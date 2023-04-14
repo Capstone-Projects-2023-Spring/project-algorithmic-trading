@@ -82,3 +82,30 @@ export async function revokeFriendRequest(userId) {
     }),
   });
 }
+
+export async function getFriendRequests() {
+  let response = await fetch(`${API_ENDPOINT}/friendship/get_friend_requests/`, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    }
+  });
+
+  if (!response.ok) return [];
+
+  return await response.json()
+}
+
+export async function respondFriendRequest(userId, isAccept) {
+  fetch(`${API_ENDPOINT}/friendship/respond_friend_request/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+    body: JSON.stringify({
+      "sender_user_id": userId,
+      "response": isAccept ? "accept": "decline", 
+    }),
+  });
+}

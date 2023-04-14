@@ -1,7 +1,31 @@
 .friend-requests {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .friend-requests h3 {
     margin-bottom: 1rem;
+}
+
+.friend-requests ul {
+    list-style-type: none;
+}
+
+.friend-requests .social-tabs {
+    margin-bottom: 1rem;
+}
+
+.friend-requests .user-display {
+    border-radius: 2.5px;
+    border: thin solid palevioletred;
+}
+
+.requests-container {
+    width: 25%;
+}
+
+.accept-decline-container {
+    display: flex;
+    flex-direction: row;
 }

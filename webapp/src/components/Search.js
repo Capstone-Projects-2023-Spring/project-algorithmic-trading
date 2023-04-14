@@ -1,3 +1,4 @@
+import './style/user.css';
 import './style/search.css';
 import SocialTabs from "./SocialTabs";
 import { 

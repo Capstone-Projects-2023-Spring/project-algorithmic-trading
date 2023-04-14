@@ -21,21 +21,5 @@
 }
 
 .search .user-display {
-    display: flex;
-    flex-direction: row;
-    width: 25%;
-    height: 2rem;
-    background-color: lightblue;
-    color: brown;
-    justify-content: space-between;
-    align-items: center;
     margin-top: 1rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    border-radius: 10px;
-}
-
-.search .user-display p {
-    background-color: inherit;
-    color: inherit;
 }
