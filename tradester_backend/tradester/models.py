@@ -35,6 +35,11 @@ class Order(models.Model):
       The Order table holds information about a user's order to buy or sell a stock.
     """
 
+    ORDER_TYPE_CHOICES = (
+        ('BUY', 'Buy'),
+        ('SELL', 'Sell'),
+    )
+    
     order_id = models.AutoField(primary_key=True)
     username = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -42,10 +47,10 @@ class Order(models.Model):
         related_name='myorder'
     )
     stock_symbol = models.ForeignKey(Stock, on_delete=models.CASCADE)
-    order_type = models.CharField(max_length=10)
+    order_type = models.CharField(max_length=10, choices=ORDER_TYPE_CHOICES, default='BUY')
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now)
 
 class Portfolio(models.Model):
     """
