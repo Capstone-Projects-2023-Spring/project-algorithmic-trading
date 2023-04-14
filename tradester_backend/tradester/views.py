@@ -103,8 +103,8 @@ class DeleteAccount(APIView):
         #get the user
         user = get_user_from_token(request)
         if user == None:
-            return Response({'portfolio': "no user"})
-        #print(user.delete())
+            return Response({'error': "no user"}, status=HTTP_403_FORBIDDEN)
+        user.delete()
         return Response(status=status.HTTP_200_OK)
 
 
