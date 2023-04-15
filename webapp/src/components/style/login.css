@@ -12,6 +12,10 @@
   font-size: 3vh;
 }
 
+.form h1 {
+  padding-bottom: 0.5rem;
+}
+
 .form * {
   color: black;
   background: white;
@@ -19,7 +23,7 @@
 
 .form input {
   padding-left: 0.5vh;
-  font-size: 2vh;
+  font-size: 0.7em;
   height: 5vh;
   border-radius: 1.5vh;
   border: 0.3vh solid black;
@@ -34,6 +38,7 @@
 }
 
 .navigate-register p {
+  background-color: transparent;
   font-size: 1.5vh;
 }
 
@@ -46,7 +51,7 @@
 }
 
 .subreg {
-  height: 7vh;
+  height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
