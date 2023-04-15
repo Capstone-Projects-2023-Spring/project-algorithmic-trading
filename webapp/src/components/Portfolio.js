@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Async from "react-async";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Chart from "react-apexcharts";
 import "./style/portfolio.css";
 import Predictions from "./predictions.json";
@@ -87,8 +87,8 @@ const genData = (name) => {
   return setData;
 }
 
-const loadPortfolio = () =>
-  fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
+const loadPortfolio = (id) =>
+  fetch(`${API_ENDPOINT}/tradester/display_portfolio/?user_id=${id}`, {
     headers: {
       'Content-Type': 'application/json',
       'authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -97,15 +97,19 @@ const loadPortfolio = () =>
     .then(response => (response.ok ? response : Promise.reject(response)))
     .then(response => response.json())
 
-const Portfolio = () => (
+const Portfolio = () => {
+  let location = useLocation();
 
-  <Async promiseFn={loadPortfolio}>
+  let username = location.state.username;
+  let isSelf = location.state.isSelf;
+  let userId = isSelf ? 'self' : location.state.userId;
+
+  return (<Async promiseFn={() => loadPortfolio(userId)}>
     {({ data, error, isLoading }) => {
       let stocks = [];
       if (isLoading) return "";
       if (error) return "Error";
       if (data) {
-        const username = localStorage.getItem("username");
         const datapoints = Object.keys(data);
         const balance = data[datapoints[0]];
         // X objects in portfolio. Stocks are found from index [1,X-2]
@@ -155,8 +159,8 @@ const Portfolio = () => (
       return null;
 
     }}
-  </Async>
-)
+  </Async>)
+};
 
 export default Portfolio;
 

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import SocialTabs from "./SocialTabs";
 import './style/friends.css';
 import { getFriends, unfriend } from "../services/friendship";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Friends() {
   const [friends, setFriends] = useState([]);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let fetch = async () => {
@@ -32,7 +32,19 @@ export default function Friends() {
             <p>{item.username}</p>
             <div className="accept-decline-container">
               <button onClick={() => onUnfriend(index, item.user_id)}>Unfriend</button>
-              <button onClick={() => {/*navigate(/portfolio)*/}}>View Portfolio</button>
+              <button 
+                onClick={
+                  () => {
+                    navigate("/portfolio", {
+                      state: {
+                        username: item.username,
+                        userId: item.user_id,
+                        isSelf: false,
+                      },
+                    })
+                  }
+                }
+              > View Portfolio</button>
             </div>
           </div>
         )}

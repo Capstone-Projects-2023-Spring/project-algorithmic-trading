@@ -33,7 +33,7 @@ export default function App() {
           <div className="links">
             <Link to="/about">About</Link>
             <Link to="/simulation">Simulation</Link>
-            <Link to="/portfolio">Portfolio</Link>{" "}
+            <Link to="/portfolio" state={{username: localStorage.getItem("username"), isSelf: true}}>Portfolio</Link>{" "}
             <Link to="/search">Social</Link>
             {/* This should be added to loggedIn when ready */}
             {loggedIn ? (
@@ -70,7 +70,15 @@ export default function App() {
           element={<Simulation loggedIn={loggedIn} />}
         />
         <Route path="/candle" element={<Candle />} />
-        <Route path="/portfolio" element={<Portfolio />} />
+        <Route 
+          path="/portfolio" 
+          element={
+            <Portfolio 
+              username={localStorage.getItem("username")}
+              isSelf={true}
+            />
+          } 
+        />
         <Route path="/search" element={<Search />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/friend-requests" element={<FriendRequests />} />
