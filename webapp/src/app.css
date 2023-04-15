@@ -74,8 +74,8 @@ html * {
 .logo {
   padding-left: 10px;
   font-size: 4vh;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  letter-spacing: -0.05rem;
 }
 
 .nav img {
