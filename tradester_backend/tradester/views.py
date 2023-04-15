@@ -8,6 +8,8 @@ from django.utils import timezone
 from datetime import timedelta
 
 from tradester.models import *
+from friendship.functions import get_friendship
+from functions.functions import get_user_from_token
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -75,25 +77,6 @@ def get_investment(request, token):
     # TODO: implement getting investment info
     return HttpResponse("get_investment")
 
-
-def get_user_from_token(request):
-    """
-    View to receive the user from a given token in the request
-
-    param request: the request object \n
-    return: User object when successful or None
-    """
-    user = None
-    try: 
-        token_header = request.headers['authorization']
-        token = token_header.split()[1]     #get the second argument (the first is "Bearer")
-        token_obj = AccessToken(token)
-        user_id = token_obj['user_id']
-        user = User.objects.get(id=user_id)
-    except User.DoesNotExist:
-        pass
-    return user 
-
 class DeleteAccount(APIView):
     '''
     expects a header of "authorizations: bearer <token>"
@@ -107,7 +90,6 @@ class DeleteAccount(APIView):
         #print(user.delete())
         return Response(status=status.HTTP_200_OK)
 
-
 class DisplayPortfolio(APIView):
     '''
     expects a header of "authorizations: bearer <token>"
@@ -115,7 +97,18 @@ class DisplayPortfolio(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self,request):
         #get the user
-        user = get_user_from_token(request)
+        user_id = request.GET['user_id']
+        if user_id == 'self':
+            user = get_user_from_token(request)
+        else:
+            user = User.objects.filter(id=user_id).first()
+            friendship = get_friendship(user, get_user_from_token(request)).first()
+            if friendship == None:
+                return Response(
+                    data = {"portfolio": "Not authorized to access this portfolio. User is not a friend."},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+
         if user == None:
             return Response({'portfolio': "no user"})
             
