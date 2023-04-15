@@ -8,6 +8,7 @@ from django.utils import timezone
 from datetime import timedelta
 
 from tradester.models import *
+from friendship.functions import get_friendship
 from functions.functions import get_user_from_token
 
 from rest_framework.views import APIView
@@ -96,7 +97,18 @@ class DisplayPortfolio(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self,request):
         #get the user
-        user = get_user_from_token(request)
+        user_id = request.GET['user_id']
+        if user_id == 'self':
+            user = get_user_from_token(request)
+        else:
+            user = User.objects.filter(id=user_id).first()
+            friendship = get_friendship(user, get_user_from_token(request)).first()
+            if friendship == None:
+                return Response(
+                    data = {"portfolio": "Not authorized to access this portfolio. User is not a friend."},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+
         if user == None:
             return Response({'portfolio': "no user"})
             
