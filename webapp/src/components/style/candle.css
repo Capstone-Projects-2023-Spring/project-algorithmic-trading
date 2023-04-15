@@ -23,6 +23,7 @@
 }
 
 .chart {
+  background-color: black;
   height: 90%;
   z-index: -1;
   padding: 1vh;

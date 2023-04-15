@@ -16,6 +16,7 @@ import Friends from "./components/Friends";
 import FriendRequests from "./components/FriendRequests";
 import Menu from "./components/Menu";
 import bull from "./bull.png";
+import br from "./triangles.svg";
 import "./style.css";
 import "./app.css";
 import { isLoggedIn } from "./services/authentication";
@@ -26,6 +27,7 @@ export default function App() {
   const Nav = () => {
     return (
       <div>
+        <img className="background" src={br} alt="Background" />
         <div className="nav">
           <Link className="logo" to="/candle">
             Tradester <img src={bull} alt="Logo" />{" "}
@@ -33,7 +35,15 @@ export default function App() {
           <div className="links">
             <Link to="/about">About</Link>
             <Link to="/simulation">Simulation</Link>
-            <Link to="/portfolio" state={{username: localStorage.getItem("username"), isSelf: true}}>Portfolio</Link>{" "}
+            <Link
+              to="/portfolio"
+              state={{
+                username: localStorage.getItem("username"),
+                isSelf: true,
+              }}
+            >
+              Portfolio
+            </Link>{" "}
             <Link to="/search">Social</Link>
             {/* This should be added to loggedIn when ready */}
             {loggedIn ? (
@@ -70,14 +80,14 @@ export default function App() {
           element={<Simulation loggedIn={loggedIn} />}
         />
         <Route path="/candle" element={<Candle />} />
-        <Route 
-          path="/portfolio" 
+        <Route
+          path="/portfolio"
           element={
-            <Portfolio 
+            <Portfolio
               username={localStorage.getItem("username")}
               isSelf={true}
             />
-          } 
+          }
         />
         <Route path="/search" element={<Search />} />
         <Route path="/friends" element={<Friends />} />
