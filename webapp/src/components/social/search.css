@@ -1,5 +1,6 @@
 .search {
-  padding-top: 2rem;
+  max-width: 30em;
+  padding: 2rem;
   position: relative;
   left: 50%;
   font-size: 2.5vh;
