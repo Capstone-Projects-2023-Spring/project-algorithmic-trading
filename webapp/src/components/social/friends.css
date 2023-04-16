@@ -17,11 +17,13 @@
 }
 
 .friends .user-display {
+  min-width: 14em;
   border-radius: 0.5rem;
+  height: 100%;
 }
 
 .requests-container {
-  width: 20rem;
+  max-width: 35em;
 }
 
 .accept-decline-container {

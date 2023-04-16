@@ -15,11 +15,14 @@
 }
 
 .search button {
+  font-size: 0.5em;
   color: rgb(17, 25, 67);
   border-radius: 0.5rem;
 }
 
 .search input {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   font-size: 2.5vh;
 }
 
