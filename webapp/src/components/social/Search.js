@@ -1,18 +1,17 @@
-import './style/user.css';
-import './style/search.css';
+import "./user.css";
+import "./search.css";
 import SocialTabs from "./SocialTabs";
-import { 
+import {
   findUserByUsername,
   hasOutgoingRequest,
   hasIncomingRequest,
   isFriendsWith,
   sendFriendRequest,
   revokeFriendRequest,
-} from '../services/friendship';
-import { useState } from 'react';
+} from "../../services/friendship";
+import { useState } from "react";
 
 export default function Search() {
-
   const [username, setUserName] = useState("");
   const [foundUser, setFoundUser] = useState(null);
 
@@ -66,16 +65,16 @@ export default function Search() {
     }
   };
 
-  let userDiv = (<div></div>);
+  let userDiv = <div></div>;
 
   if (foundUser) {
     let button = false;
     if (foundUser.isFriend) {
-      button = <b>Friend</b>
+      button = <b>Friend</b>;
     } else if (foundUser.outgoing_request) {
-      button = <button onClick={revokeRequest}>Revoke</button>
+      button = <button onClick={revokeRequest}>Revoke</button>;
     } else if (!foundUser.incoming_request) {
-      button = <button onClick={sendRequest}>Send</button>
+      button = <button onClick={sendRequest}>Send</button>;
     }
 
     userDiv = (
@@ -88,8 +87,8 @@ export default function Search() {
 
   return (
     <div className="search">
-      <h3>Search Users</h3>
       <SocialTabs />
+      <h3>Search Users</h3>
       <input
         type="text"
         value={username}

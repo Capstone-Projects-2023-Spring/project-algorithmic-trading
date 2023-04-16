@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SocialTabs from "./SocialTabs";
-import './style/friends.css';
-import { getFriends, unfriend } from "../services/friendship";
+import "./friends.css";
+import { getFriends, unfriend } from "../../services/friendship";
 import { useNavigate } from "react-router-dom";
 
 export default function Friends() {
@@ -23,31 +23,36 @@ export default function Friends() {
   };
 
   return (
-    <div className="friends">
-      <h3>Friends</h3>
+    <div className="search">
       <SocialTabs />
-      <div className="requests-container">
-        {friends.map((item, index) =>
-          <div className="user-display">
-            <p>{item.username}</p>
-            <div className="accept-decline-container">
-              <button onClick={() => onUnfriend(index, item.user_id)}>Unfriend</button>
-              <button 
-                onClick={
-                  () => {
+      <div className="friends">
+        <h3>Friends</h3>
+        <div className="requests-container">
+          {friends.map((item, index) => (
+            <div className="user-display">
+              <p>{item.username}</p>
+              <div className="accept-decline-container">
+                <button onClick={() => onUnfriend(index, item.user_id)}>
+                  Unfriend
+                </button>
+                <button
+                  onClick={() => {
                     navigate("/portfolio", {
                       state: {
                         username: item.username,
                         userId: item.user_id,
                         isSelf: false,
                       },
-                    })
-                  }
-                }
-              > View Portfolio</button>
+                    });
+                  }}
+                >
+                  {" "}
+                  View Portfolio
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );

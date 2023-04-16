@@ -17,7 +17,7 @@ class Candle extends Component {
     this.state = {
       series: [
         {
-          data: []
+          data: [],
         },
       ],
       options: {
@@ -78,7 +78,6 @@ class Candle extends Component {
       )
         .then((response) => response.json())
         .then((data) => {
-
           console.log("purchase response:\n\n");
           console.log(data);
 
@@ -189,7 +188,7 @@ class Candle extends Component {
           height={"88%"}
           className="chart"
         />
-        <div>
+        <div className="purchase">
           <button onClick={this.updatePortfolio}>Purchase</button>
           <input type="number" onChange={this.updateAmount}></input>
         </div>

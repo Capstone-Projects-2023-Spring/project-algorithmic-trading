@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import './style/social-tabs.css';
+import { useNavigate } from "react-router-dom";
+import "./search.css";
 
 export default function SocialTabs() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="social-tabs">

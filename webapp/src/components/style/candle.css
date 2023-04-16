@@ -1,9 +1,10 @@
 .candlediv {
-  position: absolute;
+  padding: 2vw;
+  color: black;
+  position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95vw;
+  transform: translate(-50%, -55%);
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -29,4 +30,12 @@
   padding: 1vh;
   border-radius: 1vh;
   border: 1px solid white;
+}
+
+.purchase button {
+  color: black;
+}
+
+.purchase input {
+  color: black;
 }
