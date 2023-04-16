@@ -43,8 +43,6 @@ const Simulation = ({ loggedIn }) => {
   });
 
   const setAndFetchInvestment = (value) => {
-
-
     fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +57,6 @@ const Simulation = ({ loggedIn }) => {
           setInvestment(data.amount);
         }
       });
-
   };
 
   const onKeyDown = (event) => {
