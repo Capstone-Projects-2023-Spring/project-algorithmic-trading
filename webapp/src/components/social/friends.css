@@ -1,31 +1,30 @@
 .friends {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .friends h3 {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .friends ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .friends .social-tabs {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .friends .user-display {
-    border-radius: 2.5px;
-    border: thin solid palevioletred;
+  border-radius: 0.5rem;
 }
 
 .requests-container {
-    width: 25%;
+  width: 20rem;
 }
 
 .accept-decline-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
