@@ -180,12 +180,14 @@ const Portfolio = () => {
                     height={350}
                   />
                   <h3>Profits: ${stock[5]}</h3>
-                  <button
-                    className="sellbtn"
-                    onClick={() => sellStock(stock[0], stock[3], stock[4])}
-                  >
-                    Sell
-                  </button>
+                  {username === localStorage.getItem('username') &&
+                    <button
+                      className="sellbtn"
+                      onClick={() => sellStock(stock[0], stock[3], stock[4])}
+                    >
+                      Sell
+                    </button>
+                  }
                 </div>
               ))}
             </div>
