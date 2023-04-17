@@ -3,14 +3,24 @@ body {
   overflow: visible;
 }
 
+.stockContainer {
+  padding-top: 1rem;
+}
+
 .stockDisplay {
-  outline: 2px solid white;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  background-color: black;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stockDisplay * {
+  color: black;
+}
+
+.stockDisplay h1,
+.stockDisplay h2,
+.stockDisplay h3 {
+  color: white;
 }

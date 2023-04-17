@@ -1,9 +1,10 @@
 .candlediv {
-  position: absolute;
+  padding: 2vw;
+  color: black;
+  position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95vw;
+  transform: translate(-50%);
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -11,9 +12,10 @@
 }
 
 .select {
+  margin-bottom: 1vh;
   color: black;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 .select * {
@@ -23,9 +25,25 @@
 }
 
 .chart {
+  color: black;
+  margin-bottom: 1vh;
+  background-color: black;
   height: 90%;
   z-index: -1;
   padding: 1vh;
-  border-radius: 1vh;
-  border: 1px solid white;
+  border-radius: 2vh;
+}
+
+.chart * {
+  color: black;
+}
+
+.purchase button {
+  font-size: 2vh;
+  color: black;
+}
+
+.purchase input {
+  font-size: 2vh;
+  color: black;
 }

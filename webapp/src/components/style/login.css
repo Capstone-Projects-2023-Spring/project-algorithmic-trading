@@ -1,12 +1,10 @@
 .form {
-  position: absolute;
+  position: relative;
   display: flex;
-  width: 30vh;
   flex-direction: column;
+  min-width: 10em;
   justify-content: space-between;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
   background: white;
   border-radius: 1.5vh;
   font-size: 3vh;
