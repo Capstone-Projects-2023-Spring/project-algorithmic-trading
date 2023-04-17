@@ -6,6 +6,26 @@ import "./style/portfolio.css";
 import Predictions from "./predictions.json";
 import { API_ENDPOINT } from "../services/api-endpoints";
 
+const sellStock = (stock, qty, price) => {
+  alert("Stock Sold!");
+
+  fetch(
+    `${API_ENDPOINT}/tradester/sell_stock/?stock=${stock}&quantity=${qty}&price=${price}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("sell response:\n\n");
+      console.log(data);
+      window.location.reload(true);
+    });
+};
+
 const getDates = () => {
   let dates = [];
   let d = new Date();
@@ -110,6 +130,17 @@ const Portfolio = () => {
           const datapoints = Object.keys(data);
           const balance = data[datapoints[0]];
           // X objects in portfolio. Stocks are found from index [1,X-2]
+
+          if (datapoints.length == 3) {
+            return (
+              <div>
+                <h1>{username}'s Portfolio</h1>
+                <h1>Balance: ${balance}</h1>
+                <h2>Add some stocks to your portfolio!</h2>
+              </div>
+            );
+          }
+
           for (let i = 1; i < datapoints.length - 2; i++) {
             let stock = [];
             let stockName = datapoints[i];
@@ -137,6 +168,7 @@ const Portfolio = () => {
             <div className="stockContainer">
               <h1>{username}'s Portfolio</h1>
               <h1>Balance: ${balance}</h1>
+
               {stocks.map((stock) => (
                 <div className="stockDisplay">
                   <h2>Stock: [ {stock[0]} ]</h2>
@@ -146,9 +178,14 @@ const Portfolio = () => {
                     series={genData(stock[0])}
                     type="line"
                     height={350}
-                    colors={stock[6]}
                   />
                   <h3>Profits: ${stock[5]}</h3>
+                  <button
+                    className="sellbtn"
+                    onClick={() => sellStock(stock[0], stock[3], stock[4])}
+                  >
+                    Sell
+                  </button>
                 </div>
               ))}
             </div>

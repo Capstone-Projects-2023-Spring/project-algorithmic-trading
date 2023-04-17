@@ -63,6 +63,9 @@ class Candle extends Component {
     let newPrice = this.currentStockPrice;
 
     if (newAmount > 0) {
+
+      alert("Stock Added!");
+      
       console.log("Stock: " + newStock);
       console.log("Amount: " + newAmount);
       console.log("Price: " + newPrice);
