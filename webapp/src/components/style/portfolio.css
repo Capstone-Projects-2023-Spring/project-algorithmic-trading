@@ -24,3 +24,11 @@ body {
 .stockDisplay h3 {
   color: white;
 }
+
+.sellbtn {
+  font-size: 1.8vh;
+  position: relative;
+  float: right;
+  bottom: 1.3em;
+  border-radius: 0.5em;
+}

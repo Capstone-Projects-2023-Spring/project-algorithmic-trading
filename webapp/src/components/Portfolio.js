@@ -7,7 +7,6 @@ import Predictions from "./predictions.json";
 import { API_ENDPOINT } from "../services/api-endpoints";
 
 const sellStock = (stock, qty, price) => {
-
   alert("Stock Sold!");
 
   fetch(
@@ -21,13 +20,11 @@ const sellStock = (stock, qty, price) => {
   )
     .then((response) => response.json())
     .then((data) => {
-
       console.log("sell response:\n\n");
       console.log(data);
       window.location.reload(true);
-
-    })
-}
+    });
+};
 
 const getDates = () => {
   let dates = [];
@@ -123,74 +120,81 @@ const Portfolio = () => {
   let isSelf = location.state.isSelf;
   let userId = isSelf ? "self" : location.state.userId;
 
-  return (<Async promiseFn={() => loadPortfolio(userId)}>
-    {({ data, error, isLoading }) => {
-      let stocks = [];
-      if (isLoading) return "";
-      if (error) return "Error";
-      if (data) {
-        const datapoints = Object.keys(data);
-        const balance = data[datapoints[0]];
-        // X objects in portfolio. Stocks are found from index [1,X-2]
+  return (
+    <Async promiseFn={() => loadPortfolio(userId)}>
+      {({ data, error, isLoading }) => {
+        let stocks = [];
+        if (isLoading) return "";
+        if (error) return "Error";
+        if (data) {
+          const datapoints = Object.keys(data);
+          const balance = data[datapoints[0]];
+          // X objects in portfolio. Stocks are found from index [1,X-2]
 
-        if (datapoints.length == 3) {
-          return (
-            <div>
-            <h1>{username}'s Portfolio</h1>
-            <h1>Balance: ${balance}</h1>
-            <h2>Add some stocks to your portfolio!</h2>
-            </div>
-          )
-        }
-
-        for (let i = 1; i < datapoints.length - 2; i++) {
-          let stock = [];
-          let stockName = datapoints[i];
-          stock.push(stockName);
-          stock.push(parseInt(data[datapoints[i]].purchase_value))
-          stock.push(data[datapoints[i]].purchases)
-          stock.push(data[datapoints[i]].quantity_total);
-          stock.push(parseInt(data[datapoints[i]]["real_" + stockName].real_value));
-          let profits = stock[4] - stock[1];
-          stock.push(profits);
-          stocks.push(stock);
-
-        }
-        /**
-         * Order of array:
-         * stock name
-         * purchase value
-         * purchases (array)
-         * total quantity
-         * real value
-         * profit
-         */
-        return (
-          <div className="stockContainer">
-            <h1>{username}'s Portfolio</h1>
-            <h1>Balance: ${balance}</h1>
-
-            {stocks.map(stock => (
-              <div className="stockDisplay">
-                <h2>Stock: [ {stock[0]} ]</h2>
-                <h3>Owned: {stock[3]}</h3>
-                <Chart
-                  options={state.options}
-                  series={genData(stock[0])}
-                  type="line"
-                  height={350}
-                />
-                <h3>Profits: ${stock[5]}</h3>
-                <button onClick={() => sellStock(stock[0], stock[3], stock[4])}>Sell</button>
+          if (datapoints.length == 3) {
+            return (
+              <div>
+                <h1>{username}'s Portfolio</h1>
+                <h1>Balance: ${balance}</h1>
+                <h2>Add some stocks to your portfolio!</h2>
               </div>
-            ))}
-          </div>
-        );
-      }
-      return null;
+            );
+          }
 
-    }}
-  </Async>)
+          for (let i = 1; i < datapoints.length - 2; i++) {
+            let stock = [];
+            let stockName = datapoints[i];
+            stock.push(stockName);
+            stock.push(parseInt(data[datapoints[i]].purchase_value));
+            stock.push(data[datapoints[i]].purchases);
+            stock.push(data[datapoints[i]].quantity_total);
+            stock.push(
+              parseInt(data[datapoints[i]]["real_" + stockName].real_value)
+            );
+            let profits = stock[4] - stock[1];
+            stock.push(profits);
+            stocks.push(stock);
+          }
+          /**
+           * Order of array:
+           * stock name
+           * purchase value
+           * purchases (array)
+           * total quantity
+           * real value
+           * profit
+           */
+          return (
+            <div className="stockContainer">
+              <h1>{username}'s Portfolio</h1>
+              <h1>Balance: ${balance}</h1>
+
+              {stocks.map((stock) => (
+                <div className="stockDisplay">
+                  <h2>Stock: [ {stock[0]} ]</h2>
+                  <h3>Owned: {stock[3]}</h3>
+                  <Chart
+                    options={state.options}
+                    series={genData(stock[0])}
+                    type="line"
+                    height={350}
+                  />
+                  <h3>Profits: ${stock[5]}</h3>
+                  <button
+                    className="sellbtn"
+                    onClick={() => sellStock(stock[0], stock[3], stock[4])}
+                  >
+                    Sell
+                  </button>
+                </div>
+              ))}
+            </div>
+          );
+        }
+        return null;
+      }}
+    </Async>
+  );
 };
 
 export default Portfolio;
