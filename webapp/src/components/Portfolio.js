@@ -30,7 +30,6 @@ const sellStock = (stock, qty, price) => {
 }
 
 const getDates = () => {
-
   let dates = [];
   let d = new Date();
 
@@ -46,15 +45,16 @@ const getDates = () => {
   dates.push(tomorrow.toDateString().replace(/^\S*/g, ""));
 
   return dates;
-}
+};
 
 const state = {
   options: {
     chart: {
       type: "line",
+      foreColor: "#fff",
     },
     xaxis: {
-      categories: getDates()
+      categories: getDates(),
     },
     yaxis: {
       decimalsInFloat: "false",
@@ -62,15 +62,13 @@ const state = {
     forecastDataPoints: {
       count: 1,
     },
-  }
-}
+  },
+};
 
 const genData = (name) => {
-
   let stockCost = 0;
 
   Predictions.every((pred) => {
-
     if (pred.ticker == name) {
       stockCost = pred["close price"];
       return false;
@@ -86,16 +84,14 @@ const genData = (name) => {
   const max = 3;
 
   for (let i = 0; i < 6; i++) {
-
     let stockMod = min + Math.random() * (max - min);
     stockCost = stockCost + (stockCost * stockMod) / 100;
     data.push(stockCost);
-
   }
 
   data.push(pred);
 
-  let color = ""
+  let color = "";
   while (color.length < 7)
     color = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
@@ -103,29 +99,29 @@ const genData = (name) => {
     {
       name: name,
       data: data,
-      color: color
-    }
+      color: color,
+    },
   ];
 
   return setData;
-}
+};
 
 const loadPortfolio = (id) =>
   fetch(`${API_ENDPOINT}/tradester/display_portfolio/?user_id=${id}`, {
     headers: {
-      'Content-Type': 'application/json',
-      'authorization': `Bearer ${localStorage.getItem('access_token')}`
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   })
-    .then(response => (response.ok ? response : Promise.reject(response)))
-    .then(response => response.json())
+    .then((response) => (response.ok ? response : Promise.reject(response)))
+    .then((response) => response.json());
 
 const Portfolio = () => {
   let location = useLocation();
 
   let username = location.state.username;
   let isSelf = location.state.isSelf;
-  let userId = isSelf ? 'self' : location.state.userId;
+  let userId = isSelf ? "self" : location.state.userId;
 
   return (<Async promiseFn={() => loadPortfolio(userId)}>
     {({ data, error, isLoading }) => {
@@ -198,4 +194,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
