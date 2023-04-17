@@ -26,13 +26,13 @@ html * {
 .overlay {
   padding-left: 1vw;
   padding-right: 1vw;
+  padding-bottom: 1vw;
   background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
   width: 80%;
-  position: fixed;
-  top: 56vh;
+  position: absolute;
+  min-height: 94.5vh;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 6vh);
 }
 
 .home {
@@ -42,7 +42,7 @@ html * {
   top: 40%;
   left: 50%;
   max-width: 12em;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -82,6 +82,7 @@ html * {
   -webkit-backdrop-filter: blur(1rem);
   background-color: rgba(27, 18, 18, 0.5);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  z-index: 1;
 }
 
 .logo {

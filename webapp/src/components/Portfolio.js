@@ -28,6 +28,7 @@ const state = {
   options: {
     chart: {
       type: "line",
+      foreColor: "#fff",
     },
     xaxis: {
       categories: getDates(),
