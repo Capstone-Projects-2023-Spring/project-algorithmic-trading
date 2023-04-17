@@ -6,8 +6,6 @@ sidebar_position: 1
 
 
 **Requirements Gathering:**  
-al;sdjf;alsjdf;alskjdf  
-fasdfasdf
 Tradester requires real-time stock data, which will be received through the yahoo_fin API. This information will later be stored in a database, which will require a free firebase account. The final requirement that must be gathered is user input, which will be done using a website front-end.
 
 **Top-level Design:**  
