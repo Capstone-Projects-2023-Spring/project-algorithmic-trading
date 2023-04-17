@@ -1,3020 +1,2512 @@
 [
   {
-    "": 0,
-    "date": "2023-04-03",
     "ticker": "MMM",
-    "close price": 105.497215
+    "close price": 122.5455,
+    "date": "2023-04-17"
   },
   {
-    "": 1,
-    "date": "2023-04-03",
     "ticker": "AOS",
-    "close price": 66.69033
+    "close price": 44.89583,
+    "date": "2023-04-17"
   },
   {
-    "": 2,
-    "date": "2023-04-03",
     "ticker": "ABT",
-    "close price": 96.26114
+    "close price": 57.49525,
+    "date": "2023-04-17"
   },
   {
-    "": 3,
-    "date": "2023-04-03",
     "ticker": "ABBV",
-    "close price": 158.83168
+    "close price": 83.27403,
+    "date": "2023-04-17"
   },
   {
-    "": 4,
-    "date": "2023-04-03",
     "ticker": "ACN",
-    "close price": 293.54572
+    "close price": 102.81701,
+    "date": "2023-04-17"
   },
   {
-    "": 5,
-    "date": "2023-04-03",
     "ticker": "ATVI",
-    "close price": 84.43319
+    "close price": 31.597157,
+    "date": "2023-04-17"
   },
   {
-    "": 6,
-    "date": "2023-04-03",
     "ticker": "ADM",
-    "close price": 84.51949
+    "close price": 35.761646,
+    "date": "2023-04-17"
   },
   {
-    "": 7,
-    "date": "2023-04-03",
     "ticker": "ADBE",
-    "close price": 387.62396
+    "close price": 134.0518,
+    "date": "2023-04-17"
   },
   {
-    "": 8,
-    "date": "2023-04-03",
     "ticker": "ADP",
-    "close price": 216.17065
+    "close price": 85.75077,
+    "date": "2023-04-17"
   },
   {
-    "": 9,
-    "date": "2023-04-03",
     "ticker": "AAP",
-    "close price": 121.32787
+    "close price": 97.1546,
+    "date": "2023-04-17"
   },
   {
-    "": 10,
-    "date": "2023-04-03",
     "ticker": "AES",
-    "close price": 23.654934
+    "close price": 17.137064,
+    "date": "2023-04-17"
   },
   {
-    "": 11,
-    "date": "2023-04-03",
     "ticker": "AFL",
-    "close price": 64.35439
+    "close price": 50.25456,
+    "date": "2023-04-17"
   },
   {
-    "": 12,
-    "date": "2023-04-03",
     "ticker": "A",
-    "close price": 139.17903
+    "close price": 53.038387,
+    "date": "2023-04-17"
   },
   {
-    "": 13,
-    "date": "2023-04-03",
     "ticker": "APD",
-    "close price": 287.674
+    "close price": 119.085846,
+    "date": "2023-04-17"
   },
   {
-    "": 14,
-    "date": "2023-04-03",
     "ticker": "AKAM",
-    "close price": 75.25365
+    "close price": 50.265484,
+    "date": "2023-04-17"
   },
   {
-    "": 15,
-    "date": "2023-04-03",
     "ticker": "ALK",
-    "close price": 41.97286
+    "close price": 45.48068,
+    "date": "2023-04-17"
   },
   {
-    "": 16,
-    "date": "2023-04-03",
     "ticker": "ALB",
-    "close price": 220.84868
+    "close price": 71.57533,
+    "date": "2023-04-17"
   },
   {
-    "": 17,
-    "date": "2023-04-03",
     "ticker": "ARE",
-    "close price": 130.40005
+    "close price": 92.54179,
+    "date": "2023-04-17"
   },
   {
-    "": 18,
-    "date": "2023-04-03",
     "ticker": "ALGN",
-    "close price": 345.96835
+    "close price": 115.46353,
+    "date": "2023-04-17"
   },
   {
-    "": 19,
-    "date": "2023-04-03",
     "ticker": "ALLE",
-    "close price": 106.20594
+    "close price": 87.79661,
+    "date": "2023-04-17"
   },
   {
-    "": 20,
-    "date": "2023-04-03",
     "ticker": "LNT",
-    "close price": 53.438732
+    "close price": 40.156937,
+    "date": "2023-04-17"
   },
   {
-    "": 21,
-    "date": "2023-04-03",
-    "ticker": "ALL",
-    "close price": 110.422485
-  },
-  {
-    "": 22,
-    "date": "2023-04-03",
     "ticker": "GOOGL",
-    "close price": 103.88747
+    "close price": 840.02924,
+    "date": "2023-04-17"
   },
   {
-    "": 23,
-    "date": "2023-04-03",
     "ticker": "GOOG",
-    "close price": 103.48402
+    "close price": 1161.3551,
+    "date": "2023-04-17"
   },
   {
-    "": 24,
-    "date": "2023-04-03",
     "ticker": "MO",
-    "close price": 44.46378
+    "close price": 46.3544,
+    "date": "2023-04-17"
   },
   {
-    "": 25,
-    "date": "2023-04-03",
     "ticker": "AMZN",
-    "close price": 102.76899
+    "close price": 579.1574,
+    "date": "2023-04-17"
   },
   {
-    "": 26,
-    "date": "2023-04-03",
     "ticker": "AMCR",
-    "close price": 11.4263935
+    "close price": 11.196994,
+    "date": "2023-04-17"
   },
   {
-    "": 27,
-    "date": "2023-04-03",
     "ticker": "AMD",
-    "close price": 87.31283
+    "close price": 24.946358,
+    "date": "2023-04-17"
   },
   {
-    "": 28,
-    "date": "2023-04-03",
     "ticker": "AEE",
-    "close price": 87.49009
+    "close price": 49.96282,
+    "date": "2023-04-17"
   },
   {
-    "": 29,
-    "date": "2023-04-03",
     "ticker": "AAL",
-    "close price": 14.739945
+    "close price": 25.499607,
+    "date": "2023-04-17"
   },
   {
-    "": 30,
-    "date": "2023-04-03",
     "ticker": "AEP",
-    "close price": 91.393486
+    "close price": 52.24949,
+    "date": "2023-04-17"
   },
   {
-    "": 31,
-    "date": "2023-04-03",
     "ticker": "AXP",
-    "close price": 163.86569
+    "close price": 75.329315,
+    "date": "2023-04-17"
   },
   {
-    "": 32,
-    "date": "2023-04-03",
     "ticker": "AIG",
-    "close price": 51.343475
+    "close price": 53.967392,
+    "date": "2023-04-17"
   },
   {
-    "": 33,
-    "date": "2023-04-03",
     "ticker": "AMT",
-    "close price": 203.09311
+    "close price": 91.155304,
+    "date": "2023-04-17"
   },
   {
-    "": 34,
-    "date": "2023-04-03",
     "ticker": "AWK",
-    "close price": 145.87514
+    "close price": 75.49163,
+    "date": "2023-04-17"
   },
   {
-    "": 35,
-    "date": "2023-04-03",
     "ticker": "AMP",
-    "close price": 309.48477
+    "close price": 112.82552,
+    "date": "2023-04-17"
   },
   {
-    "": 36,
-    "date": "2023-04-03",
     "ticker": "ABC",
-    "close price": 159.93826
+    "close price": 67.681564,
+    "date": "2023-04-17"
   },
   {
-    "": 37,
-    "date": "2023-04-03",
     "ticker": "AME",
-    "close price": 145.64246
+    "close price": 56.177265,
+    "date": "2023-04-17"
   },
   {
-    "": 38,
-    "date": "2023-04-03",
     "ticker": "AMGN",
-    "close price": 240.64653
+    "close price": 116.721695,
+    "date": "2023-04-17"
   },
   {
-    "": 39,
-    "date": "2023-04-03",
     "ticker": "APH",
-    "close price": 81.38394
+    "close price": 60.677822,
+    "date": "2023-04-17"
   },
   {
-    "": 40,
-    "date": "2023-04-03",
     "ticker": "ADI",
-    "close price": 192.00226
+    "close price": 65.043274,
+    "date": "2023-04-17"
   },
   {
-    "": 41,
-    "date": "2023-04-03",
     "ticker": "ANSS",
-    "close price": 335.65216
+    "close price": 103.19801,
+    "date": "2023-04-17"
   },
   {
-    "": 42,
-    "date": "2023-04-03",
     "ticker": "AON",
-    "close price": 304.86383
+    "close price": 93.979614,
+    "date": "2023-04-17"
   },
   {
-    "": 43,
-    "date": "2023-04-03",
     "ticker": "APA",
-    "close price": 35.607132
+    "close price": 61.285294,
+    "date": "2023-04-17"
   },
   {
-    "": 44,
-    "date": "2023-04-03",
     "ticker": "AAPL",
-    "close price": 160.10587
+    "close price": 170.79079,
+    "date": "2023-04-17"
   },
   {
-    "": 45,
-    "date": "2023-04-03",
     "ticker": "AMAT",
-    "close price": 120.03695
+    "close price": 39.247997,
+    "date": "2023-04-17"
   },
   {
-    "": 46,
-    "date": "2023-04-03",
     "ticker": "APTV",
-    "close price": 111.87897
+    "close price": 82.6375,
+    "date": "2023-04-17"
   },
   {
-    "": 47,
-    "date": "2023-04-03",
     "ticker": "ACGL",
-    "close price": 68.51383
+    "close price": 50.78844,
+    "date": "2023-04-17"
   },
   {
-    "": 48,
-    "date": "2023-04-03",
     "ticker": "ANET",
-    "close price": 166.76932
+    "close price": 175.06914,
+    "date": "2023-04-17"
   },
   {
-    "": 49,
-    "date": "2023-04-03",
     "ticker": "AJG",
-    "close price": 188.37366
+    "close price": 53.360004,
+    "date": "2023-04-17"
   },
   {
-    "": 50,
-    "date": "2023-04-03",
     "ticker": "AIZ",
-    "close price": 119.94639
+    "close price": 72.83834,
+    "date": "2023-04-17"
   },
   {
-    "": 51,
-    "date": "2023-04-03",
     "ticker": "T",
-    "close price": 19.189957
+    "close price": 32.061035,
+    "date": "2023-04-17"
   },
   {
-    "": 52,
-    "date": "2023-04-03",
     "ticker": "ATO",
-    "close price": 111.96063
+    "close price": 50.54852,
+    "date": "2023-04-17"
   },
   {
-    "": 53,
-    "date": "2023-04-03",
     "ticker": "ADSK",
-    "close price": 206.69666
+    "close price": 75.320816,
+    "date": "2023-04-17"
   },
   {
-    "": 54,
-    "date": "2023-04-03",
     "ticker": "AZO",
-    "close price": 2421.2698
+    "close price": 551.4675,
+    "date": "2023-04-17"
   },
   {
-    "": 55,
-    "date": "2023-04-03",
     "ticker": "AVB",
-    "close price": 171.15169
+    "close price": 123.82479,
+    "date": "2023-04-17"
   },
   {
-    "": 56,
-    "date": "2023-04-03",
     "ticker": "AVY",
-    "close price": 180.76965
+    "close price": 73.7902,
+    "date": "2023-04-17"
   },
   {
-    "": 57,
-    "date": "2023-04-03",
     "ticker": "BKR",
-    "close price": 29.61476
+    "close price": 25.48975,
+    "date": "2023-04-17"
   },
   {
-    "": 58,
-    "date": "2023-04-03",
     "ticker": "BALL",
-    "close price": 54.828598
+    "close price": 54.353615,
+    "date": "2023-04-17"
   },
   {
-    "": 59,
-    "date": "2023-04-03",
     "ticker": "BAC",
-    "close price": 28.879307
+    "close price": 34.146244,
+    "date": "2023-04-17"
   },
   {
-    "": 60,
-    "date": "2023-04-03",
     "ticker": "BBWI",
-    "close price": 36.50249
+    "close price": 36.104965,
+    "date": "2023-04-17"
   },
   {
-    "": 61,
-    "date": "2023-04-03",
     "ticker": "BAX",
-    "close price": 40.784374
+    "close price": 57.812447,
+    "date": "2023-04-17"
   },
   {
-    "": 62,
-    "date": "2023-04-03",
     "ticker": "BDX",
-    "close price": 244.59117
+    "close price": 125.034996,
+    "date": "2023-04-17"
   },
   {
-    "": 63,
-    "date": "2023-04-03",
     "ticker": "WRB",
-    "close price": 63.982548
+    "close price": 46.97193,
+    "date": "2023-04-17"
   },
   {
-    "": 64,
-    "date": "2023-04-03",
     "ticker": "BRK.B",
-    "close price": 307.8472
+    "close price": 1351.3975,
+    "date": "2023-04-17"
   },
   {
-    "": 65,
-    "date": "2023-04-03",
     "ticker": "BBY",
-    "close price": 80.12195
+    "close price": 52.600525,
+    "date": "2023-04-17"
   },
   {
-    "": 66,
-    "date": "2023-04-03",
     "ticker": "BIO",
-    "close price": 484.65573
+    "close price": 174.9271,
+    "date": "2023-04-17"
   },
   {
-    "": 67,
-    "date": "2023-04-03",
     "ticker": "TECH",
-    "close price": 70.69143
+    "close price": 111.79896,
+    "date": "2023-04-17"
   },
   {
-    "": 68,
-    "date": "2023-04-03",
     "ticker": "BIIB",
-    "close price": 278.59183
+    "close price": 163.6074,
+    "date": "2023-04-17"
   },
   {
-    "": 69,
-    "date": "2023-04-03",
     "ticker": "BLK",
-    "close price": 678.61145
+    "close price": 277.51627,
+    "date": "2023-04-17"
   },
   {
-    "": 70,
-    "date": "2023-04-03",
     "ticker": "BK",
-    "close price": 45.4875
+    "close price": 38.205265,
+    "date": "2023-04-17"
   },
   {
-    "": 71,
-    "date": "2023-04-03",
     "ticker": "BA",
-    "close price": 212.55203
+    "close price": 119.105484,
+    "date": "2023-04-17"
   },
   {
-    "": 72,
-    "date": "2023-04-03",
     "ticker": "BKNG",
-    "close price": 2587.9624
+    "close price": 835.4346,
+    "date": "2023-04-17"
   },
   {
-    "": 73,
-    "date": "2023-04-03",
     "ticker": "BWA",
-    "close price": 48.92742
+    "close price": 52.05464,
+    "date": "2023-04-17"
   },
   {
-    "": 74,
-    "date": "2023-04-03",
     "ticker": "BXP",
-    "close price": 53.91082
+    "close price": 87.96253,
+    "date": "2023-04-17"
   },
   {
-    "": 75,
-    "date": "2023-04-03",
     "ticker": "BSX",
-    "close price": 49.397614
+    "close price": 24.19,
+    "date": "2023-04-17"
   },
   {
-    "": 76,
-    "date": "2023-04-03",
     "ticker": "BMY",
-    "close price": 70.541504
+    "close price": 43.64101,
+    "date": "2023-04-17"
   },
   {
-    "": 77,
-    "date": "2023-04-03",
     "ticker": "AVGO",
-    "close price": 645.21924
+    "close price": 204.38652,
+    "date": "2023-04-17"
   },
   {
-    "": 78,
-    "date": "2023-04-03",
     "ticker": "BR",
-    "close price": 147.60428
+    "close price": 68.53624,
+    "date": "2023-04-17"
   },
   {
-    "": 79,
-    "date": "2023-04-03",
     "ticker": "BRO",
-    "close price": 56.4658
+    "close price": 35.62815,
+    "date": "2023-04-17"
   },
   {
-    "": 80,
-    "date": "2023-04-03",
     "ticker": "BF-B",
-    "close price": 64.30908
+    "close price": 66.85049,
+    "date": "2023-04-17"
   },
   {
-    "": 81,
-    "date": "2023-04-03",
-    "ticker": "BG",
-    "close price": 95.28453
-  },
-  {
-    "": 82,
-    "date": "2023-04-03",
     "ticker": "CHRW",
-    "close price": 99.28596
+    "close price": 63.24139,
+    "date": "2023-04-17"
   },
   {
-    "": 83,
-    "date": "2023-04-03",
     "ticker": "CDNS",
-    "close price": 204.89119
+    "close price": 36.34097,
+    "date": "2023-04-17"
   },
   {
-    "": 84,
-    "date": "2023-04-03",
     "ticker": "CZR",
-    "close price": 49.373642
+    "close price": 40.28674,
+    "date": "2023-04-17"
   },
   {
-    "": 85,
-    "date": "2023-04-03",
     "ticker": "CPT",
-    "close price": 108.17164
+    "close price": 68.13146,
+    "date": "2023-04-17"
   },
   {
-    "": 86,
-    "date": "2023-04-03",
     "ticker": "CPB",
-    "close price": 55.34358
+    "close price": 37.99986,
+    "date": "2023-04-17"
   },
   {
-    "": 87,
-    "date": "2023-04-03",
     "ticker": "COF",
-    "close price": 92.93038
+    "close price": 70.15439,
+    "date": "2023-04-17"
   },
   {
-    "": 88,
-    "date": "2023-04-03",
     "ticker": "CAH",
-    "close price": 75.62731
+    "close price": 59.612473,
+    "date": "2023-04-17"
   },
   {
-    "": 89,
-    "date": "2023-04-03",
     "ticker": "KMX",
-    "close price": 65.14904
+    "close price": 44.991535,
+    "date": "2023-04-17"
   },
   {
-    "": 90,
-    "date": "2023-04-03",
     "ticker": "CCL",
-    "close price": 10.394908
+    "close price": 37.92142,
+    "date": "2023-04-17"
   },
   {
-    "": 91,
-    "date": "2023-04-03",
     "ticker": "CARR",
-    "close price": 45.875084
+    "close price": 41.15158,
+    "date": "2023-04-17"
   },
   {
-    "": 92,
-    "date": "2023-04-03",
     "ticker": "CTLT",
-    "close price": 64.09985
+    "close price": 56.128094,
+    "date": "2023-04-17"
   },
   {
-    "": 93,
-    "date": "2023-04-03",
     "ticker": "CAT",
-    "close price": 229.29424
+    "close price": 92.80562,
+    "date": "2023-04-17"
   },
   {
-    "": 94,
-    "date": "2023-04-03",
     "ticker": "CBOE",
-    "close price": 131.87077
+    "close price": 76.07779,
+    "date": "2023-04-17"
   },
   {
-    "": 95,
-    "date": "2023-04-03",
     "ticker": "CBRE",
-    "close price": 69.75702
+    "close price": 38.50134,
+    "date": "2023-04-17"
   },
   {
-    "": 96,
-    "date": "2023-04-03",
     "ticker": "CDW",
-    "close price": 189.25304
+    "close price": 93.013336,
+    "date": "2023-04-17"
   },
   {
-    "": 97,
-    "date": "2023-04-03",
     "ticker": "CE",
-    "close price": 108.69748
+    "close price": 66.99509,
+    "date": "2023-04-17"
   },
   {
-    "": 98,
-    "date": "2023-04-03",
     "ticker": "CNC",
-    "close price": 62.56953
+    "close price": 49.861176,
+    "date": "2023-04-17"
   },
   {
-    "": 99,
-    "date": "2023-04-03",
     "ticker": "CNP",
-    "close price": 29.480627
+    "close price": 20.857807,
+    "date": "2023-04-17"
   },
   {
-    "": 100,
-    "date": "2023-04-03",
     "ticker": "CDAY",
-    "close price": 73.38651
+    "close price": 68.22994,
+    "date": "2023-04-17"
   },
   {
-    "": 101,
-    "date": "2023-04-03",
     "ticker": "CF",
-    "close price": 69.95768
+    "close price": 94.4474,
+    "date": "2023-04-17"
   },
   {
-    "": 102,
-    "date": "2023-04-03",
     "ticker": "CRL",
-    "close price": 206.23306
+    "close price": 85.06842,
+    "date": "2023-04-17"
   },
   {
-    "": 103,
-    "date": "2023-04-03",
     "ticker": "SCHW",
-    "close price": 48.87222
+    "close price": 29.637045,
+    "date": "2023-04-17"
   },
   {
-    "": 104,
-    "date": "2023-04-03",
     "ticker": "CHTR",
-    "close price": 356.06653
+    "close price": 279.964,
+    "date": "2023-04-17"
   },
   {
-    "": 105,
-    "date": "2023-04-03",
     "ticker": "CVX",
-    "close price": 164.77162
+    "close price": 95.50731,
+    "date": "2023-04-17"
   },
   {
-    "": 106,
-    "date": "2023-04-03",
     "ticker": "CMG",
-    "close price": 1705.4991
+    "close price": 539.86755,
+    "date": "2023-04-17"
   },
   {
-    "": 107,
-    "date": "2023-04-03",
     "ticker": "CB",
-    "close price": 192.86841
+    "close price": 96.94813,
+    "date": "2023-04-17"
   },
   {
-    "": 108,
-    "date": "2023-04-03",
     "ticker": "CHD",
-    "close price": 88.08505
+    "close price": 56.61094,
+    "date": "2023-04-17"
   },
   {
-    "": 109,
-    "date": "2023-04-03",
     "ticker": "CI",
-    "close price": 257.5622
+    "close price": 111.074066,
+    "date": "2023-04-17"
   },
   {
-    "": 110,
-    "date": "2023-04-03",
     "ticker": "CINF",
-    "close price": 111.13551
+    "close price": 55.89577,
+    "date": "2023-04-17"
   },
   {
-    "": 111,
-    "date": "2023-04-03",
     "ticker": "CTAS",
-    "close price": 446.32578
+    "close price": 110.500984,
+    "date": "2023-04-17"
   },
   {
-    "": 112,
-    "date": "2023-04-03",
     "ticker": "CSCO",
-    "close price": 52.052998
+    "close price": 31.037825,
+    "date": "2023-04-17"
   },
   {
-    "": 113,
-    "date": "2023-04-03",
     "ticker": "C",
-    "close price": 47.908676
+    "close price": 45.134777,
+    "date": "2023-04-17"
   },
   {
-    "": 114,
-    "date": "2023-04-03",
     "ticker": "CFG",
-    "close price": 30.406078
+    "close price": 34.463207,
+    "date": "2023-04-17"
   },
   {
-    "": 115,
-    "date": "2023-04-03",
     "ticker": "CLX",
-    "close price": 158.87341
+    "close price": 90.698906,
+    "date": "2023-04-17"
   },
   {
-    "": 116,
-    "date": "2023-04-03",
     "ticker": "CME",
-    "close price": 189.33318
+    "close price": 217.7889,
+    "date": "2023-04-17"
   },
   {
-    "": 117,
-    "date": "2023-04-03",
     "ticker": "CMS",
-    "close price": 61.486908
+    "close price": 30.920023,
+    "date": "2023-04-17"
   },
   {
-    "": 118,
-    "date": "2023-04-03",
     "ticker": "KO",
-    "close price": 61.931164
+    "close price": 49.557713,
+    "date": "2023-04-17"
   },
   {
-    "": 119,
-    "date": "2023-04-03",
     "ticker": "CTSH",
-    "close price": 60.518295
+    "close price": 58.4737,
+    "date": "2023-04-17"
   },
   {
-    "": 120,
-    "date": "2023-04-03",
     "ticker": "CL",
-    "close price": 75.94689
+    "close price": 69.04968,
+    "date": "2023-04-17"
   },
   {
-    "": 121,
-    "date": "2023-04-03",
     "ticker": "CMCSA",
-    "close price": 37.377277
+    "close price": 36.01421,
+    "date": "2023-04-17"
   },
   {
-    "": 122,
-    "date": "2023-04-03",
     "ticker": "CMA",
-    "close price": 43.080296
+    "close price": 52.783546,
+    "date": "2023-04-17"
   },
   {
-    "": 123,
-    "date": "2023-04-03",
     "ticker": "CAG",
-    "close price": 37.379826
+    "close price": 28.884811,
+    "date": "2023-04-17"
   },
   {
-    "": 124,
-    "date": "2023-04-03",
     "ticker": "COP",
-    "close price": 99.71798
+    "close price": 62.70874,
+    "date": "2023-04-17"
   },
   {
-    "": 125,
-    "date": "2023-04-03",
     "ticker": "ED",
-    "close price": 93.57501
+    "close price": 59.453293,
+    "date": "2023-04-17"
   },
   {
-    "": 126,
-    "date": "2023-04-03",
     "ticker": "STZ",
-    "close price": 227.16063
+    "close price": 92.32252,
+    "date": "2023-04-17"
   },
   {
-    "": 127,
-    "date": "2023-04-03",
     "ticker": "CEG",
-    "close price": 77.78731
+    "close price": 74.29737,
+    "date": "2023-04-17"
   },
   {
-    "": 128,
-    "date": "2023-04-03",
     "ticker": "COO",
-    "close price": 375.41776
+    "close price": 136.40192,
+    "date": "2023-04-17"
   },
   {
-    "": 129,
-    "date": "2023-04-03",
     "ticker": "CPRT",
-    "close price": 76.06095
+    "close price": 44.026062,
+    "date": "2023-04-17"
   },
   {
-    "": 130,
-    "date": "2023-04-03",
     "ticker": "GLW",
-    "close price": 36.686543
+    "close price": 26.219852,
+    "date": "2023-04-17"
   },
   {
-    "": 131,
-    "date": "2023-04-03",
     "ticker": "CTVA",
-    "close price": 60.745792
+    "close price": 43.052734,
+    "date": "2023-04-17"
   },
   {
-    "": 132,
-    "date": "2023-04-03",
     "ticker": "CSGP",
-    "close price": 68.96898
+    "close price": 151.89807,
+    "date": "2023-04-17"
   },
   {
-    "": 133,
-    "date": "2023-04-03",
     "ticker": "COST",
-    "close price": 485.95605
+    "close price": 140.0589,
+    "date": "2023-04-17"
   },
   {
-    "": 134,
-    "date": "2023-04-03",
     "ticker": "CTRA",
-    "close price": 24.873096
+    "close price": 33.063206,
+    "date": "2023-04-17"
   },
   {
-    "": 135,
-    "date": "2023-04-03",
     "ticker": "CCI",
-    "close price": 136.08519
+    "close price": 67.37893,
+    "date": "2023-04-17"
   },
   {
-    "": 136,
-    "date": "2023-04-03",
     "ticker": "CSX",
-    "close price": 30.164171
+    "close price": 42.03742,
+    "date": "2023-04-17"
   },
   {
-    "": 137,
-    "date": "2023-04-03",
     "ticker": "CMI",
-    "close price": 231.21117
+    "close price": 109.2151,
+    "date": "2023-04-17"
   },
   {
-    "": 138,
-    "date": "2023-04-03",
     "ticker": "CVS",
-    "close price": 74.73621
+    "close price": 54.425037,
+    "date": "2023-04-17"
   },
   {
-    "": 139,
-    "date": "2023-04-03",
     "ticker": "DHI",
-    "close price": 97.51031
+    "close price": 31.839813,
+    "date": "2023-04-17"
   },
   {
-    "": 140,
-    "date": "2023-04-03",
     "ticker": "DHR",
-    "close price": 252.48358
+    "close price": 95.421974,
+    "date": "2023-04-17"
   },
   {
-    "": 141,
-    "date": "2023-04-03",
     "ticker": "DRI",
-    "close price": 156.70067
+    "close price": 59.818188,
+    "date": "2023-04-17"
   },
   {
-    "": 142,
-    "date": "2023-04-03",
     "ticker": "DVA",
-    "close price": 82.13285
+    "close price": 61.384396,
+    "date": "2023-04-17"
   },
   {
-    "": 143,
-    "date": "2023-04-03",
-    "ticker": "DE",
-    "close price": 410.82925
-  },
-  {
-    "": 144,
-    "date": "2023-04-03",
     "ticker": "DAL",
-    "close price": 35.092407
+    "close price": 30.661156,
+    "date": "2023-04-17"
   },
   {
-    "": 145,
-    "date": "2023-04-03",
     "ticker": "XRAY",
-    "close price": 39.30249
+    "close price": 44.52437,
+    "date": "2023-04-17"
   },
   {
-    "": 146,
-    "date": "2023-04-03",
     "ticker": "DVN",
-    "close price": 50.192677
+    "close price": 53.94934,
+    "date": "2023-04-17"
   },
   {
-    "": 147,
-    "date": "2023-04-03",
     "ticker": "DXCM",
-    "close price": 116.25411
+    "close price": 97.859695,
+    "date": "2023-04-17"
   },
   {
-    "": 148,
-    "date": "2023-04-03",
     "ticker": "FANG",
-    "close price": 135.21492
+    "close price": 86.25087,
+    "date": "2023-04-17"
   },
   {
-    "": 149,
-    "date": "2023-04-03",
     "ticker": "DLR",
-    "close price": 98.141235
+    "close price": 77.548904,
+    "date": "2023-04-17"
   },
   {
-    "": 150,
-    "date": "2023-04-03",
     "ticker": "DFS",
-    "close price": 98.864
+    "close price": 54.648815,
+    "date": "2023-04-17"
   },
   {
-    "": 151,
-    "date": "2023-04-03",
     "ticker": "DISH",
-    "close price": 10.363967
+    "close price": 35.93447,
+    "date": "2023-04-17"
   },
   {
-    "": 152,
-    "date": "2023-04-03",
     "ticker": "DIS",
-    "close price": 101.35661
+    "close price": 66.196945,
+    "date": "2023-04-17"
   },
   {
-    "": 153,
-    "date": "2023-04-03",
     "ticker": "DG",
-    "close price": 208.35179
+    "close price": 104.310486,
+    "date": "2023-04-17"
   },
   {
-    "": 154,
-    "date": "2023-04-03",
     "ticker": "DLTR",
-    "close price": 144.79538
+    "close price": 61.28159,
+    "date": "2023-04-17"
   },
   {
-    "": 155,
-    "date": "2023-04-03",
     "ticker": "D",
-    "close price": 55.68213
+    "close price": 63.87478,
+    "date": "2023-04-17"
   },
   {
-    "": 156,
-    "date": "2023-04-03",
     "ticker": "DPZ",
-    "close price": 326.1011
+    "close price": 135.36362,
+    "date": "2023-04-17"
   },
   {
-    "": 157,
-    "date": "2023-04-03",
     "ticker": "DOV",
-    "close price": 152.64822
+    "close price": 69.48684,
+    "date": "2023-04-17"
   },
   {
-    "": 158,
-    "date": "2023-04-03",
     "ticker": "DOW",
-    "close price": 55.680298
+    "close price": 52.98087,
+    "date": "2023-04-17"
   },
   {
-    "": 159,
-    "date": "2023-04-03",
     "ticker": "DTE",
-    "close price": 107.99452
+    "close price": 68.667946,
+    "date": "2023-04-17"
   },
   {
-    "": 160,
-    "date": "2023-04-03",
     "ticker": "DUK",
-    "close price": 96.94846
+    "close price": 51.891506,
+    "date": "2023-04-17"
   },
   {
-    "": 161,
-    "date": "2023-04-03",
     "ticker": "DD",
-    "close price": 72.506096
+    "close price": 53.534103,
+    "date": "2023-04-17"
   },
   {
-    "": 162,
-    "date": "2023-04-03",
     "ticker": "DXC",
-    "close price": 25.594519
+    "close price": 48.56065,
+    "date": "2023-04-17"
   },
   {
-    "": 163,
-    "date": "2023-04-03",
     "ticker": "EMN",
-    "close price": 84.246346
+    "close price": 66.690895,
+    "date": "2023-04-17"
   },
   {
-    "": 164,
-    "date": "2023-04-03",
     "ticker": "ETN",
-    "close price": 169.17584
+    "close price": 80.451866,
+    "date": "2023-04-17"
   },
   {
-    "": 165,
-    "date": "2023-04-03",
     "ticker": "EBAY",
-    "close price": 44.154755
+    "close price": 46.520683,
+    "date": "2023-04-17"
   },
   {
-    "": 166,
-    "date": "2023-04-03",
     "ticker": "ECL",
-    "close price": 164.72935
+    "close price": 90.85458,
+    "date": "2023-04-17"
   },
   {
-    "": 167,
-    "date": "2023-04-03",
     "ticker": "EIX",
-    "close price": 69.94453
+    "close price": 46.000256,
+    "date": "2023-04-17"
   },
   {
-    "": 168,
-    "date": "2023-04-03",
     "ticker": "EW",
-    "close price": 80.48187
+    "close price": 79.268974,
+    "date": "2023-04-17"
   },
   {
-    "": 169,
-    "date": "2023-04-03",
     "ticker": "EA",
-    "close price": 121.03346
+    "close price": 66.37206,
+    "date": "2023-04-17"
   },
   {
-    "": 170,
-    "date": "2023-04-03",
     "ticker": "ELV",
-    "close price": 463.75565
+    "close price": 150.30705,
+    "date": "2023-04-17"
   },
   {
-    "": 171,
-    "date": "2023-04-03",
     "ticker": "LLY",
-    "close price": 362.0722
+    "close price": 89.046005,
+    "date": "2023-04-17"
   },
   {
-    "": 172,
-    "date": "2023-04-03",
     "ticker": "EMR",
-    "close price": 87.44333
+    "close price": 61.617107,
+    "date": "2023-04-17"
   },
   {
-    "": 173,
-    "date": "2023-04-03",
     "ticker": "ENPH",
-    "close price": 215.02666
+    "close price": 55.97135,
+    "date": "2023-04-17"
   },
   {
-    "": 174,
-    "date": "2023-04-03",
     "ticker": "ETR",
-    "close price": 106.07717
+    "close price": 76.67478,
+    "date": "2023-04-17"
   },
   {
-    "": 175,
-    "date": "2023-04-03",
     "ticker": "EOG",
-    "close price": 115.1683
+    "close price": 82.20279,
+    "date": "2023-04-17"
   },
   {
-    "": 176,
-    "date": "2023-04-03",
     "ticker": "EPAM",
-    "close price": 301.81738
+    "close price": 163.46176,
+    "date": "2023-04-17"
   },
   {
-    "": 177,
-    "date": "2023-04-03",
     "ticker": "EQT",
-    "close price": 31.747204
+    "close price": 47.76868,
+    "date": "2023-04-17"
   },
   {
-    "": 178,
-    "date": "2023-04-03",
     "ticker": "EFX",
-    "close price": 193.90068
+    "close price": 78.35336,
+    "date": "2023-04-17"
   },
   {
-    "": 179,
-    "date": "2023-04-03",
     "ticker": "EQIX",
-    "close price": 720.1194
+    "close price": 239.13345,
+    "date": "2023-04-17"
   },
   {
-    "": 180,
-    "date": "2023-04-03",
     "ticker": "EQR",
-    "close price": 59.687126
+    "close price": 52.673893,
+    "date": "2023-04-17"
   },
   {
-    "": 181,
-    "date": "2023-04-03",
     "ticker": "ESS",
-    "close price": 213.01111
+    "close price": 157.80376,
+    "date": "2023-04-17"
   },
   {
-    "": 182,
-    "date": "2023-04-03",
     "ticker": "EL",
-    "close price": 242.517
+    "close price": 95.39933,
+    "date": "2023-04-17"
   },
   {
-    "": 183,
-    "date": "2023-04-03",
     "ticker": "ETSY",
-    "close price": 114.65157
+    "close price": 73.133644,
+    "date": "2023-04-17"
   },
   {
-    "": 184,
-    "date": "2023-04-03",
     "ticker": "RE",
-    "close price": 376.1131
+    "close price": 144.30144,
+    "date": "2023-04-17"
   },
   {
-    "": 185,
-    "date": "2023-04-03",
     "ticker": "EVRG",
-    "close price": 61.307083
+    "close price": 61.23499,
+    "date": "2023-04-17"
   },
   {
-    "": 186,
-    "date": "2023-04-03",
     "ticker": "ES",
-    "close price": 79.52754
+    "close price": 42.76343,
+    "date": "2023-04-17"
   },
   {
-    "": 187,
-    "date": "2023-04-03",
     "ticker": "EXC",
-    "close price": 41.498837
+    "close price": 46.768963,
+    "date": "2023-04-17"
   },
   {
-    "": 188,
-    "date": "2023-04-03",
     "ticker": "EXPE",
-    "close price": 94.66782
+    "close price": 75.83613,
+    "date": "2023-04-17"
   },
   {
-    "": 189,
-    "date": "2023-04-03",
     "ticker": "EXPD",
-    "close price": 108.92304
+    "close price": 57.28755,
+    "date": "2023-04-17"
   },
   {
-    "": 190,
-    "date": "2023-04-03",
     "ticker": "EXR",
-    "close price": 164.75221
+    "close price": 62.060966,
+    "date": "2023-04-17"
   },
   {
-    "": 191,
-    "date": "2023-04-03",
     "ticker": "XOM",
-    "close price": 111.37315
+    "close price": 71.57958,
+    "date": "2023-04-17"
   },
   {
-    "": 192,
-    "date": "2023-04-03",
     "ticker": "FFIV",
-    "close price": 145.39326
+    "close price": 89.258575,
+    "date": "2023-04-17"
   },
   {
-    "": 193,
-    "date": "2023-04-03",
     "ticker": "FDS",
-    "close price": 417.64304
+    "close price": 137.48189,
+    "date": "2023-04-17"
   },
   {
-    "": 194,
-    "date": "2023-04-03",
-    "ticker": "FICO",
-    "close price": 716.1318
-  },
-  {
-    "": 195,
-    "date": "2023-04-03",
     "ticker": "FAST",
-    "close price": 54.926792
+    "close price": 47.422016,
+    "date": "2023-04-17"
   },
   {
-    "": 196,
-    "date": "2023-04-03",
     "ticker": "FRT",
-    "close price": 101.58713
+    "close price": 84.38452,
+    "date": "2023-04-17"
   },
   {
-    "": 197,
-    "date": "2023-04-03",
     "ticker": "FDX",
-    "close price": 232.21158
+    "close price": 127.23729,
+    "date": "2023-04-17"
   },
   {
-    "": 198,
-    "date": "2023-04-03",
     "ticker": "FITB",
-    "close price": 27.049713
+    "close price": 31.515085,
+    "date": "2023-04-17"
   },
   {
-    "": 199,
-    "date": "2023-04-03",
     "ticker": "FRC",
-    "close price": 16.908997
+    "close price": 87.99021,
+    "date": "2023-04-17"
   },
   {
-    "": 200,
-    "date": "2023-04-03",
     "ticker": "FSLR",
-    "close price": 224.968
+    "close price": 88.34233,
+    "date": "2023-04-17"
   },
   {
-    "": 201,
-    "date": "2023-04-03",
     "ticker": "FE",
-    "close price": 40.12208
+    "close price": 40.287468,
+    "date": "2023-04-17"
   },
   {
-    "": 202,
-    "date": "2023-04-03",
     "ticker": "FIS",
-    "close price": 53.796124
+    "close price": 61.051937,
+    "date": "2023-04-17"
   },
   {
-    "": 203,
-    "date": "2023-04-03",
     "ticker": "FISV",
-    "close price": 111.853004
+    "close price": 69.37299,
+    "date": "2023-04-17"
   },
   {
-    "": 204,
-    "date": "2023-04-03",
     "ticker": "FLT",
-    "close price": 210.3982
+    "close price": 164.3461,
+    "date": "2023-04-17"
   },
   {
-    "": 205,
-    "date": "2023-04-03",
     "ticker": "FMC",
-    "close price": 117.24127
+    "close price": 68.66563,
+    "date": "2023-04-17"
   },
   {
-    "": 206,
-    "date": "2023-04-03",
     "ticker": "F",
-    "close price": 12.998451
+    "close price": 13.064378,
+    "date": "2023-04-17"
   },
   {
-    "": 207,
-    "date": "2023-04-03",
     "ticker": "FTNT",
-    "close price": 65.6807
+    "close price": 70.86699,
+    "date": "2023-04-17"
   },
   {
-    "": 208,
-    "date": "2023-04-03",
     "ticker": "FTV",
-    "close price": 67.75158
+    "close price": 68.90867,
+    "date": "2023-04-17"
   },
   {
-    "": 209,
-    "date": "2023-04-03",
     "ticker": "FOXA",
-    "close price": 34.104805
+    "close price": 33.800182,
+    "date": "2023-04-17"
   },
   {
-    "": 210,
-    "date": "2023-04-03",
     "ticker": "FOX",
-    "close price": 31.086912
+    "close price": 32.36761,
+    "date": "2023-04-17"
   },
   {
-    "": 211,
-    "date": "2023-04-03",
     "ticker": "BEN",
-    "close price": 26.872177
+    "close price": 61.568523,
+    "date": "2023-04-17"
   },
   {
-    "": 212,
-    "date": "2023-04-03",
     "ticker": "FCX",
-    "close price": 41.013588
+    "close price": 34.868225,
+    "date": "2023-04-17"
   },
   {
-    "": 213,
-    "date": "2023-04-03",
     "ticker": "GRMN",
-    "close price": 98.32167
+    "close price": 56.148533,
+    "date": "2023-04-17"
   },
   {
-    "": 214,
-    "date": "2023-04-03",
     "ticker": "IT",
-    "close price": 330.7598
+    "close price": 75.15536,
+    "date": "2023-04-17"
   },
   {
-    "": 215,
-    "date": "2023-04-03",
     "ticker": "GEHC",
-    "close price": 79.82027
+    "close price": 74.91201,
+    "date": "2023-04-17"
   },
   {
-    "": 216,
-    "date": "2023-04-03",
     "ticker": "GEN",
-    "close price": 17.470993
+    "close price": 27.167934,
+    "date": "2023-04-17"
   },
   {
-    "": 217,
-    "date": "2023-04-03",
     "ticker": "GNRC",
-    "close price": 112.13688
+    "close price": 93.41076,
+    "date": "2023-04-17"
   },
   {
-    "": 218,
-    "date": "2023-04-03",
     "ticker": "GD",
-    "close price": 227.64793
+    "close price": 118.9973,
+    "date": "2023-04-17"
   },
   {
-    "": 219,
-    "date": "2023-04-03",
     "ticker": "GE",
-    "close price": 97.19678
+    "close price": 32.154522,
+    "date": "2023-04-17"
   },
   {
-    "": 220,
-    "date": "2023-04-03",
     "ticker": "GIS",
-    "close price": 85.7691
+    "close price": 52.4419,
+    "date": "2023-04-17"
   },
   {
-    "": 221,
-    "date": "2023-04-03",
     "ticker": "GM",
-    "close price": 36.355118
+    "close price": 35.39645,
+    "date": "2023-04-17"
   },
   {
-    "": 222,
-    "date": "2023-04-03",
     "ticker": "GPC",
-    "close price": 170.14244
+    "close price": 69.20539,
+    "date": "2023-04-17"
   },
   {
-    "": 223,
-    "date": "2023-04-03",
     "ticker": "GILD",
-    "close price": 83.26195
+    "close price": 62.63101,
+    "date": "2023-04-17"
   },
   {
-    "": 224,
-    "date": "2023-04-03",
-    "ticker": "GL",
-    "close price": 110.172
-  },
-  {
-    "": 225,
-    "date": "2023-04-03",
     "ticker": "GPN",
-    "close price": 105.91056
+    "close price": 75.549866,
+    "date": "2023-04-17"
   },
   {
-    "": 226,
-    "date": "2023-04-03",
+    "ticker": "GL",
+    "close price": 61.129547,
+    "date": "2023-04-17"
+  },
+  {
     "ticker": "GS",
-    "close price": 329.19733
+    "close price": 171.23169,
+    "date": "2023-04-17"
   },
   {
-    "": 227,
-    "date": "2023-04-03",
     "ticker": "HAL",
-    "close price": 31.787575
+    "close price": 35.880463,
+    "date": "2023-04-17"
   },
   {
-    "": 228,
-    "date": "2023-04-03",
     "ticker": "HIG",
-    "close price": 69.87511
+    "close price": 50.4087,
+    "date": "2023-04-17"
   },
   {
-    "": 229,
-    "date": "2023-04-03",
     "ticker": "HAS",
-    "close price": 54.019276
+    "close price": 47.93162,
+    "date": "2023-04-17"
   },
   {
-    "": 230,
-    "date": "2023-04-03",
     "ticker": "HCA",
-    "close price": 256.14706
+    "close price": 103.28404,
+    "date": "2023-04-17"
   },
   {
-    "": 231,
-    "date": "2023-04-03",
     "ticker": "PEAK",
-    "close price": 22.164978
+    "close price": 33.659863,
+    "date": "2023-04-17"
   },
   {
-    "": 232,
-    "date": "2023-04-03",
     "ticker": "HSIC",
-    "close price": 83.034615
+    "close price": 72.412796,
+    "date": "2023-04-17"
   },
   {
-    "": 233,
-    "date": "2023-04-03",
     "ticker": "HSY",
-    "close price": 257.61075
+    "close price": 87.58869,
+    "date": "2023-04-17"
   },
   {
-    "": 234,
-    "date": "2023-04-03",
     "ticker": "HES",
-    "close price": 132.10437
+    "close price": 70.496346,
+    "date": "2023-04-17"
   },
   {
-    "": 235,
-    "date": "2023-04-03",
     "ticker": "HPE",
-    "close price": 16.218369
+    "close price": 15.501794,
+    "date": "2023-04-17"
   },
   {
-    "": 236,
-    "date": "2023-04-03",
     "ticker": "HLT",
-    "close price": 145.51341
+    "close price": 76.43538,
+    "date": "2023-04-17"
   },
   {
-    "": 237,
-    "date": "2023-04-03",
     "ticker": "HOLX",
-    "close price": 79.50507
+    "close price": 32.982388,
+    "date": "2023-04-17"
   },
   {
-    "": 238,
-    "date": "2023-04-03",
     "ticker": "HD",
-    "close price": 299.12088
+    "close price": 103.51836,
+    "date": "2023-04-17"
   },
   {
-    "": 239,
-    "date": "2023-04-03",
     "ticker": "HON",
-    "close price": 193.32755
+    "close price": 86.84919,
+    "date": "2023-04-17"
   },
   {
-    "": 240,
-    "date": "2023-04-03",
     "ticker": "HRL",
-    "close price": 41.384655
+    "close price": 36.823627,
+    "date": "2023-04-17"
   },
   {
-    "": 241,
-    "date": "2023-04-03",
     "ticker": "HST",
-    "close price": 16.355324
+    "close price": 15.92387,
+    "date": "2023-04-17"
   },
   {
-    "": 242,
-    "date": "2023-04-03",
     "ticker": "HWM",
-    "close price": 42.531338
+    "close price": 24.304285,
+    "date": "2023-04-17"
   },
   {
-    "": 243,
-    "date": "2023-04-03",
     "ticker": "HPQ",
-    "close price": 29.362139
+    "close price": 31.121527,
+    "date": "2023-04-17"
   },
   {
-    "": 244,
-    "date": "2023-04-03",
     "ticker": "HUM",
-    "close price": 486.3467
+    "close price": 143.17828,
+    "date": "2023-04-17"
   },
   {
-    "": 245,
-    "date": "2023-04-03",
     "ticker": "HBAN",
-    "close price": 11.20055
+    "close price": 13.64488,
+    "date": "2023-04-17"
   },
   {
-    "": 246,
-    "date": "2023-04-03",
     "ticker": "HII",
-    "close price": 205.4309
+    "close price": 150.71288,
+    "date": "2023-04-17"
   },
   {
-    "": 247,
-    "date": "2023-04-03",
     "ticker": "IBM",
-    "close price": 130.76576
+    "close price": 130.63861,
+    "date": "2023-04-17"
   },
   {
-    "": 248,
-    "date": "2023-04-03",
     "ticker": "IEX",
-    "close price": 227.30011
+    "close price": 77.705956,
+    "date": "2023-04-17"
   },
   {
-    "": 249,
-    "date": "2023-04-03",
     "ticker": "IDXX",
-    "close price": 498.25854
+    "close price": 150.54948,
+    "date": "2023-04-17"
   },
   {
-    "": 250,
-    "date": "2023-04-03",
     "ticker": "ITW",
-    "close price": 236.62518
+    "close price": 98.52074,
+    "date": "2023-04-17"
   },
   {
-    "": 251,
-    "date": "2023-04-03",
     "ticker": "ILMN",
-    "close price": 246.22871
+    "close price": 121.12805,
+    "date": "2023-04-17"
   },
   {
-    "": 252,
-    "date": "2023-04-03",
     "ticker": "INCY",
-    "close price": 73.89704
+    "close price": 44.40109,
+    "date": "2023-04-17"
   },
   {
-    "": 253,
-    "date": "2023-04-03",
     "ticker": "IR",
-    "close price": 57.98672
+    "close price": 38.429604,
+    "date": "2023-04-17"
   },
   {
-    "": 254,
-    "date": "2023-04-03",
-    "ticker": "PODD",
-    "close price": 332.95502
-  },
-  {
-    "": 255,
-    "date": "2023-04-03",
     "ticker": "INTC",
-    "close price": 32.13893
+    "close price": 33.37245,
+    "date": "2023-04-17"
   },
   {
-    "": 256,
-    "date": "2023-04-03",
     "ticker": "ICE",
-    "close price": 104.58858
+    "close price": 124.92174,
+    "date": "2023-04-17"
   },
   {
-    "": 257,
-    "date": "2023-04-03",
     "ticker": "IFF",
-    "close price": 91.98551
+    "close price": 74.049644,
+    "date": "2023-04-17"
   },
   {
-    "": 258,
-    "date": "2023-04-03",
     "ticker": "IP",
-    "close price": 35.99762
+    "close price": 38.981194,
+    "date": "2023-04-17"
   },
   {
-    "": 259,
-    "date": "2023-04-03",
     "ticker": "IPG",
-    "close price": 37.7596
+    "close price": 18.851557,
+    "date": "2023-04-17"
   },
   {
-    "": 260,
-    "date": "2023-04-03",
     "ticker": "INTU",
-    "close price": 448.60565
+    "close price": 118.10521,
+    "date": "2023-04-17"
   },
   {
-    "": 261,
-    "date": "2023-04-03",
     "ticker": "ISRG",
-    "close price": 256.75146
+    "close price": 336.24985,
+    "date": "2023-04-17"
   },
   {
-    "": 262,
-    "date": "2023-04-03",
     "ticker": "IVZ",
-    "close price": 16.518837
+    "close price": 25.489828,
+    "date": "2023-04-17"
   },
   {
-    "": 263,
-    "date": "2023-04-03",
     "ticker": "INVH",
-    "close price": 31.234709
+    "close price": 29.187756,
+    "date": "2023-04-17"
   },
   {
-    "": 264,
-    "date": "2023-04-03",
     "ticker": "IQV",
-    "close price": 199.06047
+    "close price": 125.05769,
+    "date": "2023-04-17"
   },
   {
-    "": 265,
-    "date": "2023-04-03",
     "ticker": "IRM",
-    "close price": 52.104824
+    "close price": 33.498127,
+    "date": "2023-04-17"
   },
   {
-    "": 266,
-    "date": "2023-04-03",
     "ticker": "JBHT",
-    "close price": 178.5819
+    "close price": 68.70902,
+    "date": "2023-04-17"
   },
   {
-    "": 267,
-    "date": "2023-04-03",
-    "ticker": "JKHY",
-    "close price": 150.6118
-  },
-  {
-    "": 268,
-    "date": "2023-04-03",
-    "ticker": "J",
-    "close price": 120.50739
-  },
-  {
-    "": 269,
-    "date": "2023-04-03",
-    "ticker": "JNJ",
-    "close price": 154.88203
-  },
-  {
-    "": 270,
-    "date": "2023-04-03",
-    "ticker": "JCI",
-    "close price": 58.93839
-  },
-  {
-    "": 271,
-    "date": "2023-04-03",
-    "ticker": "JPM",
-    "close price": 130.56471
-  },
-  {
-    "": 272,
-    "date": "2023-04-03",
-    "ticker": "JNPR",
-    "close price": 34.23075
-  },
-  {
-    "": 273,
-    "date": "2023-04-03",
-    "ticker": "K",
-    "close price": 66.75807
-  },
-  {
-    "": 274,
-    "date": "2023-04-03",
-    "ticker": "KDP",
-    "close price": 34.63762
-  },
-  {
-    "": 275,
-    "date": "2023-04-03",
-    "ticker": "KEY",
-    "close price": 12.486041
-  },
-  {
-    "": 276,
-    "date": "2023-04-03",
-    "ticker": "KEYS",
-    "close price": 162.76212
-  },
-  {
-    "": 277,
-    "date": "2023-04-03",
-    "ticker": "KMB",
-    "close price": 133.95316
-  },
-  {
-    "": 278,
-    "date": "2023-04-03",
-    "ticker": "KIM",
-    "close price": 19.498215
-  },
-  {
-    "": 279,
-    "date": "2023-04-03",
-    "ticker": "KMI",
-    "close price": 17.595951
-  },
-  {
-    "": 280,
-    "date": "2023-04-03",
-    "ticker": "KLAC",
-    "close price": 391.9771
-  },
-  {
-    "": 281,
-    "date": "2023-04-03",
-    "ticker": "KHC",
-    "close price": 39.142845
-  },
-  {
-    "": 282,
-    "date": "2023-04-03",
-    "ticker": "KR",
-    "close price": 50.2982
-  },
-  {
-    "": 283,
-    "date": "2023-04-03",
-    "ticker": "LHX",
-    "close price": 202.4772
-  },
-  {
-    "": 284,
-    "date": "2023-04-03",
-    "ticker": "LH",
-    "close price": 233.48016
-  },
-  {
-    "": 285,
-    "date": "2023-04-03",
-    "ticker": "LRCX",
-    "close price": 528.1016
-  },
-  {
-    "": 286,
-    "date": "2023-04-03",
-    "ticker": "LW",
-    "close price": 103.24824
-  },
-  {
-    "": 287,
-    "date": "2023-04-03",
-    "ticker": "LVS",
-    "close price": 57.079018
-  },
-  {
-    "": 288,
-    "date": "2023-04-03",
-    "ticker": "LDOS",
-    "close price": 91.168594
-  },
-  {
-    "": 289,
-    "date": "2023-04-03",
-    "ticker": "LEN",
-    "close price": 104.251434
-  },
-  {
-    "": 290,
-    "date": "2023-04-03",
-    "ticker": "LNC",
-    "close price": 22.85613
-  },
-  {
-    "": 291,
-    "date": "2023-04-03",
-    "ticker": "LIN",
-    "close price": 356.21356
-  },
-  {
-    "": 292,
-    "date": "2023-04-03",
-    "ticker": "LYV",
-    "close price": 68.77165
-  },
-  {
-    "": 293,
-    "date": "2023-04-03",
-    "ticker": "LKQ",
-    "close price": 55.78293
-  },
-  {
-    "": 294,
-    "date": "2023-04-03",
-    "ticker": "LMT",
-    "close price": 472.96472
-  },
-  {
-    "": 295,
-    "date": "2023-04-03",
-    "ticker": "L",
-    "close price": 58.651253
-  },
-  {
-    "": 296,
-    "date": "2023-04-03",
-    "ticker": "LOW",
-    "close price": 197.90471
-  },
-  {
-    "": 297,
-    "date": "2023-04-03",
-    "ticker": "LYB",
-    "close price": 93.18342
-  },
-  {
-    "": 298,
-    "date": "2023-04-03",
-    "ticker": "MTB",
-    "close price": 115.50284
-  },
-  {
-    "": 299,
-    "date": "2023-04-03",
-    "ticker": "MRO",
-    "close price": 23.813263
-  },
-  {
-    "": 300,
-    "date": "2023-04-03",
-    "ticker": "MPC",
-    "close price": 133.35323
-  },
-  {
-    "": 301,
-    "date": "2023-04-03",
-    "ticker": "MKTX",
-    "close price": 398.53174
-  },
-  {
-    "": 302,
-    "date": "2023-04-03",
-    "ticker": "MAR",
-    "close price": 169.08809
-  },
-  {
-    "": 303,
-    "date": "2023-04-03",
-    "ticker": "MMC",
-    "close price": 166.35709
-  },
-  {
-    "": 304,
-    "date": "2023-04-03",
-    "ticker": "MLM",
-    "close price": 348.74966
-  },
-  {
-    "": 305,
-    "date": "2023-04-03",
-    "ticker": "MAS",
-    "close price": 49.45543
-  },
-  {
-    "": 306,
-    "date": "2023-04-03",
-    "ticker": "MA",
-    "close price": 360.02695
-  },
-  {
-    "": 307,
-    "date": "2023-04-03",
-    "ticker": "MTCH",
-    "close price": 37.941227
-  },
-  {
-    "": 308,
-    "date": "2023-04-03",
-    "ticker": "MKC",
-    "close price": 83.30371
-  },
-  {
-    "": 309,
-    "date": "2023-04-03",
-    "ticker": "MCD",
-    "close price": 288.5537
-  },
-  {
-    "": 310,
-    "date": "2023-04-03",
-    "ticker": "MCK",
-    "close price": 343.0928
-  },
-  {
-    "": 311,
-    "date": "2023-04-03",
-    "ticker": "MDT",
-    "close price": 80.60252
-  },
-  {
-    "": 312,
-    "date": "2023-04-03",
-    "ticker": "MRK",
-    "close price": 105.876755
-  },
-  {
-    "": 313,
-    "date": "2023-04-03",
-    "ticker": "META",
-    "close price": 214.24864
-  },
-  {
-    "": 314,
-    "date": "2023-04-03",
-    "ticker": "MET",
-    "close price": 58.325726
-  },
-  {
-    "": 315,
-    "date": "2023-04-03",
-    "ticker": "MTD",
-    "close price": 1521.268
-  },
-  {
-    "": 316,
-    "date": "2023-04-03",
-    "ticker": "MGM",
-    "close price": 44.660595
-  },
-  {
-    "": 317,
-    "date": "2023-04-03",
-    "ticker": "MCHP",
-    "close price": 84.16003
-  },
-  {
-    "": 318,
-    "date": "2023-04-03",
-    "ticker": "MU",
-    "close price": 59.39282
-  },
-  {
-    "": 319,
-    "date": "2023-04-03",
-    "ticker": "MSFT",
-    "close price": 282.88235
-  },
-  {
-    "": 320,
-    "date": "2023-04-03",
-    "ticker": "MAA",
-    "close price": 150.3963
-  },
-  {
-    "": 321,
-    "date": "2023-04-03",
-    "ticker": "MRNA",
-    "close price": 158.91504
-  },
-  {
-    "": 322,
-    "date": "2023-04-03",
-    "ticker": "MHK",
-    "close price": 100.9979
-  },
-  {
-    "": 323,
-    "date": "2023-04-03",
-    "ticker": "MOH",
-    "close price": 261.9235
-  },
-  {
-    "": 324,
-    "date": "2023-04-03",
-    "ticker": "TAP",
-    "close price": 51.907845
-  },
-  {
-    "": 325,
-    "date": "2023-04-03",
-    "ticker": "MDLZ",
-    "close price": 67.43011
-  },
-  {
-    "": 326,
-    "date": "2023-04-03",
-    "ticker": "MPWR",
-    "close price": 500.57474
-  },
-  {
-    "": 327,
-    "date": "2023-04-03",
-    "ticker": "MNST",
-    "close price": 53.061584
-  },
-  {
-    "": 328,
-    "date": "2023-04-03",
-    "ticker": "MCO",
-    "close price": 302.4402
-  },
-  {
-    "": 329,
-    "date": "2023-04-03",
-    "ticker": "MS",
-    "close price": 87.300575
-  },
-  {
-    "": 330,
-    "date": "2023-04-03",
-    "ticker": "MOS",
-    "close price": 46.321003
-  },
-  {
-    "": 331,
-    "date": "2023-04-03",
-    "ticker": "MSI",
-    "close price": 291.39185
-  },
-  {
-    "": 332,
-    "date": "2023-04-03",
-    "ticker": "MSCI",
-    "close price": 571.3188
-  },
-  {
-    "": 333,
-    "date": "2023-04-03",
-    "ticker": "NDAQ",
-    "close price": 56.00062
-  },
-  {
-    "": 334,
-    "date": "2023-04-03",
-    "ticker": "NTAP",
-    "close price": 63.6061
-  },
-  {
-    "": 335,
-    "date": "2023-04-03",
-    "ticker": "NFLX",
-    "close price": 343.43808
-  },
-  {
-    "": 336,
-    "date": "2023-04-03",
-    "ticker": "NWL",
-    "close price": 12.496115
-  },
-  {
-    "": 337,
-    "date": "2023-04-03",
-    "ticker": "NEM",
-    "close price": 48.99435
-  },
-  {
-    "": 338,
-    "date": "2023-04-03",
-    "ticker": "NWSA",
-    "close price": 17.185602
-  },
-  {
-    "": 339,
-    "date": "2023-04-03",
-    "ticker": "NWS",
-    "close price": 17.233107
-  },
-  {
-    "": 340,
-    "date": "2023-04-03",
-    "ticker": "NEE",
-    "close price": 79.52197
-  },
-  {
-    "": 341,
-    "date": "2023-04-03",
-    "ticker": "NKE",
-    "close price": 122.823494
-  },
-  {
-    "": 342,
-    "date": "2023-04-03",
-    "ticker": "NI",
-    "close price": 28.056643
-  },
-  {
-    "": 343,
-    "date": "2023-04-03",
-    "ticker": "NDSN",
-    "close price": 228.51622
-  },
-  {
-    "": 344,
-    "date": "2023-04-03",
-    "ticker": "NSC",
-    "close price": 216.72191
-  },
-  {
-    "": 345,
-    "date": "2023-04-03",
-    "ticker": "NTRS",
-    "close price": 87.597275
-  },
-  {
-    "": 346,
-    "date": "2023-04-03",
-    "ticker": "NOC",
-    "close price": 469.9996
-  },
-  {
-    "": 347,
-    "date": "2023-04-03",
-    "ticker": "NCLH",
-    "close price": 13.0787525
-  },
-  {
-    "": 348,
-    "date": "2023-04-03",
-    "ticker": "NRG",
-    "close price": 34.36609
-  },
-  {
-    "": 349,
-    "date": "2023-04-03",
-    "ticker": "NUE",
-    "close price": 151.87222
-  },
-  {
-    "": 350,
-    "date": "2023-04-03",
-    "ticker": "NVDA",
-    "close price": 271.3091
-  },
-  {
-    "": 351,
-    "date": "2023-04-03",
-    "ticker": "NVR",
-    "close price": 5604.738
-  },
-  {
-    "": 352,
-    "date": "2023-04-03",
-    "ticker": "NXPI",
-    "close price": 183.69087
-  },
-  {
-    "": 353,
-    "date": "2023-04-03",
-    "ticker": "ORLY",
-    "close price": 812.1487
-  },
-  {
-    "": 354,
-    "date": "2023-04-03",
-    "ticker": "OXY",
-    "close price": 62.58723
-  },
-  {
-    "": 355,
-    "date": "2023-04-03",
-    "ticker": "ODFL",
-    "close price": 323.68716
-  },
-  {
-    "": 356,
-    "date": "2023-04-03",
-    "ticker": "OMC",
-    "close price": 90.298935
-  },
-  {
-    "": 357,
-    "date": "2023-04-03",
-    "ticker": "ON",
-    "close price": 78.62909
-  },
-  {
-    "": 358,
-    "date": "2023-04-03",
-    "ticker": "OKE",
-    "close price": 61.86182
-  },
-  {
-    "": 359,
-    "date": "2023-04-03",
-    "ticker": "ORCL",
-    "close price": 93.79775
-  },
-  {
-    "": 360,
-    "date": "2023-04-03",
-    "ticker": "OGN",
-    "close price": 24.071627
-  },
-  {
-    "": 361,
-    "date": "2023-04-03",
-    "ticker": "OTIS",
-    "close price": 83.947914
-  },
-  {
-    "": 362,
-    "date": "2023-04-03",
-    "ticker": "PCAR",
-    "close price": 73.595184
-  },
-  {
-    "": 363,
-    "date": "2023-04-03",
-    "ticker": "PKG",
-    "close price": 137.12776
-  },
-  {
-    "": 364,
-    "date": "2023-04-03",
-    "ticker": "PARA",
-    "close price": 22.057878
-  },
-  {
-    "": 365,
-    "date": "2023-04-03",
-    "ticker": "PH",
-    "close price": 325.47702
-  },
-  {
-    "": 366,
-    "date": "2023-04-03",
-    "ticker": "PAYX",
-    "close price": 114.51433
-  },
-  {
-    "": 367,
-    "date": "2023-04-03",
-    "ticker": "PAYC",
-    "close price": 305.70392
-  },
-  {
-    "": 368,
-    "date": "2023-04-03",
-    "ticker": "PYPL",
-    "close price": 76.60797
-  },
-  {
-    "": 369,
-    "date": "2023-04-03",
-    "ticker": "PNR",
-    "close price": 55.359394
-  },
-  {
-    "": 370,
-    "date": "2023-04-03",
-    "ticker": "PEP",
-    "close price": 178.17139
-  },
-  {
-    "": 371,
-    "date": "2023-04-03",
-    "ticker": "PKI",
-    "close price": 130.03447
-  },
-  {
-    "": 372,
-    "date": "2023-04-03",
-    "ticker": "PFE",
-    "close price": 41.19481
-  },
-  {
-    "": 373,
-    "date": "2023-04-03",
-    "ticker": "PCG",
-    "close price": 16.583443
-  },
-  {
-    "": 374,
-    "date": "2023-04-03",
-    "ticker": "PM",
-    "close price": 95.67443
-  },
-  {
-    "": 375,
-    "date": "2023-04-03",
-    "ticker": "PSX",
-    "close price": 100.01139
-  },
-  {
-    "": 376,
-    "date": "2023-04-03",
-    "ticker": "PNW",
-    "close price": 79.089714
-  },
-  {
-    "": 377,
-    "date": "2023-04-03",
-    "ticker": "PXD",
-    "close price": 204.25941
-  },
-  {
-    "": 378,
-    "date": "2023-04-03",
-    "ticker": "PNC",
-    "close price": 123.82652
-  },
-  {
-    "": 379,
-    "date": "2023-04-03",
-    "ticker": "POOL",
-    "close price": 346.53174
-  },
-  {
-    "": 380,
-    "date": "2023-04-03",
-    "ticker": "PPG",
-    "close price": 136.08565
-  },
-  {
-    "": 381,
-    "date": "2023-04-03",
-    "ticker": "PPL",
-    "close price": 27.515522
-  },
-  {
-    "": 382,
-    "date": "2023-04-03",
-    "ticker": "PFG",
-    "close price": 74.6197
-  },
-  {
-    "": 383,
-    "date": "2023-04-03",
-    "ticker": "PG",
-    "close price": 149.12646
-  },
-  {
-    "": 384,
-    "date": "2023-04-03",
-    "ticker": "PGR",
-    "close price": 137.52197
-  },
-  {
-    "": 385,
-    "date": "2023-04-03",
-    "ticker": "PLD",
-    "close price": 120.37516
-  },
-  {
-    "": 386,
-    "date": "2023-04-03",
-    "ticker": "PRU",
-    "close price": 81.858635
-  },
-  {
-    "": 387,
-    "date": "2023-04-03",
-    "ticker": "PEG",
-    "close price": 61.79425
-  },
-  {
-    "": 388,
-    "date": "2023-04-03",
-    "ticker": "PTC",
-    "close price": 127.5692
-  },
-  {
-    "": 389,
-    "date": "2023-04-03",
-    "ticker": "PSA",
-    "close price": 303.12668
-  },
-  {
-    "": 390,
-    "date": "2023-04-03",
-    "ticker": "PHM",
-    "close price": 57.883835
-  },
-  {
-    "": 391,
-    "date": "2023-04-03",
-    "ticker": "QRVO",
-    "close price": 101.24098
-  },
-  {
-    "": 392,
-    "date": "2023-04-03",
-    "ticker": "PWR",
-    "close price": 165.05688
-  },
-  {
-    "": 393,
-    "date": "2023-04-03",
-    "ticker": "QCOM",
-    "close price": 125.06008
-  },
-  {
-    "": 394,
-    "date": "2023-04-03",
-    "ticker": "DGX",
-    "close price": 138.30704
-  },
-  {
-    "": 395,
-    "date": "2023-04-03",
-    "ticker": "RL",
-    "close price": 116.54349
-  },
-  {
-    "": 396,
-    "date": "2023-04-03",
-    "ticker": "RJF",
-    "close price": 93.5547
-  },
-  {
-    "": 397,
-    "date": "2023-04-03",
-    "ticker": "RTX",
-    "close price": 97.624016
-  },
-  {
-    "": 398,
-    "date": "2023-04-03",
-    "ticker": "O",
-    "close price": 63.54011
-  },
-  {
-    "": 399,
-    "date": "2023-04-03",
-    "ticker": "REG",
-    "close price": 61.66084
-  },
-  {
-    "": 400,
-    "date": "2023-04-03",
-    "ticker": "REGN",
-    "close price": 813.6784
-  },
-  {
-    "": 401,
-    "date": "2023-04-03",
-    "ticker": "RF",
-    "close price": 18.738216
-  },
-  {
-    "": 402,
-    "date": "2023-04-03",
-    "ticker": "RSG",
-    "close price": 139.88026
-  },
-  {
-    "": 403,
-    "date": "2023-04-03",
-    "ticker": "RMD",
-    "close price": 222.93219
-  },
-  {
-    "": 404,
-    "date": "2023-04-03",
-    "ticker": "RHI",
-    "close price": 80.954155
-  },
-  {
-    "": 405,
-    "date": "2023-04-03",
-    "ticker": "ROK",
-    "close price": 310.53165
-  },
-  {
-    "": 406,
-    "date": "2023-04-03",
-    "ticker": "ROL",
-    "close price": 37.520836
-  },
-  {
-    "": 407,
-    "date": "2023-04-03",
-    "ticker": "ROP",
-    "close price": 435.72824
-  },
-  {
-    "": 408,
-    "date": "2023-04-03",
-    "ticker": "ROST",
-    "close price": 105.822075
-  },
-  {
-    "": 409,
-    "date": "2023-04-03",
-    "ticker": "RCL",
-    "close price": 65.92016
-  },
-  {
-    "": 410,
-    "date": "2023-04-03",
-    "ticker": "SPGI",
-    "close price": 349.83344
-  },
-  {
-    "": 411,
-    "date": "2023-04-03",
-    "ticker": "CRM",
-    "close price": 207.73766
-  },
-  {
-    "": 412,
-    "date": "2023-04-03",
-    "ticker": "SBAC",
-    "close price": 264.32367
-  },
-  {
-    "": 413,
-    "date": "2023-04-03",
-    "ticker": "SLB",
-    "close price": 48.52245
-  },
-  {
-    "": 414,
-    "date": "2023-04-03",
-    "ticker": "STX",
-    "close price": 67.26475
-  },
-  {
-    "": 415,
-    "date": "2023-04-03",
-    "ticker": "SEE",
-    "close price": 46.21763
-  },
-  {
-    "": 416,
-    "date": "2023-04-03",
-    "ticker": "SRE",
-    "close price": 151.84122
-  },
-  {
-    "": 417,
-    "date": "2023-04-03",
-    "ticker": "NOW",
-    "close price": 471.94916
-  },
-  {
-    "": 418,
-    "date": "2023-04-03",
-    "ticker": "SHW",
-    "close price": 225.46419
-  },
-  {
-    "": 419,
-    "date": "2023-04-03",
-    "ticker": "SPG",
-    "close price": 112.188995
-  },
-  {
-    "": 420,
-    "date": "2023-04-03",
-    "ticker": "SWKS",
-    "close price": 118.035126
-  },
-  {
-    "": 421,
-    "date": "2023-04-03",
     "ticker": "SJM",
-    "close price": 158.43141
+    "close price": 78.240974,
+    "date": "2023-04-17"
   },
   {
-    "": 422,
-    "date": "2023-04-03",
+    "ticker": "JKHY",
+    "close price": 64.43676,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "J",
+    "close price": 63.248882,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "DE",
+    "close price": 115.99113,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "JNJ",
+    "close price": 92.84276,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "JCI",
+    "close price": 39.185673,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "JPM",
+    "close price": 63.953224,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "JNPR",
+    "close price": 32.736565,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "K",
+    "close price": 53.358444,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KDP",
+    "close price": 49.190483,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KEY",
+    "close price": 19.323303,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KEYS",
+    "close price": 87.086426,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KMB",
+    "close price": 90.496086,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KIM",
+    "close price": 28.094511,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KMI",
+    "close price": 24.307749,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KLAC",
+    "close price": 93.848915,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KHC",
+    "close price": 53.370872,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "KR",
+    "close price": 28.912218,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LHX",
+    "close price": 86.70009,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LH",
+    "close price": 110.16352,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LRCX",
+    "close price": 128.01418,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LW",
+    "close price": 67.09428,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LVS",
+    "close price": 53.628662,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LDOS",
+    "close price": 47.16671,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LEN",
+    "close price": 46.62176,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LNC",
+    "close price": 46.43323,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LIN",
+    "close price": 252.9478,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LYV",
+    "close price": 33.112045,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LKQ",
+    "close price": 29.456072,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LMT",
+    "close price": 168.06921,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "L",
+    "close price": 49.699165,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LOW",
+    "close price": 71.13816,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LUMN",
+    "close price": 28.770025,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "LYB",
+    "close price": 77.44764,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MTB",
+    "close price": 124.09384,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MRO",
+    "close price": 31.819635,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MPC",
+    "close price": 64.01128,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MKTX",
+    "close price": 135.29636,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MAR",
+    "close price": 68.88816,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MMC",
+    "close price": 64.72367,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MLM",
+    "close price": 132.49033,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MAS",
+    "close price": 28.995089,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MA",
+    "close price": 246.17708,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MTCH",
+    "close price": 66.37364,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MKC",
+    "close price": 65.68365,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MCD",
+    "close price": 100.702965,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MCK",
+    "close price": 107.31121,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MDT",
+    "close price": 63.456455,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MRK",
+    "close price": 56.964508,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "META",
+    "close price": 148.21925,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MET",
+    "close price": 44.707115,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MTD",
+    "close price": 384.57236,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MGM",
+    "close price": 30.862837,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MCHP",
+    "close price": 51.376415,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MU",
+    "close price": 28.730871,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MSFT",
+    "close price": 78.14684,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MAA",
+    "close price": 72.79112,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MRNA",
+    "close price": 126.91268,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MHK",
+    "close price": 104.94273,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MOH",
+    "close price": 83.97206,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "TAP",
+    "close price": 60.18566,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MDLZ",
+    "close price": 39.254684,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MPWR",
+    "close price": 98.27873,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MNST",
+    "close price": 56.776726,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MCO",
+    "close price": 102.14525,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MS",
+    "close price": 50.61082,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MOS",
+    "close price": 35.50386,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MSI",
+    "close price": 75.54195,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "MSCI",
+    "close price": 150.88837,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NDAQ",
+    "close price": 53.77512,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NTAP",
+    "close price": 42.85022,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NFLX",
+    "close price": 184.66609,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NWL",
+    "close price": 25.031748,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NEM",
+    "close price": 40.334778,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NWSA",
+    "close price": 15.768194,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NWS",
+    "close price": 15.806014,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NEE",
+    "close price": 87.212166,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NKE",
+    "close price": 77.41933,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NI",
+    "close price": 23.584045,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NDSN",
+    "close price": 85.17598,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NSC",
+    "close price": 93.49815,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NTRS",
+    "close price": 67.724434,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NOC",
+    "close price": 163.18057,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NCLH",
+    "close price": 38.65584,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NRG",
+    "close price": 30.088282,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NUE",
+    "close price": 58.55669,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NVDA",
+    "close price": 93.92274,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NVR",
+    "close price": 1479.8123,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NXPI",
+    "close price": 95.67944,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ORLY",
+    "close price": 175.62552,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "OXY",
+    "close price": 61.005672,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ODFL",
+    "close price": 80.642876,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "OMC",
+    "close price": 69.25353,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ON",
+    "close price": 14.766239,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "OKE",
+    "close price": 44.15458,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ORCL",
+    "close price": 36.773632,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "OGN",
+    "close price": 30.855598,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "OTIS",
+    "close price": 73.38019,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PCAR",
+    "close price": 61.559235,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PKG",
+    "close price": 56.84097,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PARA",
+    "close price": 37.160625,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PH",
+    "close price": 112.72005,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PAYX",
+    "close price": 50.062378,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PAYC",
+    "close price": 179.3947,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PYPL",
+    "close price": 108.218956,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PNR",
+    "close price": 45.057175,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PEP",
+    "close price": 84.77116,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PKI",
+    "close price": 51.428368,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PFE",
+    "close price": 31.792475,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PCG",
+    "close price": 33.9807,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PM",
+    "close price": 81.34493,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PSX",
+    "close price": 80.845856,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PNW",
+    "close price": 56.212864,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PXD",
+    "close price": 96.13136,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PNC",
+    "close price": 88.0377,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "POOL",
+    "close price": 94.19007,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PPG",
+    "close price": 96.15032,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PPL",
+    "close price": 34.277927,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PFG",
+    "close price": 45.406796,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PG",
+    "close price": 84.61078,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PGR",
+    "close price": 57.16138,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PLD",
+    "close price": 53.27344,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PRU",
+    "close price": 72.43107,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PTC",
+    "close price": 37.515556,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PEG",
+    "close price": 46.414803,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PSA",
+    "close price": 142.73267,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PHM",
+    "close price": 31.15609,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "QRVO",
+    "close price": 92.92103,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "QCOM",
+    "close price": 66.33576,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "PWR",
+    "close price": 34.730614,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "DGX",
+    "close price": 77.74844,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RL",
+    "close price": 85.87578,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RJF",
+    "close price": 51.02953,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RTX",
+    "close price": 85.52332,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "O",
+    "close price": 42.57903,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "REG",
+    "close price": 51.02323,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "REGN",
+    "close price": 208.82231,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RF",
+    "close price": 19.109858,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RSG",
+    "close price": 47.805157,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RMD",
+    "close price": 74.675255,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RHI",
+    "close price": 41.220085,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ROK",
+    "close price": 107.079506,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ROL",
+    "close price": 27.465816,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ROP",
+    "close price": 162.01468,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "ROST",
+    "close price": 58.950344,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "RCL",
+    "close price": 52.65571,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SPGI",
+    "close price": 128.91872,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "CRM",
+    "close price": 103.65076,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SBAC",
+    "close price": 96.60968,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SLB",
+    "close price": 63.514427,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "STX",
+    "close price": 36.29454,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SEE",
+    "close price": 39.028503,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SRE",
+    "close price": 75.45079,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "NOW",
+    "close price": 220.86336,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SHW",
+    "close price": 188.78575,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SBNY",
+    "close price": 94.52473,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SPG",
+    "close price": 105.55531,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "SWKS",
+    "close price": 48.793167,
+    "date": "2023-04-17"
+  },
+  {
     "ticker": "SNA",
-    "close price": 240.64954
+    "close price": 93.10689,
+    "date": "2023-04-17"
   },
   {
-    "": 423,
-    "date": "2023-04-03",
     "ticker": "SEDG",
-    "close price": 320.34476
+    "close price": 126.36353,
+    "date": "2023-04-17"
   },
   {
-    "": 424,
-    "date": "2023-04-03",
     "ticker": "SO",
-    "close price": 69.341644
+    "close price": 41.81016,
+    "date": "2023-04-17"
   },
   {
-    "": 425,
-    "date": "2023-04-03",
     "ticker": "LUV",
-    "close price": 31.865328
+    "close price": 26.181368,
+    "date": "2023-04-17"
   },
   {
-    "": 426,
-    "date": "2023-04-03",
     "ticker": "SWK",
-    "close price": 81.53691
+    "close price": 82.33454,
+    "date": "2023-04-17"
   },
   {
-    "": 427,
-    "date": "2023-04-03",
     "ticker": "SBUX",
-    "close price": 109.864204
+    "close price": 51.286358,
+    "date": "2023-04-17"
   },
   {
-    "": 428,
-    "date": "2023-04-03",
     "ticker": "STT",
-    "close price": 75.50655
+    "close price": 64.31171,
+    "date": "2023-04-17"
   },
   {
-    "": 429,
-    "date": "2023-04-03",
     "ticker": "STLD",
-    "close price": 116.12287
+    "close price": 31.414282,
+    "date": "2023-04-17"
   },
   {
-    "": 430,
-    "date": "2023-04-03",
     "ticker": "STE",
-    "close price": 190.40813
+    "close price": 64.19827,
+    "date": "2023-04-17"
   },
   {
-    "": 431,
-    "date": "2023-04-03",
     "ticker": "SYK",
-    "close price": 280.65833
+    "close price": 100.77688,
+    "date": "2023-04-17"
   },
   {
-    "": 432,
-    "date": "2023-04-03",
+    "ticker": "SIVB",
+    "close price": 123.84159,
+    "date": "2023-04-17"
+  },
+  {
     "ticker": "SYF",
-    "close price": 29.261456
+    "close price": 33.0819,
+    "date": "2023-04-17"
   },
   {
-    "": 433,
-    "date": "2023-04-03",
     "ticker": "SNPS",
-    "close price": 380.34305
+    "close price": 82.851814,
+    "date": "2023-04-17"
   },
   {
-    "": 434,
-    "date": "2023-04-03",
     "ticker": "SYY",
-    "close price": 78.37387
+    "close price": 42.645473,
+    "date": "2023-04-17"
   },
   {
-    "": 435,
-    "date": "2023-04-03",
     "ticker": "TMUS",
-    "close price": 142.54431
+    "close price": 53.232025,
+    "date": "2023-04-17"
   },
   {
-    "": 436,
-    "date": "2023-04-03",
     "ticker": "TROW",
-    "close price": 113.621895
+    "close price": 72.72345,
+    "date": "2023-04-17"
   },
   {
-    "": 437,
-    "date": "2023-04-03",
     "ticker": "TTWO",
-    "close price": 117.97508
+    "close price": 48.15314,
+    "date": "2023-04-17"
   },
   {
-    "": 438,
-    "date": "2023-04-03",
     "ticker": "TPR",
-    "close price": 43.682793
+    "close price": 39.540424,
+    "date": "2023-04-17"
   },
   {
-    "": 439,
-    "date": "2023-04-03",
     "ticker": "TRGP",
-    "close price": 73.974945
+    "close price": 54.800465,
+    "date": "2023-04-17"
   },
   {
-    "": 440,
-    "date": "2023-04-03",
     "ticker": "TGT",
-    "close price": 160.03807
+    "close price": 74.90479,
+    "date": "2023-04-17"
   },
   {
-    "": 441,
-    "date": "2023-04-03",
     "ticker": "TEL",
-    "close price": 132.01414
+    "close price": 66.4948,
+    "date": "2023-04-17"
   },
   {
-    "": 442,
-    "date": "2023-04-03",
     "ticker": "TDY",
-    "close price": 455.71854
+    "close price": 116.01286,
+    "date": "2023-04-17"
   },
   {
-    "": 443,
-    "date": "2023-04-03",
     "ticker": "TFX",
-    "close price": 256.22046
+    "close price": 128.41048,
+    "date": "2023-04-17"
   },
   {
-    "": 444,
-    "date": "2023-04-03",
     "ticker": "TER",
-    "close price": 101.46513
+    "close price": 34.801697,
+    "date": "2023-04-17"
   },
   {
-    "": 445,
-    "date": "2023-04-03",
     "ticker": "TSLA",
-    "close price": 200.22012
+    "close price": 307.08936,
+    "date": "2023-04-17"
   },
   {
-    "": 446,
-    "date": "2023-04-03",
     "ticker": "TXN",
-    "close price": 183.57648
+    "close price": 64.67572,
+    "date": "2023-04-17"
   },
   {
-    "": 447,
-    "date": "2023-04-03",
     "ticker": "TXT",
-    "close price": 70.56717
+    "close price": 48.65765,
+    "date": "2023-04-17"
   },
   {
-    "": 448,
-    "date": "2023-04-03",
     "ticker": "TMO",
-    "close price": 582.69214
+    "close price": 132.20792,
+    "date": "2023-04-17"
   },
   {
-    "": 449,
-    "date": "2023-04-03",
     "ticker": "TJX",
-    "close price": 77.18961
+    "close price": 47.561977,
+    "date": "2023-04-17"
   },
   {
-    "": 450,
-    "date": "2023-04-03",
     "ticker": "TSCO",
-    "close price": 233.5977
+    "close price": 75.146904,
+    "date": "2023-04-17"
   },
   {
-    "": 451,
-    "date": "2023-04-03",
     "ticker": "TT",
-    "close price": 181.09776
+    "close price": 70.748695,
+    "date": "2023-04-17"
   },
   {
-    "": 452,
-    "date": "2023-04-03",
     "ticker": "TDG",
-    "close price": 730.7905
+    "close price": 246.51566,
+    "date": "2023-04-17"
   },
   {
-    "": 453,
-    "date": "2023-04-03",
     "ticker": "TRV",
-    "close price": 172.8527
+    "close price": 80.30332,
+    "date": "2023-04-17"
   },
   {
-    "": 454,
-    "date": "2023-04-03",
     "ticker": "TRMB",
-    "close price": 51.335754
+    "close price": 36.04601,
+    "date": "2023-04-17"
   },
   {
-    "": 455,
-    "date": "2023-04-03",
     "ticker": "TFC",
-    "close price": 33.159576
+    "close price": 38.173813,
+    "date": "2023-04-17"
   },
   {
-    "": 456,
-    "date": "2023-04-03",
     "ticker": "TYL",
-    "close price": 343.52612
+    "close price": 112.28075,
+    "date": "2023-04-17"
   },
   {
-    "": 457,
-    "date": "2023-04-03",
     "ticker": "TSN",
-    "close price": 59.294025
+    "close price": 35.143753,
+    "date": "2023-04-17"
   },
   {
-    "": 458,
-    "date": "2023-04-03",
     "ticker": "USB",
-    "close price": 36.26874
+    "close price": 35.351944,
+    "date": "2023-04-17"
   },
   {
-    "": 459,
-    "date": "2023-04-03",
     "ticker": "UDR",
-    "close price": 40.991627
+    "close price": 27.97137,
+    "date": "2023-04-17"
   },
   {
-    "": 460,
-    "date": "2023-04-03",
     "ticker": "ULTA",
-    "close price": 547.097
+    "close price": 175.26686,
+    "date": "2023-04-17"
   },
   {
-    "": 461,
-    "date": "2023-04-03",
     "ticker": "UNP",
-    "close price": 201.33246
+    "close price": 110.31636,
+    "date": "2023-04-17"
   },
   {
-    "": 462,
-    "date": "2023-04-03",
     "ticker": "UAL",
-    "close price": 44.520035
+    "close price": 42.938133,
+    "date": "2023-04-17"
   },
   {
-    "": 463,
-    "date": "2023-04-03",
     "ticker": "UPS",
-    "close price": 194.67079
+    "close price": 91.795784,
+    "date": "2023-04-17"
   },
   {
-    "": 464,
-    "date": "2023-04-03",
     "ticker": "URI",
-    "close price": 386.94943
+    "close price": 80.99981,
+    "date": "2023-04-17"
   },
   {
-    "": 465,
-    "date": "2023-04-03",
     "ticker": "UNH",
-    "close price": 488.37192
+    "close price": 141.89432,
+    "date": "2023-04-17"
   },
   {
-    "": 466,
-    "date": "2023-04-03",
     "ticker": "UHS",
-    "close price": 125.83206
+    "close price": 80.17776,
+    "date": "2023-04-17"
   },
   {
-    "": 467,
-    "date": "2023-04-03",
     "ticker": "VLO",
-    "close price": 137.48169
+    "close price": 56.352684,
+    "date": "2023-04-17"
   },
   {
-    "": 468,
-    "date": "2023-04-03",
     "ticker": "VTR",
-    "close price": 43.685936
+    "close price": 42.835384,
+    "date": "2023-04-17"
   },
   {
-    "": 469,
-    "date": "2023-04-03",
     "ticker": "VRSN",
-    "close price": 211.19887
+    "close price": 82.48126,
+    "date": "2023-04-17"
   },
   {
-    "": 470,
-    "date": "2023-04-03",
     "ticker": "VRSK",
-    "close price": 188.45879
+    "close price": 100.66768,
+    "date": "2023-04-17"
   },
   {
-    "": 471,
-    "date": "2023-04-03",
     "ticker": "VZ",
-    "close price": 38.643364
+    "close price": 44.075188,
+    "date": "2023-04-17"
   },
   {
-    "": 472,
-    "date": "2023-04-03",
     "ticker": "VRTX",
-    "close price": 305.8052
+    "close price": 87.256424,
+    "date": "2023-04-17"
   },
   {
-    "": 473,
-    "date": "2023-04-03",
     "ticker": "VFC",
-    "close price": 23.058432
+    "close price": 71.61863,
+    "date": "2023-04-17"
   },
   {
-    "": 474,
-    "date": "2023-04-03",
     "ticker": "VTRS",
-    "close price": 9.831109
+    "close price": 12.646168,
+    "date": "2023-04-17"
   },
   {
-    "": 475,
-    "date": "2023-04-03",
     "ticker": "VICI",
-    "close price": 32.325993
+    "close price": 25.331833,
+    "date": "2023-04-17"
   },
   {
-    "": 476,
-    "date": "2023-04-03",
     "ticker": "V",
-    "close price": 222.70297
+    "close price": 138.54987,
+    "date": "2023-04-17"
   },
   {
-    "": 477,
-    "date": "2023-04-03",
     "ticker": "VMC",
-    "close price": 172.03589
+    "close price": 81.47563,
+    "date": "2023-04-17"
   },
   {
-    "": 478,
-    "date": "2023-04-03",
-    "ticker": "WAB",
-    "close price": 102.038086
-  },
-  {
-    "": 479,
-    "date": "2023-04-03",
-    "ticker": "WBA",
-    "close price": 35.064816
-  },
-  {
-    "": 480,
-    "date": "2023-04-03",
-    "ticker": "WMT",
-    "close price": 146.6318
-  },
-  {
-    "": 481,
-    "date": "2023-04-03",
-    "ticker": "WBD",
-    "close price": 15.39387
-  },
-  {
-    "": 482,
-    "date": "2023-04-03",
-    "ticker": "WM",
-    "close price": 160.52666
-  },
-  {
-    "": 483,
-    "date": "2023-04-03",
-    "ticker": "WAT",
-    "close price": 307.70877
-  },
-  {
-    "": 484,
-    "date": "2023-04-03",
-    "ticker": "WEC",
-    "close price": 94.36073
-  },
-  {
-    "": 485,
-    "date": "2023-04-03",
-    "ticker": "WFC",
-    "close price": 37.200413
-  },
-  {
-    "": 486,
-    "date": "2023-04-03",
-    "ticker": "WELL",
-    "close price": 70.96771
-  },
-  {
-    "": 487,
-    "date": "2023-04-03",
-    "ticker": "WST",
-    "close price": 345.94037
-  },
-  {
-    "": 488,
-    "date": "2023-04-03",
-    "ticker": "WDC",
-    "close price": 38.371563
-  },
-  {
-    "": 489,
-    "date": "2023-04-03",
-    "ticker": "WRK",
-    "close price": 30.384268
-  },
-  {
-    "": 490,
-    "date": "2023-04-03",
-    "ticker": "WY",
-    "close price": 30.540426
-  },
-  {
-    "": 491,
-    "date": "2023-04-03",
-    "ticker": "WHR",
-    "close price": 131.8432
-  },
-  {
-    "": 492,
-    "date": "2023-04-03",
-    "ticker": "WMB",
-    "close price": 29.824657
-  },
-  {
-    "": 493,
-    "date": "2023-04-03",
-    "ticker": "WTW",
-    "close price": 233.58095
-  },
-  {
-    "": 494,
-    "date": "2023-04-03",
     "ticker": "GWW",
-    "close price": 686.1532
+    "close price": 184.76979,
+    "date": "2023-04-17"
   },
   {
-    "": 495,
-    "date": "2023-04-03",
+    "ticker": "WAB",
+    "close price": 53.69393,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WBA",
+    "close price": 47.517315,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WMT",
+    "close price": 73.43266,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WBD",
+    "close price": 32.378536,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WM",
+    "close price": 57.18165,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WAT",
+    "close price": 119.77279,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WEC",
+    "close price": 50.893394,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WFC",
+    "close price": 43.753258,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WELL",
+    "close price": 53.021965,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WST",
+    "close price": 89.978165,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WDC",
+    "close price": 39.63264,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WRK",
+    "close price": 45.57391,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WY",
+    "close price": 42.153767,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WHR",
+    "close price": 111.44783,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WMB",
+    "close price": 27.074558,
+    "date": "2023-04-17"
+  },
+  {
+    "ticker": "WTW",
+    "close price": 182.18164,
+    "date": "2023-04-17"
+  },
+  {
     "ticker": "WYNN",
-    "close price": 108.83367
+    "close price": 98.16944,
+    "date": "2023-04-17"
   },
   {
-    "": 496,
-    "date": "2023-04-03",
     "ticker": "XEL",
-    "close price": 68.36066
+    "close price": 34.216988,
+    "date": "2023-04-17"
   },
   {
-    "": 497,
-    "date": "2023-04-03",
     "ticker": "XYL",
-    "close price": 102.24221
+    "close price": 61.304756,
+    "date": "2023-04-17"
   },
   {
-    "": 498,
-    "date": "2023-04-03",
     "ticker": "YUM",
-    "close price": 129.4861
+    "close price": 63.781418,
+    "date": "2023-04-17"
   },
   {
-    "": 499,
-    "date": "2023-04-03",
     "ticker": "ZBRA",
-    "close price": 326.29944
+    "close price": 102.152145,
+    "date": "2023-04-17"
   },
   {
-    "": 500,
-    "date": "2023-04-03",
     "ticker": "ZBH",
-    "close price": 128.12927
+    "close price": 87.079704,
+    "date": "2023-04-17"
   },
   {
-    "": 501,
-    "date": "2023-04-03",
     "ticker": "ZION",
-    "close price": 29.875872
+    "close price": 43.90906,
+    "date": "2023-04-17"
   },
   {
-    "": 502,
-    "date": "2023-04-03",
     "ticker": "ZTS",
-    "close price": 166.4121
+    "close price": 94.23288,
+    "date": "2023-04-17"
   }
 ]
