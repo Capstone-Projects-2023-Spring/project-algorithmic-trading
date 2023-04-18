@@ -19,10 +19,16 @@ import bull from "./bull.png";
 import br from "./triangles.svg";
 import "./style.css";
 import "./app.css";
-import { isLoggedIn } from "./services/authentication";
+import { isLoggedIn, logout } from "./services/authentication";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+
+  const isActive = sessionStorage.activeSession;
+  if (!isActive) {
+    logout();
+    setLoggedIn(false);
+  }
 
   const Nav = () => {
     return (
