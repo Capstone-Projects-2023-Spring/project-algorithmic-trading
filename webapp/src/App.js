@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import About from "./components/About";
@@ -19,10 +19,33 @@ import bull from "./bull.png";
 import br from "./triangles.svg";
 import "./style.css";
 import "./app.css";
-import { isLoggedIn } from "./services/authentication";
+import { isLoggedIn, logout } from "./services/authentication";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+
+  useEffect(() => {
+
+    const handleTabClose = event => {
+
+      event.preventDefault();
+
+      logout();
+      setLoggedIn(false);
+
+      return (
+        event.returnValue = "Are you sure want to exit?"
+      );
+
+    }
+
+    window.addEventListener("beforeunload", handleTabClose);
+
+    return() => {
+      window.removeEventListener("beforeunload", handleTabClose);
+    }
+
+  }, [])
 
   const Nav = () => {
     return (
