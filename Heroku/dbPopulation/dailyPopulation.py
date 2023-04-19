@@ -12,7 +12,7 @@ import os
 import requests
 import json
 
-connection_string = (os.environ['ALPHA_VANTAGE_KEY'] + "?gssencmode=disable")
+connection_string = (os.environ['DATABASE_URL'] + "?gssencmode=disable")
 
 # Establish a connection to the remote database
 engine = create_engine(connection_string)
