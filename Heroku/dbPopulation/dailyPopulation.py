@@ -1,9 +1,6 @@
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-import datetime
-from alpha_vantage.timeseries import TimeSeries
-import psycopg2
 import pandas as pd
 from sqlalchemy import create_engine
 import io
