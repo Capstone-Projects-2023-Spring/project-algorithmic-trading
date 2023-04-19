@@ -25,7 +25,7 @@ last_data_date, = cur.fetchone()
 print("The last date with data in the database: ", last_data_date)
 
 
-SP500Data = pd.read_csv("S&P500Companies.csv")
+SP500Data = pd.read_csv("Heroku/dbPopulation/S&P500Companies.csv")
 stocks = SP500Data["Symbol"]
 
 
