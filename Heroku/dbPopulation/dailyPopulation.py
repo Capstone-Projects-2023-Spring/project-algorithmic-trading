@@ -1,6 +1,7 @@
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
+import psycopg2
 import pandas as pd
 from sqlalchemy import create_engine
 import io
@@ -9,7 +10,8 @@ import os
 import requests
 import json
 
-connection_string = (os.environ['DATABASE_URL'] + "?gssencmode=disable")
+connection_string = (os.environ['DATABASE_URL'] + "?gssencmode=disable")[8:]
+connection_string = 'postgresql' + connection_string
 
 # Establish a connection to the remote database
 engine = create_engine(connection_string)
