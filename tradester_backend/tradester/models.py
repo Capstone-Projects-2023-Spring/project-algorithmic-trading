@@ -29,6 +29,8 @@ class Stock(models.Model):
 
     def __str__(self):
         return self.stock_symbol
+    class Meta:
+        db_table_comment = 'Render Table'
 
 class Order(models.Model):
     """
@@ -51,6 +53,8 @@ class Order(models.Model):
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     timestamp = models.DateTimeField(default=timezone.now)
+    class Meta:
+        db_table_comment = 'Render Table'
 
 class Portfolio(models.Model):
     """
@@ -64,7 +68,8 @@ class Portfolio(models.Model):
         related_name='myportfolio'
     )
     balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0)
-    
+    class Meta:
+        db_table_comment = 'Render Table'    
 
 class Portfolio_stock(models.Model):
     """
@@ -76,6 +81,8 @@ class Portfolio_stock(models.Model):
     quantity = models.IntegerField()
     purchase_price = models.DecimalField(max_digits=10, decimal_places=2)
     timestamp = models.DateTimeField(default=timezone.now)      #this should get the timestamp of addition
+    class Meta:
+        db_table_comment = 'Render Table'
 
 class Investment(models.Model):
     """
@@ -84,3 +91,40 @@ class Investment(models.Model):
     """
     investment_id = models.AutoField(primary_key=True, default=None)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    class Meta:
+        db_table_comment = 'Render Table'
+
+from django.db import models
+
+class GpuServerLogs(models.Model):
+    accesstime = models.CharField(primary_key=True, db_column='accessTime', default = '0')  # Field name made lowercase.
+    response = models.CharField(blank=True, null=True)
+
+    class Meta:
+        db_table_comment = 'Heroku Table'
+        db_table = 'GPU_Server_Logs'
+
+class Backlog(models.Model):
+    ticker = models.CharField(primary_key=True, default = "DEFAULT_STOCK")
+    date = models.DateField(blank=True, null=True)
+    open = models.FloatField(blank=True, null=True)
+    close = models.FloatField(blank=True, null=True)
+    low = models.FloatField(blank=True, null=True)
+    high = models.FloatField(blank=True, null=True)
+    volume = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        db_table_comment = 'Heroku Table'
+        db_table = 'backlog'
+        
+
+
+class ModelPrediction(models.Model):
+    stock = models.CharField(primary_key=True, default = "DEFAULT_STOCK")
+    predicted_close = models.FloatField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    execution_time = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        db_table_comment = 'Heroku Table'
+        db_table = 'model_prediction'    
