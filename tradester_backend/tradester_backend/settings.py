@@ -42,7 +42,7 @@ if RENDER_EXTERNAL_HOSTNAME: ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 INSTALLED_APPS = [
     'tradester.apps.TradesterConfig',
     'friendship.apps.FriendshipConfig',
-    #'heroku_connection.apps.HerokuConnectionConfig',
+    'heroku_connection.apps.HerokuConnectionConfig',
     'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -107,20 +107,16 @@ WSGI_APPLICATION = 'tradester_backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASE_ROUTERS = [    
-    'tradester_backend.routers.HerokuRouter',
-    'tradester_backend.routers.DefaultRouter'
-    
+    'tradester_backend.routers.DatabaseRouter'
 ]
 
 
 db = os.environ.get('DB_CONN_STRING_DEV', default='')
-
+heroku_db = os.environ.get('HEROKU_CONN_STRING', default='')
 DATABASES = {
-
     'default': dj_database_url.config(default=db, conn_max_age=600),
     'render': dj_database_url.config(default=db, conn_max_age=600),
-    'heroku': {
-    }
+    'heroku': dj_database_url.config(default=heroku_db,conn_max_age=600)
 }
 
 

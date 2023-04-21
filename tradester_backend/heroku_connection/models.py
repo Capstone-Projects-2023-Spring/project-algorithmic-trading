@@ -2,40 +2,34 @@ from django.db import models
 
 # Create your models here.
 class GpuServerLogs(models.Model):
-    accesstime = models.CharField(primary_key=True, db_column='accessTime', default = '0')  # Field name made lowercase.
-    response = models.CharField(blank=True, null=True)
-
+    accesstime = models.CharField(db_column='accessTime', blank=True, null=True, max_length=255)  # Field name made lowercase.
+    response = models.CharField(blank=True, null=True, max_length=255)
+    id = models.AutoField(primary_key=True)
     class Meta:
-        #app_label= 'Heroku'
-        # managed = False
         db_table = 'GPU_Server_Logs'
-        # using = 'heroku'
+        managed = False
 
 class Backlog(models.Model):
-    ticker = models.CharField(primary_key=True, default = "DEFAULT_STOCK")
+    ticker = models.CharField(primary_key=True, default = "DEFAULT_STOCK", max_length=10)
     date = models.DateField(blank=True, null=True)
     open = models.FloatField(blank=True, null=True)
     close = models.FloatField(blank=True, null=True)
     low = models.FloatField(blank=True, null=True)
     high = models.FloatField(blank=True, null=True)
     volume = models.FloatField(blank=True, null=True)
-
+    id = models.AutoField(primary_key=True)
     class Meta:
-        #app_label= 'Heroku'
-        # managed = False
         db_table = 'backlog'
-        #using = 'heroku'
+        managed = False
         
 
 
 class ModelPrediction(models.Model):
-    stock = models.CharField(primary_key=True, default = "DEFAULT_STOCK")
+    stock = models.CharField(primary_key=True, default = "DEFAULT_STOCK", max_length=10)
     predicted_close = models.FloatField(blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     execution_time = models.FloatField(blank=True, null=True)
-
+    id = models.AutoField(primary_key=True)
     class Meta:
-        #app_label= 'Heroku'
-        # managed = False
         db_table = 'model_prediction'    
-        #using = 'heroku'
+        managed = False
