@@ -22,4 +22,5 @@ urlpatterns = [
     path('friendship/', include('friendship.urls')),
     path('auth/', include('auth.urls')),
     path('admin/', admin.site.urls),
+    path('heroku_connection/', include('heroku_connection.urls'))
 ]
