@@ -10,7 +10,7 @@ class GpuServerLogs(models.Model):
         managed = False
 
 class Backlog(models.Model):
-    ticker = models.CharField(primary_key=True, default = "DEFAULT_STOCK", max_length=10)
+    ticker = models.CharField(default = "DEFAULT_STOCK", max_length=10)
     date = models.DateField(blank=True, null=True)
     open = models.FloatField(blank=True, null=True)
     close = models.FloatField(blank=True, null=True)
@@ -25,7 +25,7 @@ class Backlog(models.Model):
 
 
 class ModelPrediction(models.Model):
-    stock = models.CharField(primary_key=True, default = "DEFAULT_STOCK", max_length=10)
+    stock = models.CharField(default = "DEFAULT_STOCK", max_length=10)
     predicted_close = models.FloatField(blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     execution_time = models.FloatField(blank=True, null=True)

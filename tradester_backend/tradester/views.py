@@ -8,6 +8,7 @@ from django.utils import timezone
 from datetime import timedelta
 
 from tradester.models import *
+from heroku_connection.functions import get_close_past_week, get_latest_close_prediction
 from friendship.functions import get_friendship
 from functions.functions import get_user_from_token
 
@@ -133,10 +134,13 @@ class DisplayPortfolio(APIView):
             stock_name= stk.stock_symbol.stock_symbol
             # print(stock_name, ': ', stk.quantity)
             if not stock_name in return_object:
+                close_values = get_close_past_week(stock_name)
+                close_values.append(get_latest_close_prediction(stock_name))
                 real_stock = Stock.objects.get(stock_symbol=stock_name)
                 return_object[stock_name] = {
                     'quantity_total':0,
                     'purchase_value':0.0,
+                    'close_values': close_values,
                     'real_'+stock_name:{
                         'price':real_stock.current_price,
                         'real_value': 0                       
