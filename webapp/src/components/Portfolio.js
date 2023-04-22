@@ -120,11 +120,18 @@ const Portfolio = () => {
               close_values.push(close_value.price);
               close_dates.push(
                 date.toLocaleDateString('en-US', {
+                  timeZone: 'UTC',
                   month: 'short',
                   day: '2-digit',
                   year: 'numeric'
                 })
               );
+              console.log(close_value.date);
+              console.log(date.toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: '2-digit',
+                  year: 'numeric'
+                }));
             }
             stock.push(close_values);
             stock.push(close_dates);
