@@ -25,14 +25,20 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,html}\""
   },
   "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "babel-jest": "^29.5.0",
     "gh-pages": "^5.0.0",
+    "jest": "^27.5.1",
     "prettier": "^2.8.4",
     "react-scripts": "latest"
   },
