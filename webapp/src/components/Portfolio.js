@@ -3,7 +3,6 @@ import Async from "react-async";
 import { Outlet, useLocation } from "react-router-dom";
 import Chart from "react-apexcharts";
 import "./style/portfolio.css";
-import Predictions from "./predictions.json";
 import { API_ENDPOINT } from "../services/api-endpoints";
 
 const sellStock = (stock, qty, price) => {
@@ -26,35 +25,19 @@ const sellStock = (stock, qty, price) => {
     });
 };
 
-const getDates = () => {
-  let dates = [];
-  let d = new Date();
-
-  for (let i = 0; i < 6; i++) {
-    let newD = new Date(d - 1000 * 60 * 60 * 24 * (5 - i));
-    newD = newD.toDateString().replace(/^\S*/g, "");
-    dates.push(newD);
-  }
-
-  let tomorrow = new Date(d);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-
-  dates.push(tomorrow.toDateString().replace(/^\S*/g, ""));
-
-  return dates;
-};
-
 const state = {
   options: {
     chart: {
       type: "line",
       foreColor: "#fff",
     },
-    xaxis: {
-      categories: getDates(),
-    },
     yaxis: {
       decimalsInFloat: "false",
+      labels: {
+        formatter: function (value) {
+          return value.toFixed(2);
+        }
+      },
     },
     forecastDataPoints: {
       count: 1,
@@ -62,32 +45,7 @@ const state = {
   },
 };
 
-const genData = (name) => {
-  let stockCost = 0;
-
-  Predictions.every((pred) => {
-    if (pred.ticker == name) {
-      stockCost = pred["close price"];
-      return false;
-    }
-
-    return true;
-  });
-
-  let pred = stockCost;
-  stockCost -= 5;
-  let data = [];
-  const min = -2;
-  const max = 3;
-
-  for (let i = 0; i < 6; i++) {
-    let stockMod = min + Math.random() * (max - min);
-    stockCost = stockCost + (stockCost * stockMod) / 100;
-    data.push(stockCost);
-  }
-
-  data.push(pred);
-
+const genData = (name, data) => {
   let color = "";
   while (color.length < 7)
     color = "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -153,6 +111,36 @@ const Portfolio = () => {
             );
             let profits = stock[4] - stock[1];
             stock.push(profits);
+
+            let close_values = []
+            let close_dates = []
+            for (let close_value of data[datapoints[i]].close_values) {
+              let date = new Date(close_value.date);
+              
+              close_values.push(close_value.price);
+              close_dates.push(
+                date.toLocaleDateString('en-US', {
+                  timeZone: 'UTC',
+                  month: 'short',
+                  day: '2-digit',
+                  year: 'numeric'
+                })
+              );
+              console.log(close_value.date);
+              console.log(date.toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: '2-digit',
+                  year: 'numeric'
+                }));
+            }
+            stock.push(close_values);
+            stock.push(close_dates);
+
+            if (!state.options.xaxis) {
+              state.options.xaxis = {
+                categories: close_dates,
+              };
+            }
             stocks.push(stock);
           }
           /**
@@ -175,7 +163,7 @@ const Portfolio = () => {
                   <h3>Owned: {stock[3]}</h3>
                   <Chart
                     options={state.options}
-                    series={genData(stock[0])}
+                    series={genData(stock[0], stock[6])}
                     type="line"
                     height={350}
                   />
