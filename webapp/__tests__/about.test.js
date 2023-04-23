@@ -5,5 +5,6 @@ import { render, screen, cleanup } from "@testing-library/react";
 describe("About", () => {
   test("renders about header", () => {
     render(<About />);
+    screen.getByText(/About/);
   });
 });

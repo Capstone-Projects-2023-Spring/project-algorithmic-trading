@@ -143,12 +143,18 @@ module.exports = {
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
 
+  transform: {
+    "^.+\\.(js|jsx)$": "babel-jest",
+  },
+  moduleNameMapper: {
+    "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+  },
   // The test environment that will be used for testing
-  testEnvironment: "jsdom",
+  // testEnvironment: "jest-environment-node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
-
+  testEnvironment: "jsdom",
   // Adds a location field to test results
   // testLocationInResults: false,
 
@@ -192,10 +198,4 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-  transform: {
-    "^.+\\.(js|jsx)$": "babel-jest",
-  },
-  moduleNameMapper: {
-    "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-  },
 };

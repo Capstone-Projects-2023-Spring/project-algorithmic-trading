@@ -5,7 +5,7 @@ import About from "./components/About";
 import Blog from "./components/Blog";
 import Post from "./components/Post";
 import Dashboard from "./components/Dashboard.tsx";
-import Login from "./components/Login.tsx";
+import Login from "./components/Login.jsx";
 import Logout from "./components/Logout";
 import Register from "./components/Register";
 import Simulation from "./components/Simulation";

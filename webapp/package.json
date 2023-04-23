@@ -39,8 +39,11 @@
     "babel-jest": "^29.5.0",
     "gh-pages": "^5.0.0",
     "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3",
+    "node-fetch": "^3.3.1",
     "prettier": "^2.8.4",
-    "react-scripts": "latest"
+    "react-scripts": "latest",
+    "use-resize-observer": "^9.1.0"
   },
   "browserslist": {
     "production": [
