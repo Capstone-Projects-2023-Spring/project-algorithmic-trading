@@ -30,16 +30,27 @@ import datetime
 key = os.environ.get('DB_CONN_DAILY', default='')
 from django.conf import settings
 
+from heroku_connection.models import *
+import pandas as pd
+
 def get_stock_data_candle(request, _stock_symbol):
-    api_key = settings.SECRET_KEY
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={_stock_symbol}&outputsize=compact&apikey={api_key}'
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return JsonResponse(data)
-    else:
-        error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
-        return JsonResponse(error_msg)
+    stock_data = Backlog.objects.filter(ticker=_stock_symbol)
+    data = []
+    for entry in stock_data:
+        data.append({
+            'date': entry.date,
+            '1. open': entry.open,
+            '4. close': entry.close,
+            '3. low': entry.low,
+            '2. high': entry.high,
+        })
+    data = pd.DataFrame(data)
+    print(data.columns)
+    data.set_index('date')
+    print(data.head())
+    dict_data = data.to_dict(orient='index')
+    api_response = {'Time Series (Daily)': dict_data}
+    return JsonResponse(api_response)
 
  
 def get_stock_data(request, _stock_symbol):
