@@ -34,7 +34,10 @@ from heroku_connection.models import *
 import pandas as pd
 
 def get_stock_data_candle(request, _stock_symbol):
-    stock_data = Backlog.objects.filter(ticker=_stock_symbol)
+    stock_data = Backlog.objects.filter(
+        ticker=_stock_symbol
+        ,date__gte = (datetime.date.today()- datetime.timedelta(days=365))
+        ).order_by('-date')
     data = []
     for entry in stock_data:
         data.append({
@@ -45,11 +48,11 @@ def get_stock_data_candle(request, _stock_symbol):
             '2. high': entry.high,
         })
     data = pd.DataFrame(data)
-    print(data.columns)
-    data.set_index('date')
-    print(data.head())
+    data['date'] = data['date'].astype(str)
+    data = data.set_index('date')
     dict_data = data.to_dict(orient='index')
     api_response = {'Time Series (Daily)': dict_data}
+    #print(api_response)
     return JsonResponse(api_response)
 
  
