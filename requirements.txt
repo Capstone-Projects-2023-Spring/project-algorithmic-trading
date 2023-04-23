@@ -7,3 +7,4 @@ Flask~=2.1.0
 paramiko
 pandas
 sqlalchemy
+pandas_market_calendars

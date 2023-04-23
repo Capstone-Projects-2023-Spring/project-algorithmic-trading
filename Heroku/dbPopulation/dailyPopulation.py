@@ -10,6 +10,17 @@ import os
 import requests
 import json
 
+import datetime
+import pandas_market_calendars as mcal
+nyse = mcal.get_calendar('NYSE')
+today = datetime.date.today()
+
+valid_day = nyse.valid_days(start_date=today, end_date=today)
+
+if len(valid_day == 0 or (datetime.date.weekday() >= 5)):
+    exit()
+
+
 connection_string = (os.environ['DATABASE_URL'] + "?gssencmode=disable")[8:]
 connection_string = 'postgresql' + connection_string
 
@@ -92,3 +103,9 @@ for stock in stocks:
 cur.execute("""Insert into backlog select * From daily_updates_temp ON CONFLICT DO NOTHING;""")
 cur.execute("""DROP TABLE daily_updates_temp;""")
 conn.commit()
+
+# Theoritically just importing the script here should make it run
+import remoteRunningScript
+
+#import subprocess
+#subprocess.run(['python', 'Heroku/remoteScripts/remoteRunningScript'])
