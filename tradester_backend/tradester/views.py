@@ -36,7 +36,7 @@ import pandas as pd
 def get_stock_data_candle(request, _stock_symbol):
     stock_data = Backlog.objects.filter(
         ticker=_stock_symbol
-        ,date__gte = (datetime.date.today()- datetime.timedelta(days=365))
+        ,date__gte = (datetime.date.today()- datetime.timedelta(days=150))
         ).order_by('-date')
     data = []
     for entry in stock_data:
