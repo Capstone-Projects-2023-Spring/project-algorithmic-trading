@@ -11,6 +11,8 @@ from decimal import Decimal
 
 from django.conf import settings
 
+credentials = {'username': 'testuser', 'password': 'testpass'}
+
 class TestUpdateOrderView(TestCase):
     databases ={}
     databases['render'] = settings.DATABASES['render']
@@ -85,24 +87,13 @@ class TestPortfolioFunctions(TestCase):
     headers = None
     def setUp(self):
         self.client = APIClient()
-        existing_users = list(User.objects.values_list('username', flat=True))
-        if 'testuser' in existing_users:
-            # Delete existing user with the same username if it exists
-            User.objects.filter(username='testuser').delete()
-
         self.user = User.objects.create_user(
-            username='testuser',
-            password='testpass'
+            username=credentials['username'],
+            password=credentials['password']
         ) 
-
-        self.client.login(username='testuser', password='testpass')
-        url = reverse('token_obtain_pair')
-        data = {'username': 'testuser', 'password': 'testpass'}
-        response = self.client.post(url, data, format='json')
-        self.access_token = response.data['access']
-        self.headers = {'Authorization': 'Bearer ' + self.access_token}
+        response = self.client.post('/auth/token/', credentials, format='json')
+        self.headers = {'Authorization': 'Bearer ' + response.data['access']}
         
-
         #add a stock to the stock table
         stock, created= Stock.objects.get_or_create(stock_symbol='TEST', current_price=20)
         stock.save()
