@@ -133,3 +133,4 @@ class TestPortfolioFunctions(TestCase):
         #sell that stock
         response = self.client.get(f'/tradester/sell_stock/?stock={stock}&price={price}&quantity={quantity}', headers=self.headers)
         self.assertEquals(response.status_code, status.HTTP_200_OK)
+
