@@ -1,0 +1,19 @@
+.user-display {
+  display: flex;
+  flex-direction: row;
+  min-width: 25%;
+  background-color: lightblue;
+  color: rgb(17, 25, 67);
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 10px;
+}
+
+.user-display p,
+.user-display b {
+  background-color: inherit;
+  color: inherit;
+}

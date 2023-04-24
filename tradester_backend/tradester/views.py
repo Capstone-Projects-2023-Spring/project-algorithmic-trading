@@ -8,6 +8,9 @@ from django.utils import timezone
 from datetime import timedelta
 
 from tradester.models import *
+from heroku_connection.functions import get_close_past_week, get_latest_close_prediction
+from friendship.functions import get_friendship
+from functions.functions import get_user_from_token
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -27,16 +30,30 @@ import datetime
 key = os.environ.get('DB_CONN_DAILY', default='')
 from django.conf import settings
 
+from heroku_connection.models import *
+import pandas as pd
+
 def get_stock_data_candle(request, _stock_symbol):
-    api_key = settings.SECRET_KEY
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={_stock_symbol}&outputsize=compact&apikey={api_key}'
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return JsonResponse(data)
-    else:
-        error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
-        return JsonResponse(error_msg)
+    stock_data = Backlog.objects.filter(
+        ticker=_stock_symbol
+        ,date__gte = (datetime.date.today()- datetime.timedelta(days=150))
+        ).order_by('-date')
+    data = []
+    for entry in stock_data:
+        data.append({
+            'date': entry.date,
+            '1. open': entry.open,
+            '4. close': entry.close,
+            '3. low': entry.low,
+            '2. high': entry.high,
+        })
+    data = pd.DataFrame(data)
+    data['date'] = data['date'].astype(str)
+    data = data.set_index('date')
+    dict_data = data.to_dict(orient='index')
+    api_response = {'Time Series (Daily)': dict_data}
+    #print(api_response)
+    return JsonResponse(api_response)
 
  
 def get_stock_data(request, _stock_symbol):
@@ -75,25 +92,6 @@ def get_investment(request, token):
     # TODO: implement getting investment info
     return HttpResponse("get_investment")
 
-
-def get_user_from_token(request):
-    """
-    View to receive the user from a given token in the request
-
-    param request: the request object \n
-    return: User object when successful or None
-    """
-    user = None
-    try: 
-        token_header = request.headers['authorization']
-        token = token_header.split()[1]     #get the second argument (the first is "Bearer")
-        token_obj = AccessToken(token)
-        user_id = token_obj['user_id']
-        user = User.objects.get(id=user_id)
-    except User.DoesNotExist:
-        pass
-    return user 
-
 class DeleteAccount(APIView):
     '''
     expects a header of "authorizations: bearer <token>"
@@ -107,7 +105,6 @@ class DeleteAccount(APIView):
         #print(user.delete())
         return Response(status=status.HTTP_200_OK)
 
-
 class DisplayPortfolio(APIView):
     '''
     expects a header of "authorizations: bearer <token>"
@@ -115,7 +112,18 @@ class DisplayPortfolio(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self,request):
         #get the user
-        user = get_user_from_token(request)
+        user_id = request.GET['user_id']
+        if user_id == 'self':
+            user = get_user_from_token(request)
+        else:
+            user = User.objects.filter(id=user_id).first()
+            friendship = get_friendship(user, get_user_from_token(request)).first()
+            if friendship == None:
+                return Response(
+                    data = {"portfolio": "Not authorized to access this portfolio. User is not a friend."},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+
         if user == None:
             return Response({'portfolio': "no user"})
             
@@ -140,10 +148,13 @@ class DisplayPortfolio(APIView):
             stock_name= stk.stock_symbol.stock_symbol
             # print(stock_name, ': ', stk.quantity)
             if not stock_name in return_object:
+                close_values = get_close_past_week(stock_name)
+                close_values.append(get_latest_close_prediction(stock_name))
                 real_stock = Stock.objects.get(stock_symbol=stock_name)
                 return_object[stock_name] = {
                     'quantity_total':0,
                     'purchase_value':0.0,
+                    'close_values': close_values,
                     'real_'+stock_name:{
                         'price':real_stock.current_price,
                         'real_value': 0                       
@@ -370,7 +381,16 @@ def fetch_daily_OHLC():
     Updates automatically each day.   
     """
 
-    date = (timezone.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+    #we want to pull stock market data for the last date with OHLC data.
+    #We need conditionals to handle weekends (stock data only updated M-F)
+    today = timezone.now()
+
+    if today.weekday() == 5:  # Saturday
+        date = (today - timedelta(days=1)).strftime('%Y-%m-%d')
+    elif today.weekday() == 6:  # Sunday
+        date = (today - timedelta(days=2)).strftime('%Y-%m-%d')
+    else:
+        date = (today - timedelta(days=1)).strftime('%Y-%m-%d')
 
     # API endpoint URL for batch stock quotes
     url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/{date}?adjusted=true&apiKey={key}'
@@ -381,12 +401,13 @@ def fetch_daily_OHLC():
         data = response.json()
     else:
         data = {'error': f'unable to retrieve daily data'}
-    return data
+    return data, date
 
 def update_stocks_daily(request):
     #this function should be running constantly to update the db
     while True:
-        daily_data = fetch_daily_OHLC()
+        daily_data, date = fetch_daily_OHLC()
+        print(daily_data)
         print(daily_data['resultsCount'])
         if "error" in daily_data:
             error_msg = {'error': f'Unable to retrieve daily data'}
@@ -429,7 +450,7 @@ def update_stocks_daily(request):
                         daily_open_price=daily_open_price,
                         daily_volume=daily_volume,
                         daily_vwap=daily_vwap,
-                        timestamp = timezone.now() - timedelta(days=1),
+                        timestamp = date,
                     )
 
                     stocks_to_create.append(stock)
@@ -443,7 +464,7 @@ def update_stocks_daily(request):
                     stock.daily_open_price = daily_open_price
                     stock.daily_volume = daily_volume
                     stock.daily_vwap = daily_vwap
-                    stock.timestamp = timezone.now() - timedelta(days=1)
+                    stock.timestamp = date
 
                     stocks_to_update.append(stock)
 

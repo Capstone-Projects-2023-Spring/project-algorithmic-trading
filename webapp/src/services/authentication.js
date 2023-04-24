@@ -19,6 +19,7 @@ export async function login(username, password) {
     localStorage.clear();
     localStorage.setItem("access_token", data.access);
     localStorage.setItem("refresh_token", data.refresh);
+    sessionStorage.setItem("activeSession", "true");
     return true;
   }
 
@@ -47,6 +48,8 @@ export function logout() {
     .catch((error) => {
       console.error(error);
     });
+
+    sessionStorage.activeSession = "false";
 }
 
 export function isLoggedIn() {

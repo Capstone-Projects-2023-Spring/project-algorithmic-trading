@@ -11,18 +11,29 @@ import Register from "./components/Register";
 import Simulation from "./components/Simulation";
 import Candle from "./components/Candle";
 import Portfolio from "./components/Portfolio";
+import Search from "./components/social/Search";
+import Friends from "./components/social/Friends";
+import FriendRequests from "./components/social/FriendRequests";
 import Menu from "./components/Menu";
 import bull from "./bull.png";
+import br from "./triangles.svg";
 import "./style.css";
 import "./app.css";
-import { isLoggedIn } from "./services/authentication";
+import { isLoggedIn, logout } from "./services/authentication";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
 
+  const isActive = sessionStorage.activeSession;
+  if (!isActive) {
+    logout();
+    setLoggedIn(false);
+  }
+
   const Nav = () => {
     return (
       <div>
+        <img className="background" src={br} alt="Background" />
         <div className="nav">
           <Link className="logo" to="/candle">
             Tradester <img src={bull} alt="Logo" />{" "}
@@ -30,7 +41,16 @@ export default function App() {
           <div className="links">
             <Link to="/about">About</Link>
             <Link to="/simulation">Simulation</Link>
-            <Link to="/portfolio">Portfolio</Link>{" "}
+            <Link
+              to="/portfolio"
+              state={{
+                username: localStorage.getItem("username"),
+                isSelf: true,
+              }}
+            >
+              Portfolio
+            </Link>{" "}
+            <Link to="/search">Social</Link>
             {/* This should be added to loggedIn when ready */}
             {loggedIn ? (
               <Link to="/logout">Logout</Link>
@@ -49,25 +69,41 @@ export default function App() {
   return (
     <>
       <Nav />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/post" element={<Post />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route
-          path="/login"
-          element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
-        />
-        <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/simulation"
-          element={<Simulation loggedIn={loggedIn} />}
-        />
-        <Route path="/candle" element={<Candle />} />
-        <Route path="/portfolio" element={<Portfolio />} />
-      </Routes>
+      <div className="overlay">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/post" element={<Post />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/login"
+            element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+          />
+          <Route
+            path="/logout"
+            element={<Logout setLoggedIn={setLoggedIn} />}
+          />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/simulation"
+            element={<Simulation loggedIn={loggedIn} />}
+          />
+          <Route path="/candle" element={<Candle />} />
+          <Route
+            path="/portfolio"
+            element={
+              <Portfolio
+                username={localStorage.getItem("username")}
+                isSelf={true}
+              />
+            }
+          />
+          <Route path="/search" element={<Search />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/friend-requests" element={<FriendRequests />} />
+        </Routes>
+      </div>
     </>
   );
 }

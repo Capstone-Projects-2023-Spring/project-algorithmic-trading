@@ -19,6 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('tradester/', include('tradester.urls')),
+    path('friendship/', include('friendship.urls')),
     path('auth/', include('auth.urls')),
     path('admin/', admin.site.urls),
+    path('heroku_connection/', include('heroku_connection.urls'))
 ]
