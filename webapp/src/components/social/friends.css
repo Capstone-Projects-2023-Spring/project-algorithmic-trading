@@ -1,0 +1,32 @@
+.friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friends h3 {
+  margin-bottom: 1rem;
+}
+
+.friends ul {
+  list-style-type: none;
+}
+
+.friends .social-tabs {
+  margin-bottom: 1rem;
+}
+
+.friends .user-display {
+  min-width: 14em;
+  border-radius: 0.5rem;
+  height: 100%;
+}
+
+.requests-container {
+  max-width: 35em;
+}
+
+.accept-decline-container {
+  display: flex;
+  flex-direction: row;
+}

@@ -2,6 +2,7 @@
   "name": "react",
   "version": "0.0.0",
   "private": true,
+  "homepage": "https://jalzeidi.github.io/tradester-frontend",
   "dependencies": {
     "@web3-react/core": "^6.1.9",
     "antd": "^5.2.2",
