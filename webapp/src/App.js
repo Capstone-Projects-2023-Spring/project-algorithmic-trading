@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import About from "./components/About";
 import Blog from "./components/Blog";
@@ -22,6 +22,7 @@ import "./app.css";
 import { isLoggedIn, logout } from "./services/authentication";
 
 export default function App() {
+  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
 
   const isActive = sessionStorage.activeSession;
@@ -46,6 +47,7 @@ export default function App() {
               state={{
                 username: localStorage.getItem("username"),
                 isSelf: true,
+                loggedIn: loggedIn,
               }}
             >
               Portfolio
@@ -71,7 +73,11 @@ export default function App() {
       <Nav />
       <div className="overlay">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route 
+            path="/" 
+            element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+          />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/post" element={<Post />} />
@@ -89,17 +95,18 @@ export default function App() {
             path="/simulation"
             element={<Simulation loggedIn={loggedIn} />}
           />
-          <Route path="/candle" element={<Candle />} />
+          <Route path="/candle" element={<Candle loggedIn={loggedIn} navigate={navigate}/>} />
           <Route
             path="/portfolio"
             element={
               <Portfolio
                 username={localStorage.getItem("username")}
                 isSelf={true}
+                loggedIn={loggedIn}
               />
             }
           />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search" element={<Search loggedIn={loggedIn}/>} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/friend-requests" element={<FriendRequests />} />
         </Routes>

@@ -9,11 +9,23 @@ import {
   sendFriendRequest,
   revokeFriendRequest,
 } from "../../services/friendship";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Search() {
+export default function Search({ loggedIn }) {
+  const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [foundUser, setFoundUser] = useState(null);
+
+  useEffect(() => {
+    if (loggedIn === false) {
+      navigate("/login");
+    }
+  })
+  
+  if (loggedIn === false) {
+    return;
+  }
 
   const sendRequest = async () => {
     await sendFriendRequest(foundUser.user_id);

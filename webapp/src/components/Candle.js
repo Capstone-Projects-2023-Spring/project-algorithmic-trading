@@ -65,6 +65,9 @@ class Candle extends Component {
   }
 
   componentDidMount() {
+    if (this.props.loggedIn === false) {
+      this.props.navigate("login/");
+    }
 
     const script = document.createElement('script');
     script.type = "text/javascript";
@@ -240,6 +243,10 @@ class Candle extends Component {
   }
 
   render() {
+    if (this.props.loggedIn === false) {
+      return;
+    }
+
     const options = [{ value: "", label: "" }];
     options.pop();
 

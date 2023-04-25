@@ -37,7 +37,7 @@ const Login = ({ loggedIn, setLoggedIn }) => {
   const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
-    if (loggedIn) navigate("/");
+    if (loggedIn) navigate("/home");
   });
 
   const onLogin = async () => {
@@ -46,7 +46,7 @@ const Login = ({ loggedIn, setLoggedIn }) => {
       localStorage.setItem("username", username);
       setLoggedIn(true);
       setFeedback("");
-      navigate("/");
+      navigate("/home");
     } else {
       setFeedback("Invalid credentials.");
     }

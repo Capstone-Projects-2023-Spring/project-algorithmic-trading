@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Async from "react-async";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Chart from "react-apexcharts";
 import "./style/portfolio.css";
 import { API_ENDPOINT } from "../services/api-endpoints";
+import { isLoggedIn } from "../services/authentication";
 
 const sellStock = (stock, qty, price) => {
   alert("Stock Sold!");
@@ -73,11 +74,21 @@ const loadPortfolio = (id) =>
 
 const Portfolio = () => {
   let location = useLocation();
+  const navigate = useNavigate();
 
   let username = location.state.username;
   let isSelf = location.state.isSelf;
   let userId = isSelf ? "self" : location.state.userId;
+  let loggedIn = location.state.loggedIn;
 
+  useEffect(() => {
+    if (loggedIn === false) {
+      navigate("/login");
+    }
+  })
+
+  if (loggedIn === false) return;
+  
   return (
     <Async promiseFn={() => loadPortfolio(userId)}>
       {({ data, error, isLoading }) => {
