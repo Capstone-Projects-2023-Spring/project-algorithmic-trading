@@ -6,13 +6,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #9d2235;
+  --ifm-color-primary: #45229d;
   --ifm-color-primary-dark: #8d1f30;
   --ifm-color-primary-darker: #851d2d;
   --ifm-color-primary-darkest: #6e1825;
-  --ifm-color-primary-light: #ad253a;
-  --ifm-color-primary-lighter: #b5273d;
-  --ifm-color-primary-lightest: #cc2c45;
+  --ifm-color-primary-light: #daa1aa;
+  --ifm-color-primary-lighter: #aeb7ec;
+  --ifm-color-primary-lightest: #b5bcf1;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -39,5 +39,5 @@
 }
 
 #atlwdg-trigger.atlwdg-trigger.atlwdg-RIGHT{
-  background-color: #9d2235;
+  background-color: #cdb9f8;
 }

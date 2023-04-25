@@ -1,4 +1,12 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-f4981d0f882b2a3f0472912d15f9806d57e124e0fc890972558857b51b24a6f9.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10118280)
+
+
+
+<div align="right">
+
+[![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10118280)
+
+</div>
+
 <div align="center">
 
 # Tradester
@@ -6,40 +14,53 @@
 [![Deploy Docs](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml/badge.svg)](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml)
 [![Documentation Website Link](https://img.shields.io/badge/-Documentation%20Website-brightgreen)](https://applebaumian.github.io/tu-cis-4398-docs-template/)
 
-
 </div>
 
+## Running Locally
+
+If you would like to run Tradester locally, you can do so using node.js to run the frontend and poetry to run the backend. We suggest using nvm (macos, linux) or nvm-windows to install the current version of node and npm, click [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if you don't have those installed yet.  poetry can be downloaded [here](https://python-poetry.org/), and you will need the latest version of python, available [here](https://www.python.org/).  
+
+npm and poetry will create virtual environments with the required dependencies to run the frontend and backend, respectively.
+
+Open two terminals (or shell applications). In one terminal, deploy the frontend by navigating to /webapp and inputing the following:
+
+    npm install
+    npm run start
+
+In the other terminal, navigate to /tradester_backend (not /tradester_backend/tradester_backend), and deploy the backend with the following:
+
+    poetry install
+    poetry run python3 manage.py runserver
+
+In both cases, if no new packages have been added to the project, there is no need to run the install command, but it is a good habit to run the install as an early debug if you cannot get a new version of the project to run. Also, I use the command ```python3``` as shorthand for the latest version of python.  
 
 ## Keywords
 
-Section #, as well as any words that quickly give your peers insights into the application like programming language, development platform, type of application, etc.
+Section 2, python, react, machine learning, simulated stock trading
 
 ## Project Abstract
 
-This document proposes an application of quantitative trading strategies to create a desktop application that may select profitable stocks, indicate when to sell stocks, simulate trading in real time and even analyze orders placed via a QuantConnect account. The user may interact with a UI to first select one of three strategies: a day trading, a long-term trading, and an S&P 500 strategy. The day trading strategy will buy and sell stocks in real time instantaneously, while the long-term trading strategy will buy stocks with the most growth potential over time, sell them when they are done growing, after at least a day. Finally, the S&P 500 strategy will analyze stock data of fortune 500 companies and buy stocks for the best performing companies. The user may also select between a simulation mode and a trading mode, the trading mode involving trading automatically through the user’s QuantConnect account and the simulation mode simulating trades with a base amount of capital provided by the user and comparisons to the performance of the S&P 500.
+This document proposes an educational webb application for simulated stock trading using real stock data and a machine learning model to predict future stock values. The user may make an account, choose an amount to being trading with, and begin viewing, purchasing, and selling stocks in a simualted environment. This application is for education, and as such the user may connect to other user accounts to compare their own strategies to their peers.
 
 ## High Level Requirement
 
-The user may interact with a user interface to show stock data accessed through the Alpha Vantage API, including graphs with relevant data. The user may choose a simulation mode to analyze quantitative trading strategies utilizing regression, stock data, and relevant indicators and see potential profits from real time trading data. The user may also choose a trading mode to automatically make actual trades with real money through the QuantConnect trading platform. 
-
+The user may interact with a user interface to show stock data accessed through the Alpha Vantage API, including graphs with relevant data. The user may choose an amount to simulate trading with, then make simulated purchases and sales of stocks based on predictions made by our machine learning model, real stock data, and relevant indicators. A social function allows users to connect their accounts to those of other users and compare trading choices.  
 
 ## Conceptual Design
 
-This trading bot will utilize the python programming language with the NumPy and pandas libraries. Stock data will be accessed through the Alpha Vantage API, as it is free. QuantConnect will be the trading platform used as it allows for automation using python and has no commission price for stocks and ETFs. Additionally, wxPython will be used to create a robust user interface. This bot will also be able to be run on any modern 64 bit Windows, MacOS and Linux operating systems.
+This simulated trading application will utilize the python programming language with the NumPy and pandas libraries. Stock data will be accessed through the Alpha Vantage API, as it is free. This app will also be able to be run on any modern 64 bit Windows, MacOS and Linux operating systems.
 
 ## Background
 
-The difference between this bot and others are as follows:  
+The difference between this app and others are as follows:  
 
 This is a free product  
 
-It integrates a simulation  
+It integrates a neural net machine learning model  
 
 It comes with a built-in user interface  
 
-It does not violate any Terms of Service  
-
-Many open source bots exist but are of questionable reliability. They also act on a variety of trading platforms, many of which have automatic trading against their terms of service. These bots often result in accounts with these platforms being terminated. As such this product aims to provide a safe, legal and reliable way to make money in and understand the stock market. Now QuantConnect already has some built-in trading bots, however they will not be used except for comparing performance between these and this product’s bots/strategies.
+It has a social function and learning component
 
 Sources:
 https://medium.com/codex/the-mystery-of-the-robinhood-api-99a4cd62a531
@@ -48,7 +69,7 @@ https://www.investopedia.com/articles/active-trading/081315/how-code-your-own-al
 
 ## Required Resources
 
-This project will require extensive research on quantitative trading algorithms. I am already familiar with some, such as Kelly’s Criterion, however more should be considered. This will require an installation of QuantConnect, which is a free trading platform, along with an account linked to a bank account if trading with real money is pursued. This will require discussion with the instructor as I am unfamiliar with the policy when it comes to something like this, though I would be willing to put $20 of my own money into this account. This will require a Python IDE such as VSCode, libraries such as NumPy, Pandas and wxPython, the Alpha Vantage API, and a modern computer with a 64 bit Windows, MacOS or Linux operating system.
+The project will require access to an AlphaVantage API key to access real stock data.  The frontend will need a hosting platform and the backend will require a free server and database.  To develop the machine learning model, large amounts of historical stock data will be required, and we will need access to a server with a GPU to train the model.  
 
 ## Collaborators
 
@@ -56,57 +77,57 @@ This project will require extensive research on quantitative trading algorithms.
 <table>
 <tr>
     <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/jbbernardin">
+            <img src="https://avatars.githubusercontent.com/u/62387765?v=4" width="100;" alt="BernardinJohn"/>
             <br />
             <sub><b>John Bernardin</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/jalzeidi">
+            <img src="https://avatars.githubusercontent.com/u/84288872?v=4" width="100;" alt="AlzeidiJaffar"/>
             <br />
             <sub><b>Jaffar Alzeidi</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/seanbritt">
+            <img src="https://avatars.githubusercontent.com/u/70382208?v=4" width="100;" alt="BrittSean"/>
             <br />
             <sub><b>Sean Britt</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/patriickdoyle">
+            <img src="https://avatars.githubusercontent.com/u/73042164?v=4" width="100;" alt="DoylePatrick"/>
             <br />
             <sub><b>Patrick Doyle</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/guthriealbertson">
+            <img src="https://avatars.githubusercontent.com/u/89537502?v=4" width="100;" alt="AlbertsonGuthrie"/>
             <br />
             <sub><b>Guthrie Albertson</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/tuf99746">
+            <img src="https://avatars.githubusercontent.com/u/97983404?v=4" width="100;" alt="BonanniNick"/>
             <br />
             <sub><b>Nick Bonanni</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/safowler77">
+            <img src="https://avatars.githubusercontent.com/u/70285047?v=4" width="100;" alt="FowlerShawn"/>
             <br />
             <sub><b>Shawn Fowler</b></sub>
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/OwenKing2">
+            <img src="https://avatars.githubusercontent.com/u/77747886?v=4" width="100;" alt="KingOwen"/>
             <br />
             <sub><b>Owen King</b></sub>
         </a>
