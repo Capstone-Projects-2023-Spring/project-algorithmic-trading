@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://github.com/Capstone-Projects-2023-Spring/project-algorithmic-trading/blob/documentation/documentation/static/img/Tradester_Logo.svg';
+const logo = 'img/Tradester_Logo.svg';
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
@@ -127,7 +127,7 @@ const config = {
           // },
           {
             href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
-            label: 'GitHub',
+            label: 'github',
             position: 'right',
           },
         ],

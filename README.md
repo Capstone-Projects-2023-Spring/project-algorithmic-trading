@@ -1,11 +1,18 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-f4981d0f882b2a3f0472912d15f9806d57e124e0fc890972558857b51b24a6f9.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10118280)
+
+
+
+<div align="right">
+
+[![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10118280)
+
+</div>
+
 <div align="center">
 
 # Tradester
 [![Report Issue on Jira](https://img.shields.io/badge/Report%20Issues-Jira-0052CC?style=flat&logo=jira-software)](https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/DT/issues)
 [![Deploy Docs](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml/badge.svg)](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml)
 [![Documentation Website Link](https://img.shields.io/badge/-Documentation%20Website-brightgreen)](https://applebaumian.github.io/tu-cis-4398-docs-template/)
-
 
 </div>
 
@@ -16,7 +23,7 @@ Section 2, python, react, machine learning, simulated stock trading
 
 ## Project Abstract
 
-This document proposes an application of quantitative trading strategies to create a desktop application that may select profitable stocks, indicate when to sell stocks, simulate trading in real time and even analyze orders placed via a QuantConnect account. The user may interact with a UI to first select one of three strategies: a day trading, a long-term trading, and an S&P 500 strategy. The day trading strategy will buy and sell stocks in real time instantaneously, while the long-term trading strategy will buy stocks with the most growth potential over time, sell them when they are done growing, after at least a day. Finally, the S&P 500 strategy will analyze stock data of fortune 500 companies and buy stocks for the best performing companies. The user may also select between a simulation mode and a trading mode, the trading mode involving trading automatically through the user’s QuantConnect account and the simulation mode simulating trades with a base amount of capital provided by the user and comparisons to the performance of the S&P 500.
+This document proposes an educational webb application for simulated stock trading using real stock data and a machine learning model to predict future stock values. The user may make an account, choose an amount to being trading with, and begin viewing, purchasing, and selling stocks in a simualted environment. This application is for education, and as such the user may connect to other user accounts to compare their own strategies to their peers.
 
 ## High Level Requirement
 
