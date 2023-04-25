@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://upload.wikimedia.org/wikipedia/commons/1/17/Temple_T_logo.svg';
+const logo = 'img/Tradester_Logo.svg';
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
@@ -28,7 +28,7 @@ const title = ''+process.env.PROJECT_NAME.replace('-',' ').split(' ').map((word)
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: title,
-  tagline: 'Owls are cool',
+  tagline: 'Make the Trades',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://'+process.env.ORG_NAME+'.github.io/',
   baseUrl: '/'+process.env.PROJECT_NAME+'/',
@@ -109,7 +109,7 @@ const config = {
         /*TODO: Change to your project's title*/
         title: title,
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Tradester Logo',
           src: logo,
         },
         items: [
@@ -118,22 +118,23 @@ const config = {
             docId: 'intro',
             position: 'left',
             label: 'Documentation',
-          },{
-            to: '/tutorial/Intro',
-            label: 'Docusaurus Tutorial',
-            position: 'left',
-            activeBaseRegex: `/tutorial/`,
           },
+          // {
+          //   to: '/tutorial/Intro',
+          //   label: 'Docusaurus Tutorial',
+          //   position: 'left',
+          //   activeBaseRegex: `/tutorial/`,
+          // },
           {
             href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
-            label: 'GitHub',
+            label: 'github',
             position: 'right',
           },
         ],
       },
       footer: {
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Tradester Logo',
           src: logo,
         },
         links: [
