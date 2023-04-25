@@ -16,6 +16,23 @@
 
 </div>
 
+## Running Locally
+
+If you would like to run Tradester locally, you can do so using node.js to run the frontend and poetry to run the backend. We suggest using nvm (macos, linux) or nvm-windows to install the current version of node and npm, click [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if you don't have those installed yet.  poetry can be downloaded [here](https://python-poetry.org/), and you will need the latest version of python, available [here](https://www.python.org/).  
+
+npm and poetry will create virtual environments with the required dependencies to run the frontend and backend, respectively.
+
+Open two terminals (or shell applications). In one terminal, deploy the frontend by navigating to /webapp and inputing the following:
+
+    npm install
+    npm run start
+
+In the other terminal, navigate to /tradester_backend (not /tradester_backend/tradester_backend), and deploy the backend with the following:
+
+    poetry install
+    poetry run python3 manage.py runserver
+
+In both cases, if no new packages have been added to the project, there is no need to run the install command, but it is a good habit to run the install as an early debug if you cannot get a new version of the project to run. Also, I use the command ```python3``` as shorthand for the latest version of python.  
 
 ## Keywords
 
