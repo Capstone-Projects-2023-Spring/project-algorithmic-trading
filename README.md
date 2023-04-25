@@ -12,7 +12,7 @@
 
 ## Keywords
 
-Section #, as well as any words that quickly give your peers insights into the application like programming language, development platform, type of application, etc.
+Section 2, python, react, machine learning, simulated stock trading
 
 ## Project Abstract
 
@@ -20,26 +20,23 @@ This document proposes an application of quantitative trading strategies to crea
 
 ## High Level Requirement
 
-The user may interact with a user interface to show stock data accessed through the Alpha Vantage API, including graphs with relevant data. The user may choose a simulation mode to analyze quantitative trading strategies utilizing regression, stock data, and relevant indicators and see potential profits from real time trading data. The user may also choose a trading mode to automatically make actual trades with real money through the QuantConnect trading platform. 
-
+The user may interact with a user interface to show stock data accessed through the Alpha Vantage API, including graphs with relevant data. The user may choose an amount to simulate trading with, then make simulated purchases and sales of stocks based on predictions made by our machine learning model, real stock data, and relevant indicators. A social function allows users to connect their accounts to those of other users and compare trading choices.  
 
 ## Conceptual Design
 
-This trading bot will utilize the python programming language with the NumPy and pandas libraries. Stock data will be accessed through the Alpha Vantage API, as it is free. QuantConnect will be the trading platform used as it allows for automation using python and has no commission price for stocks and ETFs. Additionally, wxPython will be used to create a robust user interface. This bot will also be able to be run on any modern 64 bit Windows, MacOS and Linux operating systems.
+This simulated trading application will utilize the python programming language with the NumPy and pandas libraries. Stock data will be accessed through the Alpha Vantage API, as it is free. This app will also be able to be run on any modern 64 bit Windows, MacOS and Linux operating systems.
 
 ## Background
 
-The difference between this bot and others are as follows:  
+The difference between this app and others are as follows:  
 
 This is a free product  
 
-It integrates a simulation  
+It integrates a neural net machine learning model  
 
 It comes with a built-in user interface  
 
-It does not violate any Terms of Service  
-
-Many open source bots exist but are of questionable reliability. They also act on a variety of trading platforms, many of which have automatic trading against their terms of service. These bots often result in accounts with these platforms being terminated. As such this product aims to provide a safe, legal and reliable way to make money in and understand the stock market. Now QuantConnect already has some built-in trading bots, however they will not be used except for comparing performance between these and this product’s bots/strategies.
+It has a social function and learning component
 
 Sources:
 https://medium.com/codex/the-mystery-of-the-robinhood-api-99a4cd62a531
@@ -48,7 +45,7 @@ https://www.investopedia.com/articles/active-trading/081315/how-code-your-own-al
 
 ## Required Resources
 
-This project will require extensive research on quantitative trading algorithms. I am already familiar with some, such as Kelly’s Criterion, however more should be considered. This will require an installation of QuantConnect, which is a free trading platform, along with an account linked to a bank account if trading with real money is pursued. This will require discussion with the instructor as I am unfamiliar with the policy when it comes to something like this, though I would be willing to put $20 of my own money into this account. This will require a Python IDE such as VSCode, libraries such as NumPy, Pandas and wxPython, the Alpha Vantage API, and a modern computer with a 64 bit Windows, MacOS or Linux operating system.
+The project will require access to an AlphaVantage API key to access real stock data.  The frontend will need a hosting platform and the backend will require a free server and database.  To develop the machine learning model, large amounts of historical stock data will be required, and we will need access to a server with a GPU to train the model.  
 
 ## Collaborators
 
@@ -56,57 +53,57 @@ This project will require extensive research on quantitative trading algorithms.
 <table>
 <tr>
     <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/jbbernardin">
+            <img src="https://avatars.githubusercontent.com/u/62387765?v=4" width="100;" alt="BernardinJohn"/>
             <br />
             <sub><b>John Bernardin</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/jalzeidi">
+            <img src="https://avatars.githubusercontent.com/u/84288872?v=4" width="100;" alt="AlzeidiJaffar"/>
             <br />
             <sub><b>Jaffar Alzeidi</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/seanbritt">
+            <img src="https://avatars.githubusercontent.com/u/70382208?v=4" width="100;" alt="BrittSean"/>
             <br />
             <sub><b>Sean Britt</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/patriickdoyle">
+            <img src="https://avatars.githubusercontent.com/u/73042164?v=4" width="100;" alt="DoylePatrick"/>
             <br />
             <sub><b>Patrick Doyle</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/guthriealbertson">
+            <img src="https://avatars.githubusercontent.com/u/89537502?v=4" width="100;" alt="AlbertsonGuthrie"/>
             <br />
             <sub><b>Guthrie Albertson</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/tuf99746">
+            <img src="https://avatars.githubusercontent.com/u/97983404?v=4" width="100;" alt="BonanniNick"/>
             <br />
             <sub><b>Nick Bonanni</b></sub>
         </a>
     </td>
         <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/safowler77">
+            <img src="https://avatars.githubusercontent.com/u/70285047?v=4" width="100;" alt="FowlerShawn"/>
             <br />
             <sub><b>Shawn Fowler</b></sub>
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/OwenKing2">
+            <img src="https://avatars.githubusercontent.com/u/77747886?v=4" width="100;" alt="KingOwen"/>
             <br />
             <sub><b>Owen King</b></sub>
         </a>
