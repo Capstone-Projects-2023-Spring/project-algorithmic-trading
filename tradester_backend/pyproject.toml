@@ -21,6 +21,7 @@ djangorestframework-simplejwt = "^5.2.2"
 python-status = "^1.0.1"
 django-crontab = "^0.7.1"
 apscheduler = "^3.10.1"
+pandas = "^2.0.0"
 
 [build-system]
 requires = ["poetry-core"]
