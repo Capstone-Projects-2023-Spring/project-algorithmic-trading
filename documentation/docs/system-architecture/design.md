@@ -36,7 +36,182 @@ This application will utilize machine learning to make decisions on which stock 
 
 The success of these algorithms will be determined by how they perform in comparison to the S&P 500, root mean squared error, and mean absolute percent error.
 
-### Class Diagram
+## Section 4 - Class Diagrams
+
+### 4.1 Client Diagram
+
+```mermaid
+---
+title: Figure 1 - Frontend Component Diagram
+---
+classDiagram
+  class Friends {
+    - friends: Array
+    - onUnfriend(i, userId)
+  }
+
+  class FriendRequests {
+    - requests: Array
+    - respondRequest(i, userId, isAccept)
+  }
+
+  class Search {
+    - username: String
+    - foundUser: Object
+    - sendRequest()
+    - revokeRequest()
+    - findUser()
+  }
+
+  class Simulation {
+    - investment: Number
+    - setAndFetchInvestment(Number value)
+  }
+
+  class Candle {
+    - currentStockAmount: Number
+    - getDefaultDisplay()
+    - updatePortfolio()
+    - updateAmount()
+    - updateChart()
+  }
+
+  class Portfolio {
+    - username: String
+    - isSelf: Boolean
+    - userId: String
+    - sellStock(String stock, Number qty, Number price)
+    - genData(String name, Array data)
+    - loadPortfolio(Number id)
+  }
+
+  class App {
+    - loggedIn: Boolean
+    - Nav()
+    - HomePage()
+  }
+
+  class Login {
+    - username: String
+    - password: String
+    - feedback: String
+    - onLogin()
+  }
+
+  class Register {
+    - username: String
+    - password: String
+    - passwordConf: String
+    - feedback: String
+    - onRegister()
+  }
+
+  App --> Login : Pass 'loggedIn' as prop
+  Login -- Register : Nagivate
+  Search -- Friends : Navigate
+  Friends -- FriendRequests : Navigate
+  Search -- FriendRequests : Navigate
+```
+
+#### App
+
+*loggedIn*: A boolean value indicating if user is logged in
+
+*Nav()*: The navigation bar
+
+*HomePage()*: A welcome page that the user lands on upon visiting the page.
+
+#### Login
+
+*username*: State variable holding the current text in the username input field.
+
+*password*: State variable holding the current text in the password input field.
+
+*feedback*: State variable holding the current feedback. Feedback is used to display messages (error or otherwise) to the user.
+
+*onLogin()*: Called when the user clicks the login button or hits enter after typing a password. This function makes an API call to authenticate the user. On success, the user is navigated to the home page. Otherwise, an error message is displayed
+
+#### Register
+
+*username*: State variable holding the current text in the username input field.
+
+*password*: State variable holding the current text in the password input field.
+
+*passwordConf*: State variable holding the current text in the password confirmation input field.
+
+*feedback*: State variable holding the current feedback. Feedback is used to display messages (error or otherwise) to the user.
+
+*onRegister()*: Called when the user clicks the register button or hits enter after typing the password confirmation. This function makes an API call to try to register the user. On success, a message is displayed indicating that an account was created. Otherwise, an error message is displayed.
+
+#### Portfolio
+
+*username*: The username of the user who owns the portfolio. Passed through props.
+
+*isSelf*: An indication if this portfolio belongs to the user who is viewing it. If this value is true, a sell button is displayed next to each stock in the user's portfolio. Passed through props.
+
+*userId*: The user id of the user who owns the portfolio. Used to query the backend for the portfolio data. Passed through props.
+
+*sellStock(String stock, Number qty, Number price)*: Takes in the stock's ticker, the number of shares of said stock to sell, and the price of the stock. It makes an API call to sell the stock and sends an alert to the user that the stock was sold.
+
+*genData(String name, Array data)*: Takes in the name (ticker) of a stock and an array containing objects that each contain a close price and the date of that close price. Generates a random color for the graph and returns the parameters in a way that is expected by the Apex Charts library.
+
+*loadPortfolio(Number id)*: Makes an API call to get the portfolio of the user with the supplied id.
+
+#### Candle
+
+*currentStockAmount*: The amount of shares to purchase from the currently selected stock.
+
+*getDefaultDisplay()*: Shows stock data for a random company. Called upon landing on the candle page.
+
+*updatePortfolio()*: "Purchase" a share (or multiple, depending on ) of the selected stock and add it to the user's portfolio.
+
+*updateAmount()*: Update currentStockAmount based on changes to the input field.
+
+*updateChart(String ticker, String name)*: Makes the chart display stock data of the company with the supplied ticker. The name parameter is the company's name joined with the ticker joined with the sector that the company is in. The name parameter is displayed as the chart's title.
+
+#### Simulation
+
+*investment*: State variable representing the user's current available funds for investment.
+
+*setAndFetchInvestment(Number value)*: Makes an API call to set the supplied value as the user's investment. Updates the investment value on screen if the API call was successful.
+
+#### Search
+
+*username*: State variable holding the current text in the username input field.
+
+*foundUser*: Object that holds information about the last searched user.
+
+The object looks like this:
+
+```
+{
+  username: String
+  user_id: Number
+  is_friend: Boolean
+  incoming_request: Boolean
+  outgoing_request: Boolean
+}
+```
+
+This data is needed to determine what the search pages looks like as well as what actions can be made from the search page. If the searched user is a friend, the page displays a tag that shows friendship status. If the user has an incoming friend request from the searched user, no action can be taken from the search page. If the user has an outgoing friend request to the searched user, the user can revoke that friend request. Finally, if the searched user is not a friend, the user can send them a friend request.
+
+*sendRequest()*: Make an API call to send a friend request to the current found user.
+
+*revokeRequest()*: Make an API call to revoke a friend request that was previously sent to the current found user.
+
+*findUser()*: Make an API call to search for a user whose username matches the current value of `username`
+
+#### Friends
+
+*friends*: State variable holding a list of the user's friends.
+
+*onUnfriend(i, userId)*: Takes in the index of the friend to unfriend and their user id. Calls an API function to unfriend the user with the supplied user id.
+
+#### FriendRequests
+
+*requests*: State variable holding a list of users who have an outgoing friend request for the user.
+
+*respondRequest(i, userId, isAccept)*: Respond to the friend request coming from the user with the supplied user id. If isAccept is true, a friendship is established between the user and the sender of the friend request. In both cases, the friend request is deleted. `i` is used to remove the request from `requests`.
 
 ```mermaid
 classDiagram
@@ -246,7 +421,7 @@ While the code for determining the trading strategy will be complex, no unique f
 
 Similarly to our other two trading strategies, no additional functions are implemented, but user's selection of what their largest threshold is for loss, stored as *floorPercentage*, and what percentage gain at which point they wish to sell, *benchmarkPercentage*, are taken into consideration in **updateStrategy()** function.
 
-### User Stories
+## User Stories
 ** 1. **  
 User 1 wants to make automated investments using the S&P 500 trading strategy
 
@@ -346,7 +521,7 @@ sequenceDiagram
     wa -->>- us: display message of completion of purchase to user
 ```
 
-### Entity Relationship Diagram and Table design
+## Entity Relationship Diagram and Table design
 
 ```mermaid
 erDiagram
