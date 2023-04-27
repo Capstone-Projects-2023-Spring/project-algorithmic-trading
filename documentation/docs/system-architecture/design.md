@@ -2,23 +2,31 @@
 sidebar_position: 1
 ---
 
-### Components and Interfaces
+## Section 1 - Overview
 
-This application will use three different components: client, server, and database.
+This app aims to assist users who are interested in learning about the stock market. It provides a fun, visual, and no-risk way to experiment with stock trading. Users can maintain a simulated portfolio through "buying" and "selling" stocks. The app uses machine learning to predict future close values for stocks that are in the user's portfolio. The prediction aims to guide the user's decisions in keeping or selling stocks. Finally, users are able to connect with each other and view each other's portfolios. This way, people who are experts in the stock market can help their friends get their feet wet, by showing them portfolios that are most likely to profit.
 
-###### Client
+## Section 2 - Components and Interfaces
 
-A React app. Upon logging in, the user has access to a graph that shows stock prices for the S&P 500 companies. The user can request a stock trading simulation. The simulation is meant to show users the amount of gain or loss that they would have had if they invested real money. To request a simulation, the user must first provide an investment value. The request is then sent to the server. The app also allows users to view the holdings and balances of the users that they are connected to. This allows users to compare their progress with others. The interface for this component is provided though UI elements that direct the user and capture their input.
+This application will use four different components: client, server, database, and a machine learning model.
 
-###### Server
+###### 2.1 Client
 
-A Django application. This component accesses stock data through an API (yahoo_fin, Alpha Vantage, or any other stock API) and sends it to the client. It also handles requests for simulations and runs those simulations in a multithreaded fashion. Each simulation runs in its own thread, with the simulation progress made available to the user upon request. This component handles the connection of users to each other, so that they can view each other's holdings and balances. The interface for this component is through HTTP requests coming from the client.
+A React app. Upon logging in, the user has access to a graph that shows stock prices for the S&P 500 companies over the past month. The user can add fake funds to their account and use those funds to simulate the purchasing of stocks. Purchased stocks are added to the user's portfolio, which can be accessed through the website's navigation bar. The portfolio page displays the user's available funds (which are simulated), as well as a graph for each stock that the user "owns." Each graph will display the number of shares of a stock that the user owns, as well as the stock's close values for the last six days. The graph will also display a close price prediction for the next business day, to help guide the user's stock trading decisions. The website will also allow users to add friends to be able to view their portfolios. This also helps the user in their stock trading decisions, as they can follow in the footsteps of a mentor who has experience in the stock market.
 
-###### Database
+###### 2.2 Server
 
-A PostgreSQL database. This component stores user login information as well as simulation information such as the user's simulated balance and holdings. It will also be used to cache stock market data obtained from API calls for fast retrieval, and to avoid exceeding API call limits. The interface for this component is through SQL queries coming from the server.
+A Django application. This component accesses stock data from our database and sends it to the client. This allows the client to display stock data of the S&P 500 companies. The server also handles user authentication and account registration. It receives and processes requests to add/sell stocks to/from the user's portfolio. It processes the sending, receiving, and responding of friend requests. It also allows users to search for other users to add them as friends. The interface to the server is through HTTP requests coming from the client.
 
-### Algorithms
+###### 2.3 Database
+
+Two PostgreSQL databases. One database is used to hold user, friendship, friend request, and portfolio data. The other database is used to hold large amounts of historical stock data, and next-day stock prediction data produced by the machine learning model. The interface for this component is through an ORM that translates python to SQL queries. These queries come from the server.
+
+###### 2.4 Machine Learning Model
+
+A machine learning model that predicts the next day's close value for each of the stocks in the S&P 500. This model lives on Professor Wang's GPU server, and is set to run daily after the stock market closes. 
+
+## Algorithms
 
 This application will utilize machine learning to make decisions on which stock to purchase. Stocks will be analyzed as discrete time data, and whether or not to purchase a stock will be determined by the stock's price, market cap, historical returns, volume of historical trades, alpha (excess return), beta (volatility) and any other quantitative data. This means we will be using technical anaylsis for our algorithms, which is best used in more short term trades. Essentially, the behavior of stock prices will be treated as a regression problem. In particular, there will be three trading strategies employed:
 
