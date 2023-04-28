@@ -24,7 +24,7 @@ Classes and methods in this file perform basic authentication functionality.
   - None
 
 **class LogoutView(APIView)**  
-- Purpose: 
+- Purpose:
   - Register the user making the API call. Inherits from APIView class in rest_framework.
 - Fields:
   - None
