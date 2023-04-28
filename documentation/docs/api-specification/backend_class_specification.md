@@ -1,10 +1,63 @@
 ---
+title: Backend Class Description
 sidebar_position: 1
-description: What should be in this section.
----
+description: The backend functions and classes are listed here.
+--- 
 
-Design Document - Part II API
-=============================
+The backend uses the django framework.  As such, each app is stored as a file inside the ```tradeseter_backend``` folder.  All classes are found inside the views.py files of each app.  There also exist functions independent of classes, some in a views.py file of the corresponding app, and a few in the ```tradester_backend/functions``` folder.  This document lists those folders in alphabetical order.  
+```tradester_backend/tradester_backend``` is the actual 'root' of the backend.  In it is a settings.py file which holds information required for some of the classes to function.  It also holds a urls.py file, in which specifies url extensions to each of these apps.  Django filters each API-as-url request to our backend (from our frontend) through this urls.py file to each app.  You can view specifications for these API calls in the Backend API Specification document.  
+Almost every class inherits a class from ```rest_framework``` library.  This automates some processes for us, but most importantly it allows for token passing for authentification and turns each class into a function corresponding to an API call.  If a class begins with ```permission_classes = (IsAuthenticated,)```, this means that the functionality of the class cannot be accessed without the user providing the HTTP header ```Authentication: Bearer <token>```, where ```<token>``` is a valid token returned to the user at login.  
+
+# **App: auth**  
+
+The **auth** app controls authentication for users of tradester.  
+
+### auth/views.py  
+**class RegisterUser(generics.CreateAPIView)**  
+- Description:
+  - this class inherits generics.CreateAPIView from rest_framework.  
+- Precondition: 
+  - None
+- Purpose: 
+  - Register the user making the API call.
+- Parameters: 
+  - None
+- Output:  
+  - None
+- Error:
+  - None
+
+**class LogoutView(APIView)**  
+- Description:
+  - this class inherits APIView from rest_framework.   
+- Precondition: 
+  - None
+- Purpose: 
+  - Register the user making the API call.
+- Parameters: 
+  - None
+- Output:  
+  - None
+- Error:
+  - None
+
+- **function: post**
+  - Precondition: 
+    - User is logged in
+  - Postcondition:
+    - User is logged out
+  - Purpose: 
+    - Log the user out
+  - Parameters: 
+    - request object
+  - Output:  
+    - Response object
+  - Error:
+    - Bad Request.  Requested user is not logged in
+# **App: friendship**  
+# **App: functions**  
+# **App: heroku_connection**  
+# **App: tradester**  
 
 **Purpose**
 
