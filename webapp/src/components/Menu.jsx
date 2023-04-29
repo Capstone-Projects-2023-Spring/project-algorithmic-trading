@@ -2,15 +2,22 @@ import { Link } from "react-router-dom";
 import React, { useState, setState } from "react";
 import menu from "../menu.svg";
 import "./style/menu.css";
-import { isLoggedIn } from "../services/authentication";
+import { isLoggedIn, logout } from "../services/authentication";
 
 export const handleOpen = () => {
   setOpen(!open);
 };
 
 export default function Menu() {
-  const [loggedIn, setLoggedIn] = useState(isLoggedIn());
   const [open, setOpen] = React.useState(false);
+
+  const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+
+  const isActive = sessionStorage.activeSession;
+  if (!isActive) {
+    logout();
+    setLoggedIn(false);
+  }
 
   const handleOpen = () => {
     setOpen(!open);
@@ -25,7 +32,16 @@ export default function Menu() {
         <div onClick={handleOpen} className="linkdropdown">
           <Link to="/about">About</Link>
           <Link to="/simulation">Simulation</Link>
-          <Link to="/portfolio">Portfolio</Link>{" "}
+          <Link
+            to="/portfolio"
+            state={{
+              username: localStorage.getItem("username"),
+              isSelf: true,
+            }}
+          >
+            Portfolio
+          </Link>{" "}
+          <Link to="/search">Social</Link>
           {/* This should be added to loggedIn when ready */}
           {loggedIn ? (
             <Link to="/logout">Logout</Link>
