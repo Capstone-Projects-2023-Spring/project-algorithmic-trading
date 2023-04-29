@@ -4,7 +4,7 @@ sidebar_position: 1
 
 ## Section 1 - Overview
 
-This app aims to assist users who are interested in learning about the stock market. It provides a fun, visual, and no-risk way to experiment with stock trading. Users can maintain a simulated portfolio through "buying" and "selling" stocks. The app uses machine learning to predict future close values for stocks that are in the user's portfolio. The prediction aims to guide the user's decisions in keeping or selling stocks. Finally, users are able to connect with each other and view each other's portfolios. This way, people who are experts in the stock market can help their friends get their feet wet, by showing them portfolios that are most likely to profit.
+The system is comprised of 4 different components: a client application in React, a server application in Django, two PostgreSQL databases, and a machine learning model for stock prediction that lives on Professor Wang's GPU server. The databases are accessed through an ORM. The user interacts with the client application, which makes API calls to the server. The server handles the calls, adding/deleting/modifying the database, or simply fetching data from the database. Our database is scheduled to be updated with new stock data daily. Our machine learning model is scheduled to run daily to make predictions for the next day for every stock in the S&P 500. Scheduling is done separately from our application using a Heroku scheduling tool.
 
 ## Section 2 - Components and Interfaces
 
