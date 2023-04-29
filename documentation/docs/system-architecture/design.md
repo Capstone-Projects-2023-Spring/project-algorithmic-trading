@@ -318,9 +318,11 @@ erDiagram
 ```
 The User entity represents a user of the application. It contains basic information on the user, with their username as the primary key. User has direct relationships with the Portfolio entity. A user can place an order (buying stock.) When a stock is ordered, it is placed in a user's portfolio, which is a collection of stocks the user currently has stake in (sold stocks are not included.) The Portfolio entity has a primary key portfolio_id and foreign key username, linking the portfolio to the user it belongs to. The stock table represents a specific stock, and contains a primary key stock_symbol and various metrics used to determine the stock's value. The Portfolio and Stock entities have a many-to-many relationship, thus they have a junction table Portfolio_Stock. This contains foreign keys portfolio_id and stock_symbol. These foreign keys act together to uniquely identify an entry in the junction table. The Backlog entity holds stock data for every stock in the S&P 500 index. It is automatically updated daily with the most recent stock data. The Model_Prediction entity holds predicted close prices that are outputted by our machine learning model.
 
-### User Stories
-** 1. **  
-User 1 wants to keep track of stock data in order to make profitable trades.
+## Section 5 - Sequence Diagrams
+
+### 5.1
+
+User wants to keep track of stock data in order to make profitable trades.
 
 ```mermaid
 sequenceDiagram
@@ -342,7 +344,7 @@ sequenceDiagram
     Server -->>- Client: JSON object with historical stock data
     Client -->>- User: Display Amazon stock data graph
 ```
-
+<br/>
 1. The user enters their username and password and logs in.
 2. The client makes an API call to get a JWT token pair (access and refresh tokens).
 3. The server returns a JWT token pair.
@@ -357,81 +359,76 @@ sequenceDiagram
 12. The server returns a JSON object representing Amazon's historical stock data.
 13. The client displays the data on the graph.
     
-** 2. **  
-User 2 wants to change her automated investment strategy
+### 5.2
+
+User is a student who is unexperienced in the stock market, looking to get started with the guidance of a friend. They use the app's social feature to learn portfolio building tips from their friend.
 
 ```mermaid
 sequenceDiagram
-    actor User
+    actor UnexperiencedUser
+    actor ExperiencedUser
     participant Client
-    participant API
-    participant Strategy(S&P500-LongTerm-ShortTerm)
-    User ->>+ Client: User logs into Tradestar
-    Client ->>+ API: Input sent from Client to API
-    API -->>- Client: Account Data returned to client
-    User ->>+ Client: User inputs capital to invest
-    User ->>+ Strategy(S&P500-LongTerm-ShortTerm): User selects the S&P 500 strategy
-    User ->>+ Client: User clicks start trading
-    Client ->>+ API: Client selects algorithm based off User Input
-    API -->>- Client: Client pulls data from API, makes investments, updates client balance
-
+    participant Server
+    UnexperiencedUser ->>+ Client: Click on "Social" tab
+    Client -->>- UnexperiencedUser: Navigate to the Social page
+    UnexperiencedUser ->>+ Client: Enter ExperiencedUser's username in search bar
+    Client ->>+ Server: HTTP GET find_user_by_username USERNAME
+    Server -->>- Client: JSON object with username and user id of ExperiencedUser
+    Client -->>- UnexperiencedUser: Show ExperiencedUser's username and a "send" button
+    UnexperiencedUser ->>+ Client: Click "send" button
+    Client ->>+ Server: HTTP POST send_friend_request EXPERIENCED_USER_ID
+    Server ->> Server: Save friend request to database
+    Server -->>- Client: HTTP OK
+    Client -->>- UnexperiencedUser: Show a "revoke" button
+    ExperiencedUser ->>+ Client: Click on "Social" tab
+    Client -->>- ExperiencedUser: Navigate to the Social page
+    ExperiencedUser ->>+ Client: Click on "Friend Requests" tab within the Social page
+    Client ->>+ Server: HTTP GET get_friend_requests
+    Server -->>- Client: A JSON list of objects for each user who has a pending friend request for ExperiencedUser. One of the users is UnexperiencedUser
+    Client -->>- ExperiencedUser: Display a list of usernames, with an "accept" and "decline" button for each one
+    ExperiencedUser ->>+ Client: Click "accept" on UnexperiencedUser's friend request
+    Client ->>+ Server: HTTP POST respond_friend_request UNEXPERIENCED_USER_ID, ACCEPT
+    Server ->> Server: Save friendship status to database
+    Server -->>- Client: HTTP OK
+    Client -->>- ExperiencedUser: Accepted friend request is gone from the list of friend requests
+    UnexperiencedUser ->>+ Client: Click on "Friends List"
+    Client ->>+ Server: HTTP GET get_friends
+    Server -->>- Client: JSON list of objects. Each objects is a friend and has the username and id of a friend
+    Client -->>- UnexperiencedUser: Display a list of friends with a "unfriend" and "view portfolio" button for each. ExperiencedUser is in this list.
+    UnexperiencedUser ->>+ Client: Click on "view portfolio" on ExperiencedUser's listing
+    Client ->>+ Server: HTTP GET display_portfolio EXPERIENCED_USER_ID
+    Server -->>- Client: JSON object representing ExperiencedUser's portfolio
+    Client -->>- UnexperiencedUser: Display ExperiencedUser's portfolio
 ```
-
-** 3. **  
-User 3 uses Tradester's Investment Report to view how their investment is doing
-
-```mermaid
-sequenceDiagram
-    actor us as user3
-    participant wa as web application
-    participant sv as server
-    participant db as database
-
-    us ->>+ wa: click "Investment Report" button
-    wa -->> us: display dropdown of investment accounts
-    us ->> wa: choose investment to display
-    wa ->>+ sv: send GET request for the particular investment to server 
-    sv ->>+ db: find user's investment information
-    db -->>- sv: return user's investment information
-    sv -->>- wa: return user's investment information
-    wa ->> wa: build graph of investment information
-    wa -->>- us: display graph
-
-```
-** 4. **  
-User 4 uses Tradester to make manual trades
-
-
-```mermaid
-sequenceDiagram
-    actor us as user4
-    participant wa as web application
-    participant sv as server
-    participant db as database
-    participant api as API(Alpha Vantage or yahoo_fin)
-    participant qc as QuantConnect(optional)
-
-    us ->>+ wa: click "Account Selector" button
-    wa -->> us: display dropdown of investment accounts
-    us ->> wa: click "Long Term" button
-    wa ->>+ sv: send GET request for the user's long term investment to server 
-    sv ->>+ db: find user's investment information
-    db -->>- sv: return user's investment information
-    sv -->>+api: request stats of the S&P 500
-    api-->>-sv: return stats of S&P 500
-    sv ->> sv: sort the S&P 500 stats, weighted by performance
-    sv -->>- wa: return user's investment information and the sorted stock data
-    wa ->> wa: build graph of investment information
-    wa -->> us: display graph showing user's investments 
-    wa -->> us: display list of S&P 500 stocks 
-    us -->>+ us: decide stocks to purchase
-    us ->>+ wa: select stock and amount to purchase
-    wa ->>+ sv: update user's Long Term portfolio with new info
-    sv ->> sv: package the investment update to send
-    sv ->>+ qc: PUT request to purchase new stocks
-    qc -->>- sv: return receipt of purchase
-    sv ->>+ db: update Long Term financial info for user
-    db ->>- sv: return receipt of completion of update
-    sv -->>- wa: return receipt of completion of purchase and databse update
-    wa -->>- us: display message of completion of purchase to user
-```
+<br/>
+1. UnexperiencedUser is assumed to be logged in. They click on the "Social" tab.
+2. The website navigates to the the Social page, which has a search feature for users.
+3. UnexperiencedUser enters ExperiencedUser's username in the search bar.
+4. The website makes an API call to the backend, looking for a user that matches the entered username.
+5. The backend returns an object representing ExperiencedUser. It has their username and user id.
+6. The website displays the username of ExperiencedUser along with a "send" button next to the name.
+7. UnexperiencedUser clicks the "send" button to send a friend request to ExperiencedUser.
+8. The website makes an API call to the backend.
+9. The backend saves the friend request in the database.
+10. The website shows a "revoke" button, in case the user changes their mind about the friend request.
+11. ExperiencedUser is assumed to be logged in. They click on the "Social" tab.
+12. The website navigates to the the Social page.
+13. ExperiencedUser clicks on the "Friend Requests" tab.
+14. The website makes an API call to the backend.
+15. The backend sends a JSON list of friend requests that are sent to ExperiencedUser.
+16. The website displays the list of friend requests, along with "accept" and "decline" buttons.
+17. ExperiencedUser clicks "accept" on UnexperiencedUser's friend request.
+18. The website makes an API call to accept the friend request.
+19. The backend handles the API call, saving the friendship status to the database, and deleting the friend request from the database.
+20. The backend returns a success status code: HTTP 200 OK
+21. The website now re-renders the friend requests list. The accepted friend request is gone from the list.
+22. UnexperiencedUser clicks on the "Friends List" tab in Social.
+23. The website makes an API call to the server to get the list of friends.
+24. The backend returns the list of friends in JSON format. ExperiencedUser is in this list.
+25. The website displays a list of friends, with "unfriend" and "view portfolio" buttons.
+26. UnexperiencedUser clicks on "view portfolio" on ExperiencedUser's listing.
+27. The website makes an API call to get ExperiencedUser's portfolio.
+28. The backend returns the portfolio in JSON format.
+29. The website renders the graphs for ExperiencedUser's portfolio.
+30. UnexperiencedUser observes ExperiencedUser's stock investment choices and learns from them.
+31. UnexperiencedUser has a better idea of how to invest in stocks.
