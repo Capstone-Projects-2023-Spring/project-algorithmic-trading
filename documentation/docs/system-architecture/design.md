@@ -432,3 +432,55 @@ sequenceDiagram
 29. The website renders the graphs for ExperiencedUser's portfolio.
 30. UnexperiencedUser observes ExperiencedUser's stock investment choices and learns from them.
 31. UnexperiencedUser has a better idea of how to invest in stocks.
+
+### 5.3
+
+User is a student who is fairly confident about their knowledge of the stock market. They want to utilize machine learning to gain an edge in stock trading. The user is assumed to have just logged in and landed on the welcome page.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Client
+    participant Server
+    User ->>+ Client: Click on "Simulation" tab
+    Client -->>- User: Navigate to the simulation page
+    User ->>+ Client: Enter 100 for investment amount
+    Client ->>+ Server: HTTP GET save_investment 100
+    Server -->>- Client: Return JSON object with the investment amount
+    Client -->>- User: Display the current investment amount: $100
+    User ->>+ Client: Click on "Tradester" button.
+    Client -->>- User: Route to stock graph page.
+    User ->>+ Client: Select an Alaska Air Lines (ALK) from the dropdown
+    Client ->>+ Server: HTTP GET get_stock_data_candle/ALK
+    Server -->>- Client: JSON object with historical stock data for ALK
+    Client -->>- User: Display AlK stock data graph
+    User ->>+ Client: Enter 1 in the input field below the graph and hit purchase
+    Client ->>+ Server: HTTP GET purchase_stock TICKER, QUANTITY, PRICE
+    Server -->>- Client: HTTP OK
+    Client -->>- User: Alert that purchase was successful
+    User ->>+ Client: Click on the "Portfolio" tab
+    Client ->>+ Server: HTTP GET display_portfolio USER_ID
+    Server -->>- Client: JSON object representing the user's portfolio
+    Client -->>- User: Display the user's portfolio
+    User ->>+ Client: Hover over predicted close value for ALK stock
+    Client -->>- User: Display the prediction
+```
+<br/>
+
+1. The user clicks on the simulation tab.
+2. The website navigates to the simulation page, from which users can add funds.
+3. The user enters 100 for the investment amount.
+4. The website makes an API call to save 100 as the investment amount.
+5. The backend services the API call, returning a JSON object with the investment amount.
+6. The website displays the investment amount.
+7. The user clicks on the "Tradester" button.
+8. The website navigates to the stock graph page.
+9. The user selects Alaska Airlines (ALK) from the dropdown.
+10. The website displays gets the historical data for ALK from the backend and displays it on the graph.
+11. The user enters the number "1" in the input field below the graph.
+12. The website makes an API call to purchase a share of ALK stock.
+13. The website alerts that the purchase was successful.
+14. The user navigates to the portfolio page.
+15. The user sees the ALK stock in their portfolio.
+16. The user hovers over the predicted close price for ALK and sees that its price is predicted to increase.
+17. The user decides to keep ALK in their portfolio, thereby utilizing machine learning to inform their stock investment decisions.
