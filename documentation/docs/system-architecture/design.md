@@ -251,109 +251,9 @@ classDiagram
 ```
 
 Each component in the diagram above is a Django view. A Django view is an API function.
-These views make up the application's social functionality. 
+These views make up the application's social functionality.
 
-## User Stories
-** 1. **  
-User 1 wants to make automated investments using the S&P 500 trading strategy
-
-```mermaid
-sequenceDiagram
-    actor User1
-    participant User/Client
-    participant API
-    participant Strategy(S&P500-LongTerm-ShortTerm)
-    User1 ->>+ User/Client: User1 logs into Tradestar
-    User/Client ->>+ API: Input sent from Client to API
-    API -->>- User/Client: Account Data returned to client
-    User1 ->>+ User/Client: User1 clicks current investments link
-    User/Client -->>- User1: Data previously pulled from API
-    User1 ->>+ User/Client: User1 clicks edit trading strategy, enters input
-    User/Client ->>+ API: make trades based off "Price to Cashflow" ratio, in addition to S&P 500 strategy
-    API -->>- User/Client: Client pulls data from API, makes investments, updates client balance
-    User1 ->>+ Strategy(S&P500-LongTerm-ShortTerm): User1 clicks resume trading on the website, Client adds new parameter to algorithm, makes news investment decisions
-
-```
-** 2. **  
-User 2 wants to change her automated investment strategy
-
-```mermaid
-sequenceDiagram
-    actor User1
-    participant User/Client
-    participant API
-    participant Strategy(S&P500-LongTerm-ShortTerm)
-    User1 ->>+ User/Client: User1 logs into Tradestar
-    User/Client ->>+ API: Input sent from Client to API
-    API -->>- User/Client: Account Data returned to client
-    User1 ->>+ User/Client: User1 inputs capital to invest
-    User1 ->>+ Strategy(S&P500-LongTerm-ShortTerm): User1 selects the S&P 500 strategy
-    User1 ->>+ User/Client: User1 clicks start trading
-    User/Client ->>+ API: Client selects algorithm based off User Input
-    API -->>- User/Client: Client pulls data from API, makes investments, updates client balance
-
-```
-
-** 3. **  
-User 3 uses Tradester's Investment Report to view how their investment is doing
-
-```mermaid
-sequenceDiagram
-    actor us as user3
-    participant wa as web application
-    participant sv as server
-    participant db as database
-
-    us ->>+ wa: click "Investment Report" button
-    wa -->> us: display dropdown of investment accounts
-    us ->> wa: choose investment to display
-    wa ->>+ sv: send GET request for the particular investment to server 
-    sv ->>+ db: find user's investment information
-    db -->>- sv: return user's investment information
-    sv -->>- wa: return user's investment information
-    wa ->> wa: build graph of investment information
-    wa -->>- us: display graph
-
-```
-** 4. **  
-User 4 uses Tradester to make manual trades
-
-
-```mermaid
-sequenceDiagram
-    actor us as user4
-    participant wa as web application
-    participant sv as server
-    participant db as database
-    participant api as API(Alpha Vantage or yahoo_fin)
-    participant qc as QuantConnect(optional)
-
-    us ->>+ wa: click "Account Selector" button
-    wa -->> us: display dropdown of investment accounts
-    us ->> wa: click "Long Term" button
-    wa ->>+ sv: send GET request for the user's long term investment to server 
-    sv ->>+ db: find user's investment information
-    db -->>- sv: return user's investment information
-    sv -->>+api: request stats of the S&P 500
-    api-->>-sv: return stats of S&P 500
-    sv ->> sv: sort the S&P 500 stats, weighted by performance
-    sv -->>- wa: return user's investment information and the sorted stock data
-    wa ->> wa: build graph of investment information
-    wa -->> us: display graph showing user's investments 
-    wa -->> us: display list of S&P 500 stocks 
-    us -->>+ us: decide stocks to purchase
-    us ->>+ wa: select stock and amount to purchase
-    wa ->>+ sv: update user's Long Term portfolio with new info
-    sv ->> sv: package the investment update to send
-    sv ->>+ qc: PUT request to purchase new stocks
-    qc -->>- sv: return receipt of purchase
-    sv ->>+ db: update Long Term financial info for user
-    db ->>- sv: return receipt of completion of update
-    sv -->>- wa: return receipt of completion of purchase and databse update
-    wa -->>- us: display message of completion of purchase to user
-```
-
-## Entity Relationship Diagram and Table design
+### 4.3 Entity Relationship Diagram
 
 ```mermaid
 erDiagram
@@ -417,3 +317,121 @@ erDiagram
     }
 ```
 The User entity represents a user of the application. It contains basic information on the user, with their username as the primary key. User has direct relationships with the Portfolio entity. A user can place an order (buying stock.) When a stock is ordered, it is placed in a user's portfolio, which is a collection of stocks the user currently has stake in (sold stocks are not included.) The Portfolio entity has a primary key portfolio_id and foreign key username, linking the portfolio to the user it belongs to. The stock table represents a specific stock, and contains a primary key stock_symbol and various metrics used to determine the stock's value. The Portfolio and Stock entities have a many-to-many relationship, thus they have a junction table Portfolio_Stock. This contains foreign keys portfolio_id and stock_symbol. These foreign keys act together to uniquely identify an entry in the junction table. The Backlog entity holds stock data for every stock in the S&P 500 index. It is automatically updated daily with the most recent stock data. The Model_Prediction entity holds predicted close prices that are outputted by our machine learning model.
+
+### User Stories
+** 1. **  
+User 1 wants to keep track of stock data in order to make profitable trades.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Client
+    participant Server
+    User ->>+ Client: Log in
+    Client ->>+ Server: HTTP POST body = {username, password}
+    Server -->>- Client: HTTP Response = {accessToken, refreshToken}
+    Client ->> Client: Save tokens to local storage
+    Client -->>- User: Route to welcome page
+    User ->>+ Client: Click on "View Dashboard" button.
+    Client -->>- User: Route to stock graph page.
+    Client ->>+ Server: HTTP GET get_stock_data_candle/<RANDOM_STOCK_TICKER>
+    Server -->>- Client: JSON object with historical stock data
+    Client -->> User: Display random stock data graph
+    User ->>+ Client: Select Amazon stock from dropdown
+    Client ->>+ Server: HTTP GET get_stock_data_candle/AMZN
+    Server -->>- Client: JSON object with historical stock data
+    Client -->>- User: Display Amazon stock data graph
+```
+
+1. The user enters their username and password and logs in.
+2. The client makes an API call to get a JWT token pair (access and refresh tokens).
+3. The server returns a JWT token pair.
+4. The client saves the token pair in local storage for later use.
+5. The client routes to the home page, which has a "View Dashboard" button.
+6. The user clicks on the "View Dashboard" button.
+7. The client routes to the stock graph page.
+8. The client makes an API call to get historical stock data for a random company.
+9. A JSON object is returned with all the historical data.
+10. The user selects Amazon stock from the dropdown.
+11. The client makes an API call to get Amazon's historical stock data
+12. The server returns a JSON object representing Amazon's historical stock data.
+13. The client displays the data on the graph.
+    
+** 2. **  
+User 2 wants to change her automated investment strategy
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Client
+    participant API
+    participant Strategy(S&P500-LongTerm-ShortTerm)
+    User ->>+ Client: User logs into Tradestar
+    Client ->>+ API: Input sent from Client to API
+    API -->>- Client: Account Data returned to client
+    User ->>+ Client: User inputs capital to invest
+    User ->>+ Strategy(S&P500-LongTerm-ShortTerm): User selects the S&P 500 strategy
+    User ->>+ Client: User clicks start trading
+    Client ->>+ API: Client selects algorithm based off User Input
+    API -->>- Client: Client pulls data from API, makes investments, updates client balance
+
+```
+
+** 3. **  
+User 3 uses Tradester's Investment Report to view how their investment is doing
+
+```mermaid
+sequenceDiagram
+    actor us as user3
+    participant wa as web application
+    participant sv as server
+    participant db as database
+
+    us ->>+ wa: click "Investment Report" button
+    wa -->> us: display dropdown of investment accounts
+    us ->> wa: choose investment to display
+    wa ->>+ sv: send GET request for the particular investment to server 
+    sv ->>+ db: find user's investment information
+    db -->>- sv: return user's investment information
+    sv -->>- wa: return user's investment information
+    wa ->> wa: build graph of investment information
+    wa -->>- us: display graph
+
+```
+** 4. **  
+User 4 uses Tradester to make manual trades
+
+
+```mermaid
+sequenceDiagram
+    actor us as user4
+    participant wa as web application
+    participant sv as server
+    participant db as database
+    participant api as API(Alpha Vantage or yahoo_fin)
+    participant qc as QuantConnect(optional)
+
+    us ->>+ wa: click "Account Selector" button
+    wa -->> us: display dropdown of investment accounts
+    us ->> wa: click "Long Term" button
+    wa ->>+ sv: send GET request for the user's long term investment to server 
+    sv ->>+ db: find user's investment information
+    db -->>- sv: return user's investment information
+    sv -->>+api: request stats of the S&P 500
+    api-->>-sv: return stats of S&P 500
+    sv ->> sv: sort the S&P 500 stats, weighted by performance
+    sv -->>- wa: return user's investment information and the sorted stock data
+    wa ->> wa: build graph of investment information
+    wa -->> us: display graph showing user's investments 
+    wa -->> us: display list of S&P 500 stocks 
+    us -->>+ us: decide stocks to purchase
+    us ->>+ wa: select stock and amount to purchase
+    wa ->>+ sv: update user's Long Term portfolio with new info
+    sv ->> sv: package the investment update to send
+    sv ->>+ qc: PUT request to purchase new stocks
+    qc -->>- sv: return receipt of purchase
+    sv ->>+ db: update Long Term financial info for user
+    db ->>- sv: return receipt of completion of update
+    sv -->>- wa: return receipt of completion of purchase and databse update
+    wa -->>- us: display message of completion of purchase to user
+```
