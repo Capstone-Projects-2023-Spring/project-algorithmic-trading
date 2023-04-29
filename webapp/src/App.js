@@ -59,7 +59,7 @@ export default function App() {
             )}
           </div>
           <div className="menu">
-            <Menu />
+            <Menu loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
           </div>
         </div>
       </div>

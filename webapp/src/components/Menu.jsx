@@ -2,22 +2,13 @@ import { Link } from "react-router-dom";
 import React, { useState, setState } from "react";
 import menu from "../menu.svg";
 import "./style/menu.css";
-import { isLoggedIn, logout } from "../services/authentication";
 
 export const handleOpen = () => {
   setOpen(!open);
 };
 
-export default function Menu() {
+export default function Menu({ loggedIn }) {
   const [open, setOpen] = React.useState(false);
-
-  const [loggedIn, setLoggedIn] = useState(isLoggedIn());
-
-  const isActive = sessionStorage.activeSession;
-  if (!isActive) {
-    logout();
-    setLoggedIn(false);
-  }
 
   const handleOpen = () => {
     setOpen(!open);
