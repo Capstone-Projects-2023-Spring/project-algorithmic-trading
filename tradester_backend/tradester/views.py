@@ -38,6 +38,9 @@ def get_stock_data_candle(request, _stock_symbol):
         ticker=_stock_symbol
         ,date__gte = (datetime.date.today()- datetime.timedelta(days=150))
         ).order_by('-date')
+    close = get_close_past_week(_stock_symbol)[5]["price"]
+    pred = get_latest_close_prediction(_stock_symbol)["price"]
+    percent_difference = round(((pred - close) / ((pred + close) / 2)) * 100, 2)
     data = []
     for entry in stock_data:
         data.append({
@@ -51,7 +54,9 @@ def get_stock_data_candle(request, _stock_symbol):
     data['date'] = data['date'].astype(str)
     data = data.set_index('date')
     dict_data = data.to_dict(orient='index')
-    api_response = {'Time Series (Daily)': dict_data}
+    api_response = {
+        'Time Series (Daily)': dict_data,
+        'Percent Difference': percent_difference}
     #print(api_response)
     return JsonResponse(api_response)
 
