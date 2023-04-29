@@ -289,7 +289,7 @@ class Candle extends Component {
         <div className="purchase">
           <button onClick={this.updatePortfolio}>Purchase</button>
           <input type="number" onChange={this.updateAmount}></input>
-          {p_diff > 5 ? 
+          {p_diff > 0 ? 
             <p className="green">Recommended - Value Expected to increase by {p_diff}%</p> 
           : <p className="red">Not Recommended  - Value Expected to decrease by {Math.abs(p_diff)}%</p>}
         </div>
