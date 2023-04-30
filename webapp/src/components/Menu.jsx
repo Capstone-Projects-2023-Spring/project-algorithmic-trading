@@ -24,7 +24,7 @@ export default function Menu() {
       {open ? (
         <div onClick={handleOpen} className="linkdropdown">
           <Link to="/about">About</Link>
-          <Link to="/simulation">Simulation</Link>
+          <Link to="/investment">Investment</Link>
           <Link to="/portfolio">Portfolio</Link>{" "}
           {/* This should be added to loggedIn when ready */}
           {loggedIn ? (
