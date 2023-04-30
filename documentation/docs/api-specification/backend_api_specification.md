@@ -396,4 +396,19 @@ This ```token``` can be retrieved through the auth app API.
     - 404, unauthorized
 
 # app: heroku_backend  
-#### 'BASE/heroku_backend
+#### 'BASE/heroku_backend/display_stock_by_ticker/'
+- METHOD: POST  
+- QUERY PARAMETERS: 
+    - String: ticker
+- RETURN: 
+    - 200 
+    ```json
+        {
+            "date": date,
+            "open": open,
+            "close": close,
+            "low": low,
+            "high": high,
+            "volume": volume                      
+        }
+    ```
