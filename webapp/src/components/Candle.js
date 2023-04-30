@@ -5,11 +5,13 @@ import StockList from "./constituents.json";
 import { motion } from "framer-motion";
 import "./style/candle.css";
 import { API_ENDPOINT } from "../services/api-endpoints";
+import { getInvestment } from "../services/investment";
 
 class Candle extends Component {
   constructor(props) {
     super(props);
 
+    this.updateBalance = this.updateBalance.bind(this);
     this.getDefaultDisplay = this.getDefaultDisplay.bind(this);
     this.updateAmount = this.updateAmount.bind(this);
     this.updateChart = this.updateChart.bind(this);
@@ -66,14 +68,19 @@ class Candle extends Component {
     };
   }
 
-  componentDidMount() {
+  async updateBalance() {
+    this.setState({
+      balance: (await getInvestment()).amount
+    })
+  }
 
+  componentDidMount() {
     const script = document.createElement('script');
     script.type = "text/javascript";
     script.async = true;
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/dayjs.min.js";
     document.body.appendChild(script);
-
+    this.updateBalance();
   }
 
   async getDefaultDisplay() {
@@ -168,7 +175,7 @@ class Candle extends Component {
       )
         .then((response) => response.json())
         .then((data) => {
-
+          this.updateBalance();
           fetch(`${API_ENDPOINT}/tradester/display_portfolio/`, {
             headers: {
               "Content-Type": "application/json",
@@ -270,6 +277,7 @@ class Candle extends Component {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
+        <h2>Balance: ${this.state.balance}</h2>
         <Select
           options={options}
           maxMenuHeight={500}

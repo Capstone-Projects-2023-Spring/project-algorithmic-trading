@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard.tsx";
 import Login from "./components/Login.tsx";
 import Logout from "./components/Logout";
 import Register from "./components/Register";
-import Simulation from "./components/Simulation";
+import Investment from "./components/Investment";
 import Candle from "./components/Candle";
 import Portfolio from "./components/Portfolio";
 import Search from "./components/social/Search";
@@ -92,8 +92,8 @@ export default function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route
-            path="/simulation"
-            element={<Simulation loggedIn={loggedIn} />}
+            path="/investment"
+            element={<Investment loggedIn={loggedIn} />}
           />
           <Route path="/candle" element={<Candle />} />
           <Route
