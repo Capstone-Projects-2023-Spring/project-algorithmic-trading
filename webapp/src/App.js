@@ -32,7 +32,6 @@ export default function App() {
   const Nav = () => {
     return (
       <div>
-
         <img className="background" src={br} alt="Background" />
 
         {loggedIn ? (
@@ -42,7 +41,7 @@ export default function App() {
             </Link>
             <div className="links">
               <Link to="/candle">Stocks</Link>
-              <Link to="/simulation">Simulation</Link>
+              <Link to="/investment">Investment</Link>
               <Link
                 to="/portfolio"
                 state={{
@@ -55,20 +54,17 @@ export default function App() {
               <Link to="/search">Social</Link>
               <Link to="/logout">Logout</Link>
             </div>
+            <div className="menu">
+              <Menu />
+            </div>
           </div>
-
         ) : (
-
           <div className="nav">
             <Link className="logo" to="/login">
               Tradester <img src={bull} alt="Logo" />{" "}
             </Link>
           </div>
-
         )}
-        <div className="menu">
-          <Menu />
-        </div>
       </div>
     );
   };
@@ -115,8 +111,7 @@ export default function App() {
 }
 
 const HomePage = () => {
-
-  let isActive = sessionStorage.activeSession
+  let isActive = sessionStorage.activeSession;
 
   return (
     <div className="home">
@@ -130,7 +125,6 @@ const HomePage = () => {
           Log In
         </Link>
       )}
-
     </div>
   );
 };
