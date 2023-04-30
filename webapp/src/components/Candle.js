@@ -133,9 +133,9 @@ class Candle extends Component {
         }
 
         newData = newData.reverse().slice(40);
-        // newData[29] = most recent day, y = O/H/L/C, [3] = close
-        // newData[29].y[3] = most recent day close
-        this.currentStockPrice = newData[29].y[3];
+        // last element in newData = most recent day, y = O/H/L/C, [3] = close
+        // newData[newData.length - 1].y[3] = most recent day close
+        this.currentStockPrice = newData[newData.length - 1].y[3];
         newSeries.push({ data: newData });
 
         this.setState({
@@ -237,9 +237,9 @@ class Candle extends Component {
         }
 
         newData = newData.reverse().slice(40);
-        // newData[29] = most recent day, y = O/H/L/C, [3] = close
-        // newData[29].y[3] = most recent day close
-        this.currentStockPrice = newData[29].y[3];
+        // last element in newData = most recent day, y = O/H/L/C, [3] = close
+        // newData[newData.length - 1].y[3] = most recent day close
+        this.currentStockPrice = newData[newData.length - 1].y[3];
         newSeries.push({ data: newData });
 
         this.setState({
