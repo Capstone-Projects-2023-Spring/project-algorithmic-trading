@@ -33,30 +33,37 @@ export default function App() {
   const Nav = () => {
     return (
       <div>
+
         <img className="background" src={br} alt="Background" />
-        <div className="nav">
-          <Link className="logo" to="/candle">
-            Tradester <img src={bull} alt="Logo" />{" "}
-          </Link>
-          <div className="links">
-            <Link to="/about">About</Link>
-            <Link to="/simulation">Simulation</Link>
-            <Link
-              to="/portfolio"
-              state={{
-                username: localStorage.getItem("username"),
-                isSelf: true,
-              }}
-            >
-              Portfolio
-            </Link>{" "}
-            <Link to="/search">Social</Link>
-            {/* This should be added to loggedIn when ready */}
-            {loggedIn ? (
+
+        {loggedIn ? (
+          <div className="nav">
+            <Link className="logo" to="/candle">
+              Tradester <img src={bull} alt="Logo" />{" "}
+            </Link>
+            <div className="links">
+              <Link to="/about">About</Link>
+              <Link to="/simulation">Simulation</Link>
+              <Link
+                to="/portfolio"
+                state={{
+                  username: localStorage.getItem("username"),
+                  isSelf: true,
+                }}
+              >
+                Portfolio
+              </Link>
+              <Link to="/search">Social</Link>
               <Link to="/logout">Logout</Link>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
+            </div>
+          </div>
+
+        ) : (
+
+          <div className="nav">
+            <Link className="logo" to="/login">
+              Tradester <img src={bull} alt="Logo" />{" "}
+            </Link>
           </div>
           <div className="menu">
             <Menu loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
@@ -109,12 +116,22 @@ export default function App() {
 }
 
 const HomePage = () => {
+
+  let isActive = sessionStorage.activeSession
+
   return (
     <div className="home">
-      <h1>Welcome to tradester</h1>
-      <Link className="viewdash" to="/candle">
-        View Dashboard
-      </Link>
+      <h1>Welcome to Tradester</h1>
+      {sessionStorage.activeSession == "true" ? (
+        <Link className="viewdash" to="/candle">
+          View Dashboard
+        </Link>
+      ) : (
+        <Link className="viewdash" to="/login">
+          Log In
+        </Link>
+      )}
+
     </div>
   );
 };

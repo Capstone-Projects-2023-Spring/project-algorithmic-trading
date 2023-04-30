@@ -28,18 +28,32 @@ import time
 import datetime
 
 key = os.environ.get('DB_CONN_DAILY', default='')
-from django.conf import settings
+
+
+from heroku_connection.models import *
+import pandas as pd
 
 def get_stock_data_candle(request, _stock_symbol):
-    api_key = settings.SECRET_KEY
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={_stock_symbol}&outputsize=compact&apikey={api_key}'
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return JsonResponse(data)
-    else:
-        error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}'}
-        return JsonResponse(error_msg)
+    stock_data = Backlog.objects.filter(
+        ticker=_stock_symbol
+        ,date__gte = (datetime.date.today()- datetime.timedelta(days=150))
+        ).order_by('-date')
+    data = []
+    for entry in stock_data:
+        data.append({
+            'date': entry.date,
+            '1. open': entry.open,
+            '4. close': entry.close,
+            '3. low': entry.low,
+            '2. high': entry.high,
+        })
+    data = pd.DataFrame(data)
+    data['date'] = data['date'].astype(str)
+    data = data.set_index('date')
+    dict_data = data.to_dict(orient='index')
+    api_response = {'Time Series (Daily)': dict_data}
+    #print(api_response)
+    return JsonResponse(api_response)
 
  
 def get_stock_data(request, _stock_symbol):
@@ -65,18 +79,6 @@ def get_stock_data(request, _stock_symbol):
     else:
         error_msg = {'error': f'Unable to retrieve data for {_stock_symbol}. Stock DNE in database'}
         return JsonResponse(error_msg)
-    
-def get_investment(request, token):
-    """
-    View to receive the investment data for a user
-
-    param request: the request object \n
-    param token: session token attached to signed-in user \n
-    return: HttpResponse object with data to display in frontend or error message "not signed in" \n
-    rtype: HttpResponse
-    """
-    # TODO: implement getting investment info
-    return HttpResponse("get_investment")
 
 class DeleteAccount(APIView):
     '''
@@ -87,8 +89,8 @@ class DeleteAccount(APIView):
         #get the user
         user = get_user_from_token(request)
         if user == None:
-            return Response({'portfolio': "no user"})
-        #print(user.delete())
+            return Response({'error': "no user"}, status=HTTP_403_FORBIDDEN)
+        user.delete()
         return Response(status=status.HTTP_200_OK)
 
 class DisplayPortfolio(APIView):
@@ -132,7 +134,6 @@ class DisplayPortfolio(APIView):
             #create an entry for that stock if it isnt' in the list
             
             stock_name= stk.stock_symbol.stock_symbol
-            # print(stock_name, ': ', stk.quantity)
             if not stock_name in return_object:
                 close_values = get_close_past_week(stock_name)
                 close_values.append(get_latest_close_prediction(stock_name))
@@ -206,7 +207,6 @@ class SellStock(APIView):
         
         #remove all stocks with that tickers name and add it to an amount to sell
         stock_list = Portfolio_stock.objects.filter(portfolio_id=portfolio, stock_symbol=stock.stock_symbol).order_by('purchase_price')
-        print(stock_list)
         if len(stock_list) < 1:
             return Response({'error':'you do not own any shares of that stock'})
 
@@ -220,18 +220,14 @@ class SellStock(APIView):
 
 
         if owned < quantity:
-            print("owned: ", owned)
-            print("quantity", quantity)
             return Response({'error':'you do not own that many shares of that stock'})
         
         for stk in stock_list:
             if leftToSell == 0:
                 break
-            print("sell stock: ", stk.purchase_price)
             #if there is more remaining than requested to sell
             if stk.quantity > leftToSell:
                 stk.quantity = stk.quantity - leftToSell
-                print("new quantity: ", stk.quantity)
                 stk.save()
                 totalSold = totalSold + leftToSell
                 leftToSell = 0
@@ -316,7 +312,7 @@ class SaveInvestment(APIView):
         if investment_amount:
             portfolio.balance = investment_amount
             portfolio.save()
-        return Response({'amount' : portfolio.balance})  
+        return Response(data={'amount' : portfolio.balance}, status = status.HTTP_200_OK)  
 
 class UpdateOrder(APIView):
     permission_classes = (IsAuthenticated,)

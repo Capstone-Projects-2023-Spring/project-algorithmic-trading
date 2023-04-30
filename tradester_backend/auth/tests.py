@@ -4,7 +4,7 @@ from rest_framework.test import APIClient
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-# Create your tests here.
+from django.conf import settings
 
 """
 User object fields for reference: myorder, myportfolio, logentry, outstandingtoken, id, password
@@ -13,6 +13,8 @@ User object fields for reference: myorder, myportfolio, logentry, outstandingtok
 """
 
 class AuthenticationTestCase(TestCase):
+    databases ={}
+    databases['render'] = settings.DATABASES['render']
     refresh_token = ""
     access_token = ""
 

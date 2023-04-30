@@ -76,7 +76,7 @@ class Candle extends Component {
 
   async getDefaultDisplay() {
 
-    let max = 505; // 503 stocks in Predictions
+    let max = 505; // 505 stocks in StockList
     let random = Math.floor(Math.random() * max);
 
     let newSeries = [];
@@ -128,7 +128,7 @@ class Candle extends Component {
           series: newSeries,
           options: {
             title: {
-              text: ticker,
+              text: StockList[random].Name + " [" + ticker + "] - " + StockList[random].Sector,
             },
           },
         });
@@ -229,7 +229,7 @@ class Candle extends Component {
           series: newSeries,
           options: {
             title: {
-              text: name,
+              text: name
             },
           },
         });
@@ -246,7 +246,7 @@ class Candle extends Component {
     StockList.forEach((stock) => {
       options.push({
         value: stock.Symbol,
-        label: stock.Name + " [" + stock.Symbol + "]",
+        label: stock.Name + " [" + stock.Symbol + "] - " + stock.Sector,
       });
     });
 
