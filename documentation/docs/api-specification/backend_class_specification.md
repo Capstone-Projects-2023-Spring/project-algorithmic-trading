@@ -1,10 +1,10 @@
 ---
 title: Backend Class Description
-sidebar_position: 1
+sidebar_position: 2
 description: The backend functions and classes are listed here.
 --- 
 
-The backend uses the django framework.  As such, each app is stored as a file inside the ```tradeseter_backend``` folder.  All classes are found inside the views.py files of each app.  There also exist functions independent of classes, some in a views.py file of the corresponding app, and a few in the ```tradester_backend/functions``` folder.  This document lists those folders in alphabetical order.  
+The backend uses the django framework.  As such, each app is stored as a file inside the ```tradester_backend``` folder.  All classes are found inside the views.py files of each app.  There also exist functions independent of classes, some in a views.py file of the corresponding app, and a few in the ```tradester_backend/functions``` folder.  This document lists those folders in alphabetical order.  
 
 ```tradester_backend/tradester_backend``` is the actual 'root' of the backend.  In it is a settings.py file which holds information required for some of the classes to function.  It also holds a urls.py file, in which specifies url extensions to each of these apps.  Django filters each API-as-url request to our backend (from our frontend) through this urls.py file to each app.  You can view specifications for these API calls in the Backend API Specification document.  
 

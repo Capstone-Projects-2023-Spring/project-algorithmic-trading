@@ -28,7 +28,7 @@ const title = ''+process.env.PROJECT_NAME.replace('-',' ').split(' ').map((word)
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: title,
-  tagline: 'Make the Trades',
+  tagline: 'Simulated Trading for Education',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://'+process.env.ORG_NAME+'.github.io/',
   baseUrl: '/'+process.env.PROJECT_NAME+'/',
