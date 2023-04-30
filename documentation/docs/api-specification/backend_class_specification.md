@@ -101,7 +101,6 @@ Classes and methods in this file perform validation of user input in authenticat
 # **App: friendship**  
 
 ### friendship/views.py  
-
 Classes and methods in this file perform social functionality.
 
 **class FindUserByUsername(APIView)**  
@@ -304,11 +303,9 @@ Classes and methods in this file perform social functionality.
 
 
 # **Module: functions**  
+This file is for storing functions used across applications.  
 
 ### functions.functions.py 
-
-- purpose:
-  - this file is for storing functions used across applications.  
 - functions:
   - **get_user_from_token(request)**  
     - Purpose:
@@ -326,8 +323,7 @@ Classes and methods in this file perform social functionality.
 
 
 # **App: heroku_connection**  
-- purpose: 
-  - heroku_connection handles a secondary database connection.  This database stores prediction data and historical stock data.
+heroku_connection handles a secondary database connection.  This database stores prediction data and historical stock data.
 
 ### heroku_connection/functions.py
 - purpose:
@@ -365,7 +361,7 @@ Classes and methods in this file perform social functionality.
 - purpose:
   - respond to API requests involving the heroku database
 - functions:
-  - **display_stock_by_ticker(request)**
+  - **display_stock_by_ticker(request)**  
     - Purpose:
       - return a json object as a list of objects with fields "data", "open", "close", "low", "high", and "volume"
     - Precondition: 
@@ -380,5 +376,170 @@ Classes and methods in this file perform social functionality.
       - None
 
 # **App: tradester**  
+This is the main application of tradester.  It mostly deals with data stored in our render database, but some data is pulled from the heroku database. 
+
+### tradester/views.py
+-purpose:
+  - Most of the API requests from the frontend to tradester are funneled through these classes.  
+
+**class DeleteAccount(APIView)**  
+
+- Purpose:
+  - Delete a user account
+  - inherits APIView from rest_framework  
+- fields:
+  - None
+- functions:
+  - **DeleteAccount.get(request)**  
+    - Purpose:
+      - Delete a user account
+    - Precondition: 
+      - user is logged in
+    - Parameters: 
+      - request object: request
+    - Output:  
+      - response with status code 200 
+      - User object is deleted
+    - Error:
+      - response with status code 404  
+
+**class DisplayPortfolio(APIView)**
+- Purpose:
+  - Display the portfolio of the given user
+  - inherits APIView from rest_framework  
+- fields:
+  - None
+- functions:
+  - **DisplayPortfolio.get(request)**
+    - Purpose:
+      - Display the portfolio of the given user
+    - Precondition: 
+      - user is logged in
+    - Parameters: 
+      - request object: request containg field "user_id"
+    - Output:  
+      - returns the portfolio of the user if "user_id"== 'self', otherwise the portfolio of a friend
+      - portfolio is an object of objects in this form:
+      ```json
+        {
+            "balance":float, 
+            "ticker": {
+              "quantity_total":integer,
+              "purchase_value":float,
+              "close_values":[{
+                  get_close_past_week(ticker),
+                  get_latest_close_prediction(ticker)
+                }]
+              "purchases":[{
+                'timestamp': date
+                'price': float
+                'quantity': integer
+                }],
+              "real_ticker":{
+                "real_value": float
+                },
+                "price": float
+              },
+              "total_purchase_value": float
+              "total_real_value": float
+          }
+        ```
+      
+    - Error:
+      - response with status code 401 if unauthorized friendship portfolio request, 403 if the portfolio does not exist  
+
+**class SellStock(APIView)**  
+- Purpose:
+  - Sell a given stock
+  - inherits APIView from rest_framework  
+- fields:
+  - None
+- functions:
+  - **SellStock.get(request)**  
+    - Purpose:
+      - Sell a given stock from the user's portfolio
+    - Precondition: 
+      - user is logged in
+    - Parameters: 
+      - request object: request, containing fields "quanity", "price", "stock"
+    - Output:  
+      - response object with field "new_balance" and status code 200
+    - Error:
+      - response with status code 403 if the portfolio or stock does not exist  
+
+**class PurchaseStock(APIView)**  
+- Purpose:
+  - Purchase a given stock
+  - inherits APIView from rest_framework  
+- fields:
+  - None
+- functions:
+  - **PurchaseStock.get(request)**  
+    - Purpose:
+      - Purhcase a given stock and add it to the user's portfolio if they have enough funds in the portfolio's balance field
+    - Precondition: 
+      - user is logged in
+    - Parameters: 
+      - request object: request, containing fields "quanity", "price", "stock"
+    - Output:  
+      - response object with field "purchase total" and status code 200
+    - Error:
+      - response with status code 403 if the portfolio or stock does not exist, 'error' field explaining the user does not have enough funds to purchase the stock if that is the case
+      
+**class SaveInvestment(APIView)**  
+- Purpose:
+  - Save a base investment for the user's portfolio
+  - inherits APIView from rest_framework  
+- fields:
+  - None
+- functions:
+  - **SaveInvestment.get(request)**  
+    - Purpose:
+      - Save a base investment for the user's portfolio
+    - Precondition: 
+      - user is logged in
+    - Postcondition:
+      - user's portfolio balance is updated
+    - Parameters: 
+      - request object: request, containing fields "amount"
+    - Output:  
+      - response object with field "amount" and status code 200
+    - Error:
+      - response with status code 403 if the user does not exist    
+
+
+**class UpdateOrder(APIView)**  
+- Purpose:
+  - Update a user's Order object.  Orders act as receipts for transactions
+  - inherits APIView from rest_framework  
+- fields:
+  - None
+- functions:
+  - **UpdateOrder.get(request)**  
+    - Purpose:
+      - display the user's associated Order objects
+    - Precondition: 
+      - user is logged in
+    - Parameters: 
+      - request object: request
+    - Output:  
+      - JsonResponse object with 'orders' field as a list of the Orders objects associated with the user
+    - Error:
+      - response with status code 403 if the user does not exist    
+
+  - **UpdateOrder.post(request)**  
+    - Purpose:
+      - add an order object to the order table associated with a user
+    - Precondition: 
+      - user is logged in
+    - Postcondition:
+      - new Order object added and associated with user
+    - Parameters: 
+      - request object: request, containing fields "amount", string:_stock_symbol, string:_order_type, string:_quantity, string:_price
+    - Output:  
+      - JsonResponse object with field "response":"new entry saved"
+    - Error:
+      - response with 'error' explaing stock doesn't exist
+
 
 

@@ -102,7 +102,7 @@ class DeleteAccount(APIView):
         user = get_user_from_token(request)
         if user == None:
             return Response({'portfolio': "no user"})
-        #print(user.delete())
+        user.delete()
         return Response(status=status.HTTP_200_OK)
 
 class DisplayPortfolio(APIView):
