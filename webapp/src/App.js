@@ -42,7 +42,6 @@ export default function App() {
               Tradester <img src={bull} alt="Logo" />{" "}
             </Link>
             <div className="links">
-              <Link to="/about">About</Link>
               <Link to="/investment">Investment</Link>
               <Link
                 to="/portfolio"
