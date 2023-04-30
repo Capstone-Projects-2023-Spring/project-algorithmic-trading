@@ -40,7 +40,7 @@ def get_stock_data_candle(request, _stock_symbol):
         ).order_by('-date')
     close = get_close_past_week(_stock_symbol)[5]["price"]
     pred = get_latest_close_prediction(_stock_symbol)["price"]
-    percent_difference = round(((pred - close) / ((pred + close) / 2)) * 100, 2)
+    percent_difference = round(((pred - close) / (close)) * 100, 2)
     data = []
     for entry in stock_data:
         data.append({
