@@ -60,11 +60,11 @@ export default function App() {
             <Link className="logo" to="/login">
               Tradester <img src={bull} alt="Logo" />{" "}
             </Link>
+            <div className="menu">
+              <Menu />
+            </div>
           </div>
         )}
-        <div className="menu">
-          <Menu />
-        </div>
       </div>
     );
   };

@@ -32,6 +32,7 @@ html * {
   min-height: 94vh;
   left: 50%;
   transform: translate(-50%, 6vh);
+  padding-bottom: 2em;
 }
 
 .home {
@@ -147,5 +148,9 @@ a:active {
 
   .overlay {
     width: 100%;
+    background-color: transparent;
+  }
+  .background {
+    filter: brightness(50%);
   }
 }
