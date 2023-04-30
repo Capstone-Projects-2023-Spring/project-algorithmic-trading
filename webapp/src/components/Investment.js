@@ -3,7 +3,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
 import { API_ENDPOINT } from "../services/api-endpoints";
 
-import "./style/simulation.css";
+import "./style/investment.css";
 
 const form = {
   hidden: { opacity: 0 },
@@ -29,7 +29,7 @@ const children = {
   },
 };
 
-const Simulation = ({ loggedIn }) => {
+const Investment = ({ loggedIn }) => {
   //console.log(localStorage.getItem('username'));
   const [investment, setInvestment] = useState(0);
   const navigate = useNavigate();
@@ -73,25 +73,15 @@ const Simulation = ({ loggedIn }) => {
       variants={form}
       initial="hidden"
       animate="visible"
-      className="simulation"
+      className="investment"
     >
-      <motion.h1 variants={children}>Simulation</motion.h1>
+      <motion.h1 variants={children}>Investment</motion.h1>
 
       <div variants={children} className="description">
-        <motion.p variants={children}>
-          This page allows you to run our stock trading simulator. All you need
-          to do is enter an investment amount and hit enter. Our system will use
-          your investment amount to determine the best stocks to buy. It will
-          then constantly monitor the market and trade stocks when there is an
-          anticipated profit. This process will keep going until you end the
-          simulation.
-        </motion.p>
-        <br />
         <motion.p variants={children}>
           Expected input is a whole number or a decimal number with one or two
           digits after the decimal point.
         </motion.p>
-        <br />
       </div>
 
       <motion.p variants={children}>
@@ -113,4 +103,4 @@ const Simulation = ({ loggedIn }) => {
   );
 };
 
-export default Simulation;
+export default Investment;
