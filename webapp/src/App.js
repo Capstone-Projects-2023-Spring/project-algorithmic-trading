@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
-import About from "./components/About";
 import Blog from "./components/Blog";
 import Post from "./components/Post";
 import Dashboard from "./components/Dashboard.tsx";
@@ -42,7 +41,8 @@ export default function App() {
               Tradester <img src={bull} alt="Logo" />{" "}
             </Link>
             <div className="links">
-              <Link to="/investment">Investment</Link>
+              <Link to="/candle">Stocks</Link>
+              <Link to="/simulation">Simulation</Link>
               <Link
                 to="/portfolio"
                 state={{
@@ -79,7 +79,6 @@ export default function App() {
       <div className="overlay">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/post" element={<Post />} />
           <Route path="/dashboard" element={<Dashboard />} />
