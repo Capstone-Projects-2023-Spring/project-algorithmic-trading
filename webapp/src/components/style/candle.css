@@ -11,6 +11,10 @@
   justify-content: space-between;
 }
 
+.candlediv h2 {
+  margin-bottom: 1rem;
+}
+
 .select {
   margin-bottom: 1vh;
   color: black;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
-import { API_ENDPOINT } from "../services/api-endpoints";
+import { setAndGetInvestment } from "../services/investment.js";
 
 import "./style/investment.css";
 
@@ -42,21 +42,13 @@ const Investment = ({ loggedIn }) => {
     }
   });
 
-  const setAndFetchInvestment = (value) => {
-    fetch(`${API_ENDPOINT}/tradester/save_investment/?amount=${value}`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        let investmentString = data.amount;
-        let investment = parseFloat(investmentString);
-        if (!isNaN(investment)) {
-          setInvestment(data.amount);
-        }
-      });
+  const setAndFetchInvestment = async (value) => {
+    let response = await setAndGetInvestment(value);
+    let investmentString = response.amount;
+    let investment = parseFloat(investmentString);
+    if (!isNaN(investment)) {
+      setInvestment(investment);
+    }
   };
 
   const onKeyDown = (event) => {
