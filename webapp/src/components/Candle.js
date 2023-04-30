@@ -59,6 +59,8 @@ class Candle extends Component {
         },
       },
       currentStock: "empty",
+      currentDescription: "empty",
+      currentChange: 0,
       currentStockAmount: 0,
       currentStockPrice: 0
     };
@@ -82,7 +84,9 @@ class Candle extends Component {
     let newSeries = [];
     let newData = [];
     let ticker = StockList[random].Symbol;
+    let description = StockList[random].description
     this.currentStock = ticker;
+    this.currentDescription = description
 
     const url = `${API_ENDPOINT}/tradester/get_stock_data_candle/${ticker}/`;
 
@@ -93,6 +97,9 @@ class Candle extends Component {
       .then((res) => {
 
         let TSD = res["Time Series (Daily)"];
+        this.currentChange = res["Percent Difference"];
+        console.log(TSD);
+        console.log(this.currentChange);
 
         for (let key in TSD) {
 
@@ -118,7 +125,7 @@ class Candle extends Component {
           newData.push(data);
         }
 
-        newData = newData.reverse().slice(70);
+        newData = newData.reverse().slice(40);
         // last element in newData = most recent day, y = O/H/L/C, [3] = close
         // newData[newData.length - 1].y[3] = most recent day close
         this.currentStockPrice = newData[newData.length - 1].y[3];
@@ -130,7 +137,8 @@ class Candle extends Component {
             title: {
               text: StockList[random].Name + " [" + ticker + "] - " + StockList[random].Sector,
             },
-          },
+          currentDescription: StockList[random].description
+          }
         });
       })
       .catch(function (error) {
@@ -180,9 +188,10 @@ class Candle extends Component {
     this.currentStockAmount = event.target.value;
   };
 
-  updateChart(ticker, name) {
+  updateChart(ticker, name, description) {
     let newSeries = [];
     let newData = [];
+    this.currentDescription = description;
     this.currentStock = ticker;
 
     const url = `${API_ENDPOINT}/tradester/get_stock_data_candle/${ticker}/`;
@@ -194,6 +203,7 @@ class Candle extends Component {
       .then((res) => {
 
         let TSD = res["Time Series (Daily)"];
+        this.currentChange = res["Percent Difference"];
 
         for (let key in TSD) {
           
@@ -219,7 +229,7 @@ class Candle extends Component {
           newData.push(data);
         }
 
-        newData = newData.reverse().slice(70);
+        newData = newData.reverse().slice(40);
         // last element in newData = most recent day, y = O/H/L/C, [3] = close
         // newData[newData.length - 1].y[3] = most recent day close
         this.currentStockPrice = newData[newData.length - 1].y[3];
@@ -247,8 +257,11 @@ class Candle extends Component {
       options.push({
         value: stock.Symbol,
         label: stock.Name + " [" + stock.Symbol + "] - " + stock.Sector,
+        description: stock.description
       });
     });
+
+    let p_diff = this.currentChange
 
     return (
       <motion.div
@@ -261,7 +274,7 @@ class Candle extends Component {
           options={options}
           maxMenuHeight={500}
           onChange={(stock) => {
-            this.updateChart(stock.value, stock.label);
+            this.updateChart(stock.value, stock.label, stock.description);
           }}
           className="select"
         />
@@ -269,12 +282,16 @@ class Candle extends Component {
           options={this.state.options}
           series={this.state.series}
           type="candlestick"
-          height={"88%"}
+          height={"75%"}
           className="chart"
         />
+        <p>{this.currentDescription}</p>
         <div className="purchase">
           <button onClick={this.updatePortfolio}>Purchase</button>
           <input type="number" onChange={this.updateAmount}></input>
+          {p_diff > 0 ? 
+            <p className="green">Recommended - Value Expected to increase by {p_diff}%</p> 
+          : <p className="red">Not Recommended  - Value Expected to decrease by {Math.abs(p_diff)}%</p>}
         </div>
       </motion.div>
     );
