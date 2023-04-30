@@ -10,7 +10,7 @@ Tradester requires real-time stock data, which will be received through the Alph
 
 **Top-level Design:**  
 
-Tradester will be a web and mobile application where users may go to their website and select either a trading or simulation mode. Within simulation mode, they may input some number representing the amount of money they are starting with, then choose one of three algorithms: day-trading, long-term, or S&P 500. Then they will input the money and see in real time how the algorithm performs via graphs. Additionally, other factors such as risk tolerance may be changed for each strategy. Additionally, the user may choose to test each algorithm with historical data and see how it performs over a certain time-frame. The trading mode will instead connect to the user’s Quant Connect account and make trades with real money, also showing with graphs how their money is changing in real time.
+Tradester will be a web and mobile application where users may go to their website and select either a trading or simulation mode. Within simulation mode, they may input some number representing the amount of money they are starting with, then choose one of three algorithms: day-trading, long-term, or S&P 500. Then they will input the money and see in real time how the algorithm performs via graphs. Additionally, other factors such as risk tolerance may be changed for each strategy. Additionally, the user may choose to test each algorithm with historical data and see how it performs over a certain time-frame. 
 
 **Detailed Design:**  
 

@@ -325,8 +325,8 @@ sequenceDiagram
     participant wa as web application
     participant sv as server
     participant db as database
-    participant api as API(Alpha Vantage or yahoo_fin)
-    participant qc as QuantConnect(optional)
+    participant api as API(Alpha Vantage )
+
 
     us ->>+ wa: click "Account Selector" button
     wa -->> us: display dropdown of investment accounts

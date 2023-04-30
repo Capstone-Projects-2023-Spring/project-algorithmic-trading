@@ -27,7 +27,6 @@ Display Live Stock Data
 
 Automated Trading Bot
     - Trading done automatically via algorithms written in Python, with optional manual adjustments
-    - Make trades through integration with QuantConnect
 
 S&P 500 Algorithm
     - Create function to find and track all S&P 500 members stock values and market capitalization
