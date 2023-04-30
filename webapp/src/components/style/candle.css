@@ -69,3 +69,12 @@ p {
 .red {
   color: #ff6b81;
 }
+
+@media screen and (max-device-width: 480px) {
+  p {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 3rem;
+  }
+}
