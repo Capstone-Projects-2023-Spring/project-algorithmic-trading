@@ -345,6 +345,7 @@ sequenceDiagram
     Client -->>- User: Display Amazon stock data graph
 ```
 <br/>
+
 1. The user enters their username and password and logs in.
 2. The client makes an API call to get a JWT token pair (access and refresh tokens).
 3. The server returns a JWT token pair.
@@ -401,6 +402,7 @@ sequenceDiagram
     Client -->>- UnexperiencedUser: Display ExperiencedUser's portfolio
 ```
 <br/>
+
 1. UnexperiencedUser is assumed to be logged in. They click on the "Social" tab.
 2. The website navigates to the the Social page, which has a search feature for users.
 3. UnexperiencedUser enters ExperiencedUser's username in the search bar.
