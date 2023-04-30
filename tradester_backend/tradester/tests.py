@@ -41,6 +41,7 @@ class TestUpdateOrderView(TestCase):
         url = reverse('update_order_get')
         headers = {'Authorization': 'Bearer ' + self.access_token}
         response = self.client.get(url, headers=headers)
+        print(response.status_code)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_post_order_status(self):
@@ -64,6 +65,7 @@ class TestUpdateOrderView(TestCase):
         headers = {'Authorization': 'Bearer ' + self.access_token}
         response = self.client.get(url, headers=headers)
         orders = response.json()['orders']
+        print(orders)
 
         self.assertEqual(orders[0]['stock_symbol_id'], 'TEST')
         self.assertEqual(orders[0]['order_type'], 'BUY') 
