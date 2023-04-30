@@ -6,11 +6,13 @@ description: The backend API calls
 
 The backend uses the django framework.  As such, each app has its own associated API endpoints.  API requests are made from our frontend [```https://jalzeidi.github.io/tradester-frontend/```](https://jalzeidi.github.io/tradester-frontend/) to our backend, which is currently ```https://tradester-backend.onrender.com/```. I will refer to this in the URL requests as ```BASE```.  Each API request uses the same BASE, and is filtered to different apps via the django framework.  The filtering is done via the ```urls.py``` files in each app. All apps are in the ```tradester_backend``` folder, and each has its own ```urls.py``` that filters the url, either to another app or to a corresponding function, found in the ```views.py``` file of that app.  The first app is ```tradester_backend```.  
 
-NOTE: for brevity, this was not added in the API specifications, but every API request must include an Authorization header with bearer TOKEN, like this:
+NOTE: for brevity, this was not added in the API specifications, but every API request header includes json/application.  Other than the request to a /token endpoints, the request must also include an authorization header, so generall they will look like this:
 ```json
-    'authorizations': 'bearer <token>'
+    "authorizations": "bearer token",
+    "Content-Type": "application/json"
+
 ```
-This token can be retrieved through the auth app API.  
+This ```token``` can be retrieved through the auth app API.  
 
 
 - 'BASE/admin/doc/'
@@ -151,7 +153,7 @@ This token can be retrieved through the auth app API.
 #### 'BASE/tradester/token/'
 - METHOD: POST  
 - PARAMETERS: None
-- body:
+- BODY:
 ```json
     {
         "username":username,
@@ -161,6 +163,12 @@ This token can be retrieved through the auth app API.
 - RETURN TYPE: json/application  
 - RETURN:  
     - 200 
+    ```json
+        {
+            "access": access,
+            "refresh": refresh,
+        }
+    ```
     - 404 
 #### 'BASE/tradester/delete_user_account/'
 - METHOD: GET  
@@ -320,7 +328,72 @@ This token can be retrieved through the auth app API.
     - 200
 
 # app: auth  
-#### 'BASE/auth  
+#### 'BASE/auth/token/'  
+- METHOD: POST  
+- PARAMETERS: None
+- BODY:
+```json
+    {
+        "username":username,
+        "password":password
+    }
+```
+- RETURN TYPE: json/application  
+- RETURN:  
+    - 200 
+    ```json
+        {
+            "access": access,
+            "refresh": refresh,
+        }
+    ```
+    - 404 
+
+#### 'BASE/auth/refresh/'  
+- METHOD: POST  
+- PARAMETERS: None
+- BODY:
+```json
+    {
+        "refresh":refresh_token
+    }
+```
+- RETURN:
+    - 200  
+
+#### 'BASE/auth/logout/'  
+- METHOD: POST  
+- PARAMETERS: None
+- BODY:
+```json
+    {
+        "refresh_token":refresh_token
+    }
+```
+- RETURN:
+    - 205, reset authorization
+    - 400, bad request
+
+#### 'BASE/auth/register/'  
+- METHOD: POST  
+- PARAMETERS: None
+- BODY:
+```json
+    {
+        "username": username,
+        "password": password,
+        "password_conf": password_Conf,
+    }
+```
+- RETURN: 
+    - 200 
+    ```json
+        {
+            "access": access,
+            "refresh": refresh,
+        }
+    ```
+    - 404, unauthorized
 
 # app: heroku_backend  
 #### 'BASE/heroku_backend
