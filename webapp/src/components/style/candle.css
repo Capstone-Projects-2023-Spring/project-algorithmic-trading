@@ -11,6 +11,10 @@
   justify-content: space-between;
 }
 
+.candlediv h2 {
+  margin-bottom: 1rem;
+}
+
 .select {
   margin-bottom: 1vh;
   color: black;
@@ -38,6 +42,10 @@
   color: black;
 }
 
+.purchase * {
+  display: inline-block;
+}
+
 .purchase button {
   font-size: 2vh;
   color: black;
@@ -46,4 +54,18 @@
 .purchase input {
   font-size: 2vh;
   color: black;
+  margin-right: 2vh;
+}
+
+p {
+  padding-top: .5vh;
+  padding-bottom: .5vh;
+}
+
+.green {
+  color: #8fff8f;
+}
+
+.red {
+  color: #ff6b81;
 }
