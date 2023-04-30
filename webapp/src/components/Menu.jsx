@@ -23,15 +23,19 @@ export default function Menu() {
       </button>
       {open ? (
         <div onClick={handleOpen} className="linkdropdown">
-          <Link to="/about">About</Link>
+          <Link to="/candle">Stocks</Link>
           <Link to="/investment">Investment</Link>
-          <Link to="/portfolio">Portfolio</Link>{" "}
-          {/* This should be added to loggedIn when ready */}
-          {loggedIn ? (
-            <Link to="/logout">Logout</Link>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
+          <Link
+            to="/portfolio"
+            state={{
+              username: localStorage.getItem("username"),
+              isSelf: true,
+            }}
+          >
+            Portfolio
+          </Link>
+          <Link to="/search">Social</Link>
+          <Link to="/logout">Logout</Link>
         </div>
       ) : null}
     </div>

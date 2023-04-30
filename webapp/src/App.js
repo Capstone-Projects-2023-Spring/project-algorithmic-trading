@@ -54,15 +54,15 @@ export default function App() {
               <Link to="/search">Social</Link>
               <Link to="/logout">Logout</Link>
             </div>
+            <div className="menu">
+              <Menu />
+            </div>
           </div>
         ) : (
           <div className="nav">
             <Link className="logo" to="/login">
               Tradester <img src={bull} alt="Logo" />{" "}
             </Link>
-            <div className="menu">
-              <Menu />
-            </div>
           </div>
         )}
       </div>
