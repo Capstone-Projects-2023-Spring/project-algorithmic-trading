@@ -9,7 +9,13 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
 from decimal import Decimal
 
+from django.conf import settings
+
+credentials = {'username': 'testuser', 'password': 'testpass'}
+
 class TestUpdateOrderView(TestCase):
+    databases ={}
+    databases['render'] = settings.DATABASES['render']
     access_token = ""
     def setUp(self):
         self.client = APIClient()
@@ -35,8 +41,7 @@ class TestUpdateOrderView(TestCase):
         stock.save()
         stock, created= Stock.objects.get_or_create(stock_symbol='TEST2', current_price=200)
         stock.save()
-    
-
+        
     def test_get_order_status(self):
         url = reverse('update_order_get')
         headers = {'Authorization': 'Bearer ' + self.access_token}
@@ -73,4 +78,59 @@ class TestUpdateOrderView(TestCase):
         self.assertEqual(orders[1]['order_type'], 'SELL') 
         self.assertEqual(orders[1]['quantity'], 5)
         self.assertEqual(Decimal(orders[1]['price']), 200.00)
+
+class TestPortfolioFunctions(TestCase):
+
+    databases ={}
+    databases['render'] = settings.DATABASES['render']
+    access_token = ""
+    headers = None
+    def setUp(self):
+        self.client = APIClient()
+        self.user = User.objects.create_user(
+            username=credentials['username'],
+            password=credentials['password']
+        ) 
+        response = self.client.post('/auth/token/', credentials, format='json')
+        self.headers = {'Authorization': 'Bearer ' + response.data['access']}
+        
+        #add a stock to the stock table
+        stock, created= Stock.objects.get_or_create(stock_symbol='TEST', current_price=20)
+        stock.save()
+
+    def test_purchase_stock(self):
+
+        #try to purchase an amount of TEST
+        stock = 'TEST'
+        price = 101.10
+        quantity = 2
+        response = self.client.get(f'/tradester/purchase_stock/?stock={stock}&price={price}&quantity={quantity}', headers=self.headers)
+        self.assertEquals(response.json()['total attempted'], price*quantity)
+
+        #add a enough money to buy it
+        wallet = 400
+        response = self.client.get(f'/tradester/save_investment/?amount={wallet}', headers=self.headers)
+        self.assertEquals(response.json()['amount'], wallet)
+
+        #try again
+        response = self.client.get(f'/tradester/purchase_stock/?stock={stock}&price={price}&quantity={quantity}', headers=self.headers)
+        self.assertEquals(response.json()['purchase total'], price*quantity)
+
+    def test_sell_stock(self):
+
+        #add money to wallet
+        wallet = 400
+        response = self.client.get(f'/tradester/save_investment/?amount={wallet}', headers=self.headers)
+        self.assertEquals(response.json()['amount'], wallet)
+
+        #purchase a stock
+        stock = 'TEST'
+        price = 101.10
+        quantity = 2
+        response = self.client.get(f'/tradester/purchase_stock/?stock={stock}&price={price}&quantity={quantity}', headers=self.headers)
+        self.assertEquals(response.json()['purchase total'], price*quantity)
+
+        #sell that stock
+        response = self.client.get(f'/tradester/sell_stock/?stock={stock}&price={price}&quantity={quantity}', headers=self.headers)
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
 

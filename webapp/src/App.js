@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
-import About from "./components/About";
 import Blog from "./components/Blog";
 import Post from "./components/Post";
 import Dashboard from "./components/Dashboard.tsx";
 import Login from "./components/Login.tsx";
 import Logout from "./components/Logout";
 import Register from "./components/Register";
-import Simulation from "./components/Simulation";
+import Investment from "./components/Investment";
 import Candle from "./components/Candle";
 import Portfolio from "./components/Portfolio";
 import Search from "./components/social/Search";
@@ -34,34 +33,38 @@ export default function App() {
     return (
       <div>
         <img className="background" src={br} alt="Background" />
-        <div className="nav">
-          <Link className="logo" to="/candle">
-            Tradester <img src={bull} alt="Logo" />{" "}
-          </Link>
-          <div className="links">
-            <Link to="/about">About</Link>
-            <Link to="/simulation">Simulation</Link>
-            <Link
-              to="/portfolio"
-              state={{
-                username: localStorage.getItem("username"),
-                isSelf: true,
-              }}
-            >
-              Portfolio
-            </Link>{" "}
-            <Link to="/search">Social</Link>
-            {/* This should be added to loggedIn when ready */}
-            {loggedIn ? (
+
+        {loggedIn ? (
+          <div className="nav">
+            <Link className="logo" to="/candle">
+              Tradester <img src={bull} alt="Logo" />{" "}
+            </Link>
+            <div className="links">
+              <Link to="/candle">Stocks</Link>
+              <Link to="/investment">Investment</Link>
+              <Link
+                to="/portfolio"
+                state={{
+                  username: localStorage.getItem("username"),
+                  isSelf: true,
+                }}
+              >
+                Portfolio
+              </Link>
+              <Link to="/search">Social</Link>
               <Link to="/logout">Logout</Link>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
+            </div>
+            <div className="menu">
+              <Menu />
+            </div>
           </div>
-          <div className="menu">
-            <Menu />
+        ) : (
+          <div className="nav">
+            <Link className="logo" to="/login">
+              Tradester <img src={bull} alt="Logo" />{" "}
+            </Link>
           </div>
-        </div>
+        )}
       </div>
     );
   };
@@ -72,7 +75,6 @@ export default function App() {
       <div className="overlay">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/post" element={<Post />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -86,8 +88,8 @@ export default function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route
-            path="/simulation"
-            element={<Simulation loggedIn={loggedIn} />}
+            path="/investment"
+            element={<Investment loggedIn={loggedIn} />}
           />
           <Route path="/candle" element={<Candle />} />
           <Route
@@ -109,12 +111,20 @@ export default function App() {
 }
 
 const HomePage = () => {
+  let isActive = sessionStorage.activeSession;
+
   return (
     <div className="home">
-      <h1>Welcome to tradester</h1>
-      <Link className="viewdash" to="/candle">
-        View Dashboard
-      </Link>
+      <h1>Welcome to Tradester</h1>
+      {sessionStorage.activeSession == "true" ? (
+        <Link className="viewdash" to="/candle">
+          View Dashboard
+        </Link>
+      ) : (
+        <Link className="viewdash" to="/login">
+          Log In
+        </Link>
+      )}
     </div>
   );
 };
