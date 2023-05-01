@@ -125,9 +125,7 @@ const Portfolio = () => {
             stock.push(
               close_values[5]
             );
-            let profits = stock[4] - stock[1];
-            console.log(stock[4]);
-            console.log(stock[1]);
+            let profits = stock[4] * stock[3] - stock[1];
             stock.push(profits.toFixed(2));
 
             stock.push(close_values);
