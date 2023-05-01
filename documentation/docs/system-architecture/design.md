@@ -28,15 +28,11 @@ Two PostgreSQL databases. One database is used to hold user, friendship, friend 
 
 A machine learning model that predicts the next day's close value for each of the stocks in the S&P 500. This model lives on Professor Wang's GPU server, and is set to run daily after the stock market closes. 
 
-## Algorithms
+## Algorithm
 
-This application will utilize machine learning to make decisions on which stock to purchase. Stocks will be analyzed as discrete time data, and whether or not to purchase a stock will be determined by the stock's price, market cap, historical returns, volume of historical trades, alpha (excess return), beta (volatility) and any other quantitative data. This means we will be using technical anaylsis for our algorithms, which is best used in more short term trades. Essentially, the behavior of stock prices will be treated as a regression problem. In particular, there will be three trading strategies employed:
+This application will utilize machine learning to predict future stock prices. Stocks will be analyzed as a discrete time series of daily close price data. A long short term memory model is applied to this data in order to minimize the mean absolute error. Two layers are used in the model, with 32 hidden layers and 150 epochs. Additionally, windowing is used in order to reduce overfitting. This model is then used to predict the closing price of every stock in the S&P500 on the next trading day, and is run after each market close.
 
-1. S&P 500: Evaluate each stock comprising the S&P 500, determine its growth potential and sort each company in order of predicted growth. Then, if fractional shares are allowed, divide the user's capital and invest in each stock in proportion to its growth potential, i.e. if Apple is projected to be three times more likely to grow than Tesla, invest three times more money into Apple than Tesla. If fractional shaes are not allowed, then find every permutation of stocks that may be purchased from this list and chose the overall most profitable one.
-2. Long Term: Analyze the stock market and flag certain stocks for growth, investing a specified percentage of the user's capital into each flagged stock. Then, once the stock is determined to no longer be growing, sell the stock.
-3. Day Trading: Analyzing the stock market, find stocks that are currently growing and then immediately sell once the begin decreasing. This will be done at a high frequency.
-
-The success of these algorithms will be determined by how they perform in comparison to the S&P 500, root mean squared error, and mean absolute percent error.
+Other models we tested involved different numbers of epics, layers, and more parameters. However we found that more parameters resulted in overfitting and less accurate predictions, as did more layers. Increasing the amount epochs only increases the accuracy of our model, but it also significantly increases runtime. We found that there was not a significant increase in accuracy between 100 and 150 epochs, however 150 epochs still led to more accurate predictions and the runtime was not an issue. This means that increasing the epochs further will not lead to a significant change in accuracy and will significantly impact the runtime past 12 hours, where it currently lies.
 
 ## Section 4 - Class Diagrams
 
