@@ -4,7 +4,9 @@ sidebar_position: 1
 
 ## Section 1 - Overview
 
+
 The system is comprised of 4 different components: a client application in React, a server application in Django, two PostgreSQL databases, and a machine learning model for stock prediction that lives on Professor Wang's GPU server. The databases are accessed through an ORM. The user interacts with the client application, which makes API calls to the server. The server handles the calls, adding/deleting/modifying the database, or simply fetching data from the database. Our database is scheduled to be updated with new stock data daily. Our machine learning model is scheduled to run daily to make predictions for the next day for every stock in the S&P 500. Scheduling is done separately from our application using a Heroku scheduling tool.
+
 
 ## Section 2 - Components and Interfaces
 
@@ -194,6 +196,7 @@ The object looks like this:
 ```
 
 This data is needed to determine what the search pages looks like as well as what actions can be made from the search page. If the searched user is a friend, the page displays a tag that shows friendship status. If the user has an incoming friend request from the searched user, no action can be taken from the search page. If the user has an outgoing friend request to the searched user, the user can revoke that friend request. Finally, if the searched user is not a friend, the user can send them a friend request.
+
 
 *sendRequest()*: Make an API call to send a friend request to the current found user.
 

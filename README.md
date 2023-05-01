@@ -18,7 +18,7 @@
 
 ## Running Locally
 
-If you would like to run Tradester locally, you can do so using node.js to run the frontend and poetry to run the backend. We suggest using nvm (macos, linux) or nvm-windows to install the current version of node and npm, click [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if you don't have those installed yet.  poetry can be downloaded [here](https://python-poetry.org/), and you will need the latest version of python, available [here](https://www.python.org/).  
+If you would like to run Tradester locally, you can do so using node.js to run the frontend and poetry to run the backend. You will also need to receive a ```.env``` file from us and instructions on how to use it (we have secrets we don't want to give out to just anyone). We suggest using nvm (macos, linux) or nvm-windows to install the current version of node and npm, click [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if you don't have those installed yet.  poetry can be downloaded [here](https://python-poetry.org/), and you will need the latest version of python, available [here](https://www.python.org/).  
 
 npm and poetry will create virtual environments with the required dependencies to run the frontend and backend, respectively.
 

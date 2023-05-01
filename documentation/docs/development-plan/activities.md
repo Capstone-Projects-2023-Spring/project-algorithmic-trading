@@ -6,7 +6,7 @@ sidebar_position: 1
 
 
 **Requirements Gathering:**  
-Tradester requires real-time stock data, which will be received through the yahoo_fin API. This information will later be stored in a database, which will require a free firebase account. The final requirement that must be gathered is user input, which will be done using a website front-end.
+Tradester requires real-time stock data, which will be received through the Alpha Vantage API. This information will later be stored in a database, which will require a free firebase account. The final requirement that must be gathered is user input, which will be done using a website front-end.
 
 **Top-level Design:**  
 
@@ -14,7 +14,7 @@ Tradester will be a web and mobile application where users may go to their websi
 
 **Detailed Design:**  
 
-All stock data will be stored in a database hosted by firebase. This data will be retrieved via a python script call from the website which will then make an API call using the yahoo_fin API to store data in the database. From this data, each algorithm will use machine learning techniques in order to choose which stocks should be purchased, and either simulate a purchase by logging the relevant information or carry out a purchase through an API call to QuantConnect, then store the relevant information in the database. The website will be coded in Javascript and access the database in order to produce graphs of how each purchased stock as well as the user’s total capital is performing.
+All stock data will be stored in a database hosted by firebase. This data will be retrieved via a python script call from the website which will then make an API call using the Alpha Vantage API to store data in the database. From this data, each algorithm will use machine learning techniques in order to choose which stocks should be purchased, and either simulate a purchase by logging the relevant information or carry out a purchase through an API call to Render, then store the relevant information in the database. The website will be coded in Javascript and access the database in order to produce graphs of how each purchased stock as well as the user’s total capital is performing.
 
 **Implementation:**  
 
